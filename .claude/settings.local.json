@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node screenshot.mjs http://localhost:3000 homepage-v1)",
+      "mcp__claude_ai_Figma__get_metadata"
+    ]
+  }
+}
