@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(node screenshot.mjs http://localhost:3000 homepage-v1)",
-      "mcp__claude_ai_Figma__get_metadata"
+      "mcp__claude_ai_Figma__get_metadata",
+      "mcp__claude_ai_Figma__get_design_context",
+      "Bash(node screenshot.mjs http://localhost:3000 current)",
+      "Bash(node screenshot.mjs http://localhost:3000 hero-v1)"
     ]
   }
 }
