@@ -136,6 +136,12 @@ tailwind.config = {
   .btn-ghost:active { transform: scale(0.98); }
   .btn-ghost:focus-visible { outline: 2px solid #8BAD41; outline-offset: 2px; }
 
+  /* Anek Telugu descender fix — font has oversized bottom metrics that shift text
+     below optical center in flex containers. line-height:1 collapses the line box
+     so items-center aligns on the actual visual midpoint of the glyphs. */
+  .btn-glow, .btn-ghost,
+  a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
+
   /* Nav pill container — dark bg with inner green glow */
   .nav-pill {
     background: rgba(10, 15, 10, 0.65);
@@ -170,6 +176,25 @@ tailwind.config = {
   /* Ticker animation */
   @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .ticker-track { animation: ticker 30s linear infinite; }
+  @keyframes marquee-xl { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .marquee-xl-track { animation: marquee-xl 28s linear infinite; will-change: transform; }
+
+  /* Service rows */
+  .service-row {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    transition: background 0.25s ease;
+  }
+  .service-row:first-child { border-top: 1px solid rgba(255,255,255,0.2); }
+  .service-row:last-child  { border-bottom: none; }
+  .service-row:hover { background: rgba(139,173,65,0.04); }
+  .service-row:hover .svc-icon-lg {
+    border-color: rgba(186,235,66,0.7);
+    background: rgba(139,173,65,0.18);
+    box-shadow: 0 0 20px rgba(139,173,65,0.12);
+  }
+  .svc-icon-lg {
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .fade-up { opacity: 1; transform: none; transition: none; }
@@ -226,89 +251,78 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 2: HERO                                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 overflow-hidden">
-  <!-- Ethereal Shadow Background -->
-  <div id="ethereal-bg" style="position:absolute; inset:0; overflow:hidden; z-index:0;">
-    <svg style="position:absolute; width:0; height:0;">
-      <defs>
-        <filter id="ethereal-filter">
-          <feTurbulence result="undulation" numOctaves="2" baseFrequency="0.0005,0.002" seed="0" type="turbulence"/>
-          <feColorMatrix id="ethereal-hue" in="undulation" type="hueRotate" values="180"/>
-          <feColorMatrix in="dist" result="circulation" type="matrix" values="4 0 0 0 1  4 0 0 0 1  4 0 0 0 1  1 0 0 0 0"/>
-          <feDisplacementMap in="SourceGraphic" in2="circulation" scale="100" result="dist"/>
-          <feDisplacementMap in="dist" in2="undulation" scale="100" result="output"/>
-        </filter>
-      </defs>
-    </svg>
-    <div style="position:absolute; inset:-100px; filter:url(#ethereal-filter) blur(4px);">
-      <div id="ethereal-color" style="width:100%; height:100%; background-color:rgba(139,173,65,0.6); mask-image:url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png'); -webkit-mask-image:url('https://framerusercontent.com/images/ceBGguIpUU8luwByxuQz79t7To.png'); mask-size:cover; -webkit-mask-size:cover; mask-repeat:no-repeat; -webkit-mask-repeat:no-repeat; mask-position:center; -webkit-mask-position:center;"></div>
-    </div>
-    <!-- Noise overlay -->
-    <div style="position:absolute; inset:0; background-image:url('https://framerusercontent.com/images/g0QcWrxr87K0ufOxIUFBakwYA8.png'); background-size:240px; background-repeat:repeat; opacity:0.04; pointer-events:none;"></div>
-  </div>
-  <!-- Label -->
-  <div class="relative z-10 fade-up flex items-center gap-3 mb-8 px-5 py-2.5 rounded-full border border-white/[0.1]" style="background:rgba(26,26,26,0.7);">
-    <span class="w-2 h-2 rounded-full bg-brand-green"></span>
-    <span class="text-xs font-bold uppercase tracking-label text-brand-muted">AI Development & Custom Software</span>
-  </div>
-  <!-- Headline -->
-  <h1 class="relative z-10 fade-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold tracking-display leading-[1.05] max-w-5xl">
-    We Builder <span class="text-brand-green">AAAAI-PoweredGADS</span> Software That Scales
-  </h1>
-  <!-- Subheadline -->
-  <p class="relative z-10 fade-up mt-7 text-base sm:text-lg text-brand-muted max-w-2xl leading-body">
-    From intelligent automation to custom AI products — 18 years of shipping software trusted by SiriusXM, TruGreen, and 200+ brands.
-  </p>
-  <!-- CTAs -->
-  <div class="relative z-10 fade-up flex flex-col sm:flex-row gap-4 mt-10">
-    <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:linear-gradient(135deg,#8BAD41,#BAEB42); color:#0F0F0F;">
-      Start Your Project
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-    </a>
-    <a href="#case-studies" class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-label border border-white/[0.12] text-brand-muted cursor-pointer">
-      View Our Work
-    </a>
-  </div>
-  <!-- Trust Ticker -->
-  <div class="relative z-10 mt-20 w-full max-w-3xl overflow-hidden opacity-50">
-    <div class="ticker-track flex items-center gap-16 whitespace-nowrap" style="width: max-content;">
-      <span class="text-sm font-semibold tracking-widest uppercase">SiriusXM</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">TruGreen</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">Elevault</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">Forbes</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">FitOn</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">MyBambu</span>
-      <!-- duplicate for seamless loop -->
-      <span class="text-sm font-semibold tracking-widest uppercase">SiriusXM</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">TruGreen</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">Elevault</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">Forbes</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">FitOn</span>
-      <span class="text-sm font-semibold tracking-widest uppercase">MyBambu</span>
-    </div>
-  </div>
-</section>
+<section class="relative flex flex-col items-center text-center overflow-hidden" style="height:100vh; min-height:700px;">
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECTION 3: STATS BAR                                     -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative py-12 border-y border-white/[0.1]" style="background:#141414;">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-    <div class="fade-up">
-      <div class="stat-num text-3xl sm:text-4xl font-extrabold text-brand-green" data-target="250" data-prefix="" data-suffix="M+">0</div>
-      <div class="text-xs font-bold uppercase tracking-label text-brand-muted mt-2">Downloads</div>
+  <!-- Digital World Globe Background -->
+  <div class="absolute left-1/2 -translate-x-1/2 w-[min(100%,120vw)] pointer-events-none opacity-80" style="z-index:1;">
+    <img src="Digital_World.png" alt="" class="w-full block">
+  </div>
+
+  <!-- Bottom Glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 pointer-events-none" style="bottom:106px; width:min(50%,50vw); z-index:2;">
+    <img src="Bottom_Glow.png" alt="" class="w-full block">
+  </div>
+
+  <!-- Noise overlay -->
+  <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:3;"></div>
+
+  <!-- Content — fills the space above the stats bar, vertically centered, offset for fixed nav (80px) -->
+  <div class="relative w-full flex flex-col items-center justify-center px-6" style="z-index:10; height:calc(100vh - clamp(200px,22vw,318px)); padding-top:80px;">
+    <!-- Pill Badge -->
+    <div class="fade-up inline-flex items-center gap-2 p-2 mb-8">
+      <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+      <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">AI Development &amp; Custom Software</span>
     </div>
-    <div class="fade-up">
-      <div class="stat-num text-3xl sm:text-4xl font-extrabold text-brand-green" data-target="1" data-prefix="$" data-suffix="B+">0</div>
-      <div class="text-xs font-bold uppercase tracking-label text-brand-muted mt-2">Revenue Generated</div>
+
+    <!-- Headline -->
+    <h1 class="fade-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold tracking-display leading-[1] max-w-[791px]">
+      We Build <span class="text-brand-green">AI-Powered</span> Software That Scales
+    </h1>
+
+    <!-- Subheadline -->
+    <p class="fade-up mt-7 text-base sm:text-lg text-brand-muted max-w-[630px] leading-[28px]">
+      From intelligent automation to custom AI products — 18 years of shipping software trusted by SiriusXM, TruGreen, and 200+ brands.
+    </p>
+
+    <!-- CTAs -->
+    <div class="fade-up flex flex-col sm:flex-row gap-4 mt-10">
+      <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F;">
+        Start Your Project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#case-studies" class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-label border border-white/[0.12] text-brand-muted cursor-pointer">
+        View Our Work
+      </a>
     </div>
-    <div class="fade-up">
-      <div class="stat-num text-3xl sm:text-4xl font-extrabold text-brand-green" data-target="18" data-prefix="" data-suffix="+">0</div>
-      <div class="text-xs font-bold uppercase tracking-label text-brand-muted mt-2">Years of Experience</div>
-    </div>
-    <div class="fade-up">
-      <div class="stat-num text-3xl sm:text-4xl font-extrabold text-brand-green" data-target="15" data-prefix="" data-suffix="+">0</div>
-      <div class="text-xs font-bold uppercase tracking-label text-brand-muted mt-2">Awards Won</div>
+  </div>
+
+  <!-- Stats Bar (overlaid at bottom) -->
+  <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center" style="background:rgba(20,20,20,0.45); backdrop-filter:blur(100px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); border-top:1px solid rgba(255,255,255,0.06); z-index:10; height:clamp(200px,22vw,318px);">
+    <div class="w-full max-w-[1440px] grid grid-cols-3 h-full">
+      <!-- Downloads -->
+      <div class="fade-up flex flex-col items-center justify-center gap-4 sm:gap-6">
+        <div class="flex items-center gap-2 px-2 py-1">
+          <span class="w-2 h-2 rounded-full bg-brand-lime"></span>
+          <span class="text-[10px] sm:text-xs font-normal uppercase tracking-label text-white" style="line-height:1;">Downloads</span>
+        </div>
+        <div class="stat-num text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold text-brand-lime" data-target="250" data-prefix="" data-suffix="M+">0</div>
+      </div>
+      <!-- Revenue Generated -->
+      <div class="fade-up flex flex-col items-center justify-center gap-4 sm:gap-6">
+        <div class="flex items-center gap-2 px-2 py-1">
+          <span class="w-2 h-2 rounded-full bg-brand-lime"></span>
+          <span class="text-[10px] sm:text-xs font-normal uppercase tracking-label text-white" style="line-height:1;">Revenue Generated</span>
+        </div>
+        <div class="stat-num text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold text-brand-lime" data-target="1" data-prefix="$" data-suffix="B+">0</div>
+      </div>
+      <!-- Years of Experience -->
+      <div class="fade-up flex flex-col items-center justify-center gap-4 sm:gap-6">
+        <div class="flex items-center gap-2 px-2 py-1">
+          <span class="w-2 h-2 rounded-full bg-brand-lime"></span>
+          <span class="text-[10px] sm:text-xs font-normal uppercase tracking-label text-white" style="line-height:1;">Years of Experience</span>
+        </div>
+        <div class="stat-num text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold text-brand-lime" data-target="18" data-prefix="" data-suffix="+">0</div>
+      </div>
     </div>
   </div>
 </section>
@@ -316,151 +330,215 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 4: WHAT SETS US APART                            -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative py-24 lg:py-32">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="text-center mb-16 fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>What Sets Us Apart
-      </span>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
+<section class="relative py-[108px]">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex flex-col items-center gap-16">
+
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-4 text-center fade-up">
+      <div class="inline-flex items-center gap-2 p-2">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">What Sets Us Apart</span>
+      </div>
+      <h2 class="text-4xl lg:text-5xl font-bold tracking-heading">
         Why Leading Brands Choose <span class="text-brand-green">Metova</span>
       </h2>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-      <!-- Card 1 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(139,173,65,0.08); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-2">AI-First Approach</h3>
-        <p class="text-sm text-brand-muted leading-body">We don't bolt on AI as an afterthought. Every solution is designed with intelligent automation at its core, from architecture to deployment.</p>
-      </div>
-      <!-- Card 2 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(139,173,65,0.08); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-2">18+ Years Shipping</h3>
-        <p class="text-sm text-brand-muted leading-body">Since 2006, we've delivered 250M+ downloads and $1B+ in client revenue. We don't just build — we ship products that perform at scale.</p>
-      </div>
-      <!-- Card 3 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(139,173,65,0.08); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Nearshore Talent</h3>
-        <p class="text-sm text-brand-muted leading-body">Dedicated teams in your timezone from our Guadalajara office. Senior engineers, competitive rates, seamless collaboration — no offshore friction.</p>
-      </div>
-      <!-- Card 4 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(139,173,65,0.08); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Full-Stack Delivery</h3>
-        <p class="text-sm text-brand-muted leading-body">Strategy, design, development, QA, and marketing — all under one roof. No hand-off gaps, no finger-pointing. One team, start to finish.</p>
-      </div>
-      <!-- Card 5 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(139,173,65,0.08); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Proven at Scale</h3>
-        <p class="text-sm text-brand-muted leading-body">From SiriusXM to TruGreen, our products serve millions of users daily. We engineer for real-world load, not demo-day perfection.</p>
-      </div>
-      <!-- Card 6 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style="background:rgba(139,173,65,0.08); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Speed to Market</h3>
-        <p class="text-sm text-brand-muted leading-body">Working prototypes in 2-4 weeks. Our five-phase agile process eliminates wasted cycles and gets your product in front of users fast.</p>
+
+    <!-- Brand auto-slide (moved here from hero per Figma) -->
+    <div class="w-full overflow-hidden opacity-50" style="mask-image:linear-gradient(to right,transparent,black 15%,black 85%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 15%,black 85%,transparent);">
+      <div class="ticker-track flex items-center gap-16 whitespace-nowrap" style="width:max-content;">
+        <span class="text-sm font-semibold tracking-widest uppercase">SiriusXM</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">TruGreen</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">Elevault</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">Forbes</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">FitOn</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">MyBambu</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">SiriusXM</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">TruGreen</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">Elevault</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">Forbes</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">FitOn</span>
+        <span class="text-sm font-semibold tracking-widest uppercase">MyBambu</span>
       </div>
     </div>
+
+    <!-- 3×2 feature grid — thin border dividers, no card backgrounds -->
+    <div class="w-full grid grid-cols-1 md:grid-cols-3">
+
+      <!-- Row 1 -->
+      <div class="fade-up flex flex-col gap-4 p-8 border-b md:border-b-0 md:border-r" style="border-color:rgba(255,255,255,0.1);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(186,235,66,0.08);border:1px solid rgba(139,173,65,0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <h3 class="text-lg font-bold">AI-First Approach</h3>
+        <p class="text-sm text-brand-muted leading-[1.75]">We don't bolt on AI as an afterthought. Every solution is designed with intelligent automation at its core, from architecture to deployment.</p>
+      </div>
+      <div class="fade-up flex flex-col gap-4 p-8 border-b md:border-b-0 md:border-r" style="border-color:rgba(255,255,255,0.1);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(186,235,66,0.08);border:1px solid rgba(139,173,65,0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="text-lg font-bold">18+ Years Shipping</h3>
+        <p class="text-sm text-brand-muted leading-[1.75]">Since 2006, we've delivered 250M+ downloads and $1B+ in client revenue. We don't just build — we ship products that perform at scale.</p>
+      </div>
+      <div class="fade-up flex flex-col gap-4 p-8 border-b md:border-b-0" style="border-color:rgba(255,255,255,0.1);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(186,235,66,0.08);border:1px solid rgba(139,173,65,0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="text-lg font-bold">Nearshore Talent</h3>
+        <p class="text-sm text-brand-muted leading-[1.75]">Dedicated teams in your timezone from our Guadalajara office. Senior engineers, competitive rates, seamless collaboration — no offshore friction.</p>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="fade-up flex flex-col gap-4 p-8 border-b md:border-b-0 md:border-r md:border-t" style="border-color:rgba(255,255,255,0.1);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(186,235,66,0.08);border:1px solid rgba(139,173,65,0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="text-lg font-bold">Full-Stack Delivery</h3>
+        <p class="text-sm text-brand-muted leading-[1.75]">Strategy, design, development, QA, and marketing — all under one roof. No hand-off gaps, no finger-pointing. One team, start to finish.</p>
+      </div>
+      <div class="fade-up flex flex-col gap-4 p-8 border-b md:border-b-0 md:border-r md:border-t" style="border-color:rgba(255,255,255,0.1);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(186,235,66,0.08);border:1px solid rgba(139,173,65,0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 class="text-lg font-bold">Proven at Scale</h3>
+        <p class="text-sm text-brand-muted leading-[1.75]">From SiriusXM to TruGreen, our products serve millions of users daily. We engineer for real-world load, not demo-day perfection.</p>
+      </div>
+      <div class="fade-up flex flex-col gap-4 p-8 md:border-t" style="border-color:rgba(255,255,255,0.1);">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background:rgba(186,235,66,0.08);border:1px solid rgba(139,173,65,0.2);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3 class="text-lg font-bold">Speed to Market</h3>
+        <p class="text-sm text-brand-muted leading-[1.75]">Working prototypes in 2-4 weeks. Our five-phase agile process eliminates wasted cycles and gets your product in front of users fast.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 4B: MARQUEE TEXT STRIP                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section style="background:#141414; padding:80px 0; overflow:hidden;">
+  <div class="marquee-xl-track" style="display:flex; align-items:center; width:max-content;">
+    <!-- 4 copies → seamless -50% loop -->
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Services Thoughtfully-shaped</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">✦</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Services Thoughtfully-shaped</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">✦</span>
+    <!-- duplicate set for seamless -50% loop -->
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Services Thoughtfully-shaped</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">✦</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Services Thoughtfully-shaped</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">✦</span>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 5: SERVICES                                      -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="services" class="relative py-24 lg:py-32" style="background:#141414;">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 items-start">
-      <!-- Left: text + service list -->
-      <div>
-        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4 fade-up">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>Our Services
-        </span>
-        <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-heading leading-tight mb-6 fade-up">
-          AI Development Meets<br>18 Years of Product Engineering
-        </h2>
-        <p class="text-brand-muted leading-body mb-10 fade-up">
-          Metova is a full-service AI development and custom software company. We combine cutting-edge artificial intelligence with battle-tested engineering practices to build products that perform at enterprise scale.
-        </p>
-        <!-- Service cards stacked -->
-        <div class="flex flex-col gap-4">
-          <div class="card-hover fade-up flex items-start gap-5 rounded-card p-5 border border-white/[0.1] cursor-pointer" style="background:#0F0F0F; border-left: 3px solid #8BAD41;">
-            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(139,173,65,0.1);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-            </div>
-            <div>
-              <h3 class="text-base font-bold mb-1">AI Product Development</h3>
-              <p class="text-sm text-brand-muted leading-relaxed">Custom AI/ML solutions, LLM integration, intelligent automation, and AI-powered SaaS platforms.</p>
-            </div>
+<section id="services" style="background:#141414; border-top:1px solid rgba(255,255,255,0.1); border-bottom:1px solid rgba(255,255,255,0.1); padding:108px 0;">
+
+  <!-- Centered header -->
+  <div class="flex flex-col gap-7 items-center text-center px-6 mb-8 fade-up">
+    <div class="flex items-center gap-2 px-2 py-2">
+      <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+      <span class="text-xs font-normal uppercase text-white" style="letter-spacing:1.8px;">OUR SERVICES</span>
+    </div>
+    <h2 class="font-bold leading-[1.1] tracking-[-0.88px]" style="font-size:clamp(32px,3vw,44px);">
+      AI Development Meets<br>18 Years of Product Engineering
+    </h2>
+    <p class="text-[#b0b1b5] leading-7 max-w-[562px]" style="font-size:16px;">
+      Metova is a full-service AI development and custom software company. We combine cutting-edge artificial intelligence with battle-tested engineering practices to build products that perform at enterprise scale.
+    </p>
+  </div>
+
+  <!-- Service rows with Three.js dotted background -->
+  <div class="relative overflow-hidden" id="service-rows-wrapper">
+    <!-- Three.js wave dots canvas — sits behind rows (Three.js sets its own pixel dimensions) -->
+    <canvas id="services-dots-canvas" style="position:absolute; top:0; left:0; z-index:0; pointer-events:none; opacity:1;"></canvas>
+
+    <!-- Service rows — padded container (borders inset 60px from section edge per Figma) -->
+    <div class="px-4 sm:px-8 lg:px-[60px]" style="position:relative; z-index:1;">
+
+      <!-- Row 1: AI Product Development -->
+      <div class="service-row fade-up">
+        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
+          <div class="flex flex-col gap-1">
+            <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">AI Product Development</h3>
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">We design and build custom AI solutions from the ground up — LLM integration, intelligent automation, computer vision, and AI-native SaaS platforms. If it can be made smarter, we make it smarter.</p>
           </div>
-          <div class="card-hover fade-up flex items-start gap-5 rounded-card p-5 border border-white/[0.1] cursor-pointer" style="background:#1F1F1F;">
-            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(139,173,65,0.1);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <div>
-              <h3 class="text-base font-bold mb-1">Custom Software Development</h3>
-              <p class="text-sm text-brand-muted leading-relaxed">Full-stack web and mobile applications built to scale across iOS, Android, and enterprise platforms.</p>
-            </div>
-          </div>
-          <div class="card-hover fade-up flex items-start gap-5 rounded-card p-5 border border-white/[0.1] cursor-pointer" style="background:#1F1F1F;">
-            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(139,173,65,0.1);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div>
-              <h3 class="text-base font-bold mb-1">Digital Consulting & Strategy</h3>
-              <p class="text-sm text-brand-muted leading-relaxed">Research, prototyping, tech assessments, and strategic roadmapping for digital transformation.</p>
-            </div>
-          </div>
-          <div class="card-hover fade-up flex items-start gap-5 rounded-card p-5 border border-white/[0.1] cursor-pointer" style="background:#1F1F1F;">
-            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(139,173,65,0.1);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            </div>
-            <div>
-              <h3 class="text-base font-bold mb-1">UX/UI Design</h3>
-              <p class="text-sm text-brand-muted leading-relaxed">Human-centered design for complex products. Research-driven interfaces that users love.</p>
-            </div>
-          </div>
-          <div class="card-hover fade-up flex items-start gap-5 rounded-card p-5 border border-white/[0.1] cursor-pointer" style="background:#1F1F1F;">
-            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(139,173,65,0.1);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div>
-              <h3 class="text-base font-bold mb-1">Nearshore Talent Solutions</h3>
-              <p class="text-sm text-brand-muted leading-relaxed">Dedicated engineering teams from Latin America, your timezone. Employer of Record services included.</p>
-            </div>
-          </div>
-          <div class="card-hover fade-up flex items-start gap-5 rounded-card p-5 border border-white/[0.1] cursor-pointer" style="background:#1F1F1F;">
-            <div class="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:rgba(139,173,65,0.1);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8BAD41" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3l-4 4-4-4"/></svg>
-            </div>
-            <div>
-              <h3 class="text-base font-bold mb-1">IoT & Emerging Tech</h3>
-              <p class="text-sm text-brand-muted leading-relaxed">Connected devices, fleet management, FinTech solutions, and embedded systems engineering.</p>
-            </div>
+          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:15px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
+            <img src="https://www.figma.com/api/mcp/asset/69243328-e7f3-49d0-b1ac-5a3bbf596ed7" alt="" style="width:38px; height:38px; display:block;">
           </div>
         </div>
       </div>
-      <!-- Right: image -->
-      <div class="fade-up hidden lg:block">
-        <div class="rounded-card overflow-hidden border border-white/[0.1]" style="background:#1A1A1A;">
-          <img src="https://placehold.co/640x800/1F1F1F/8BAD41?text=AI+Development" alt="Metova AI development team at work" class="w-full h-auto object-cover opacity-80" style="mix-blend-mode:normal;">
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent"></div>
+
+      <!-- Row 2: Custom Software Development -->
+      <div class="service-row fade-up">
+        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
+          <div class="flex flex-col gap-1">
+            <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">Custom Software Development</h3>
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Web apps, mobile apps, and enterprise platforms built to carry real load. Our full-stack teams deliver across iOS, Android, and modern web — and have 250M+ downloads worth of production experience to back it up.</p>
+          </div>
+          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
+            <img src="https://www.figma.com/api/mcp/asset/7ccc5d69-0f44-41cf-a8a8-83779e62ed0b" alt="" style="width:54px; height:54px; display:block;">
+          </div>
         </div>
       </div>
+
+      <!-- Row 3: Digital Consulting & Strategy -->
+      <div class="service-row fade-up">
+        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
+          <div class="flex flex-col gap-1">
+            <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">Digital Consulting &amp; Strategy</h3>
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">We audit your tech stack, identify the gaps, and hand you a clear roadmap. From feasibility studies to technical due diligence, we turn uncertainty into a confident, actionable go-forward plan.</p>
+          </div>
+          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
+            <img src="https://www.figma.com/api/mcp/asset/56f212b6-b881-4905-b513-6e79f0a7c71d" alt="" style="width:54px; height:54px; display:block;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: UX/UI Design -->
+      <div class="service-row fade-up">
+        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
+          <div class="flex flex-col gap-1">
+            <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">UX/UI Design</h3>
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Interfaces that earn loyalty, not just clicks. We start with user research and behavioral analysis, then design polished, accessible products — tested against real behavior, not assumptions.</p>
+          </div>
+          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
+            <img src="https://www.figma.com/api/mcp/asset/eb781610-e940-4605-acb5-ba59bbe0358e" alt="" style="width:54px; height:54px; display:block;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 5: Nearshore Talent Solutions -->
+      <div class="service-row fade-up">
+        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
+          <div class="flex flex-col gap-1">
+            <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">Nearshore Talent Solutions</h3>
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Senior engineers from Guadalajara who work your hours, speak your language, and ship like insiders. We handle Employer of Record compliance so you can scale your team fast without the HR overhead.</p>
+          </div>
+          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
+            <img src="https://www.figma.com/api/mcp/asset/99b7d580-9662-4a20-afe4-c5ea1e90b258" alt="" style="width:54px; height:54px; display:block;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 6: IoT & Emerging Tech -->
+      <div class="service-row fade-up">
+        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
+          <div class="flex flex-col gap-1">
+            <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">IoT &amp; Emerging Tech</h3>
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">We connect the physical and digital — from firmware to fleet dashboards. Smart devices, environmental sensors, FinTech rails, and embedded systems. If it has a circuit board, we can build the software around it.</p>
+          </div>
+          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
+            <img src="https://www.figma.com/api/mcp/asset/773c074c-3ad8-4fee-89e6-5b13d660105b" alt="" style="width:54px; height:54px; display:block;">
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -474,9 +552,10 @@ tailwind.config = {
   <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full" style="background:radial-gradient(circle, rgba(186,235,66,0.04) 0%, transparent 70%);"></div>
   <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>AI-First Development
-      </span>
+      <div class="inline-flex items-center gap-2 p-2 mb-4">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">AI-First Development</span>
+      </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading max-w-3xl mx-auto">
         Not Just Another AI Buzzword.<br><span class="text-brand-green">Real AI. Shipped.</span>
       </h2>
@@ -516,9 +595,10 @@ tailwind.config = {
 <section id="case-studies" class="relative py-24 lg:py-32" style="background:#141414;">
   <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>Proven Results
-      </span>
+      <div class="inline-flex items-center gap-2 p-2 mb-4">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Proven Results</span>
+      </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
         Products Used by <span class="text-brand-green">Millions</span>
       </h2>
@@ -573,9 +653,10 @@ tailwind.config = {
 <section class="relative py-24 lg:py-32">
   <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>Our Expertise
-      </span>
+      <div class="inline-flex items-center gap-2 p-2 mb-4">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Our Expertise</span>
+      </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
         Technologies We <span class="text-brand-green">Master</span>
       </h2>
@@ -635,9 +716,10 @@ tailwind.config = {
       </div>
       <!-- Right: Text -->
       <div>
-        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4 fade-up">
-          <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>About Metova
-        </span>
+        <div class="inline-flex items-center gap-2 p-2 mb-4 fade-up">
+          <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">About Metova</span>
+        </div>
         <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-heading leading-tight mb-6 fade-up">
           Building Software Since <span class="text-brand-green">2006</span>
         </h2>
@@ -668,9 +750,10 @@ tailwind.config = {
 <section class="relative py-24 lg:py-32">
   <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>Our Process
-      </span>
+      <div class="inline-flex items-center gap-2 p-2 mb-4">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Our Process</span>
+      </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
         The Metova <span class="text-brand-green">Way</span>
       </h2>
@@ -770,9 +853,10 @@ tailwind.config = {
 <section id="faq" class="relative py-24 lg:py-32">
   <div class="max-w-[800px] mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-label text-brand-green mb-4">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>FAQ
-      </span>
+      <div class="inline-flex items-center gap-2 p-2 mb-4">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">FAQ</span>
+      </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
         AI Development: Your <span class="text-brand-green">Questions</span> Answered
       </h2>
@@ -860,7 +944,7 @@ tailwind.config = {
         Start a Conversation
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="tel:+14795539925" class="inline-flex items-center gap-2 text-sm font-semibold cursor-pointer" style="color:#0F0F0F;">
+      <a href="tel:+14795539925" class="inline-flex items-center gap-2 text-sm font-semibold cursor-pointer" style="color:#0F0F0F; line-height:1;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         (479) 553-9925
       </a>
@@ -929,19 +1013,6 @@ tailwind.config = {
 <!-- JAVASCRIPT                                               -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <script>
-// Ethereal shadow animation (hueRotate loop)
-(function() {
-  const hueEl = document.getElementById('ethereal-hue');
-  if (!hueEl) return;
-  let hue = 0;
-  const speed = 3; // degrees per frame (~360 in ~1.7s at 60fps)
-  function animateHue() {
-    hue = (hue + speed) % 360;
-    hueEl.setAttribute('values', String(hue));
-    requestAnimationFrame(animateHue);
-  }
-  requestAnimationFrame(animateHue);
-})();
 
 // Scroll animations
 const observer = new IntersectionObserver((entries) => {
@@ -1011,6 +1082,85 @@ function toggleFaq(item) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!wasOpen) item.classList.add('open');
 }
+
+// Services section — Three.js dotted wave background
+(function() {
+  const THREE_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  const s = document.createElement('script');
+  s.src = THREE_CDN;
+  s.onload = function() {
+    // Delay to ensure rows have painted and wrapper has full height
+    requestAnimationFrame(function() {
+      const canvas = document.getElementById('services-dots-canvas');
+      const wrapper = document.getElementById('service-rows-wrapper');
+      if (!canvas || !wrapper) return;
+
+      // Match original component grid density
+      const AMOUNTX = 1000, AMOUNTY = 1000, SEP = 150;
+
+      let W = wrapper.clientWidth;
+      let H = wrapper.clientHeight || wrapper.scrollHeight;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, W / H, 1, 10000);
+      camera.position.set(0, 355, 1220);
+      camera.lookAt(0, 0, 0); // tilt toward grid so dots fill full canvas height
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(W, H);           // sets canvas width/height attrs + style
+      renderer.setClearColor(0x000000, 0);
+
+      // Build particle grid
+      const positions = new Float32Array(AMOUNTX * AMOUNTY * 3);
+      let i = 0;
+      for (let ix = 0; ix < AMOUNTX; ix++) {
+        for (let iy = 0; iy < AMOUNTY; iy++) {
+          positions[i * 3]     = ix * SEP - (AMOUNTX * SEP) / 2;
+          positions[i * 3 + 1] = 0;
+          positions[i * 3 + 2] = iy * SEP - (AMOUNTY * SEP) / 2;
+          i++;
+        }
+      }
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+      const mat = new THREE.PointsMaterial({
+        size: 6, color: 0x8BAD41, transparent: true, opacity: 0.8, sizeAttenuation: true
+      });
+      scene.add(new THREE.Points(geo, mat));
+
+      let count = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        const arr = geo.attributes.position.array;
+        let k = 0;
+        for (let ix = 0; ix < AMOUNTX; ix++) {
+          for (let iy = 0; iy < AMOUNTY; iy++) {
+            arr[k * 3 + 1] = Math.sin((ix + count) * 0.3) * 50 + Math.sin((iy + count) * 0.5) * 50;
+            k++;
+          }
+        }
+        geo.attributes.position.needsUpdate = true;
+        renderer.render(scene, camera);
+        count += 0.07;
+      }
+      animate();
+
+      // Keep canvas sized to wrapper on resize
+      const ro = new ResizeObserver(function() {
+        W = wrapper.clientWidth;
+        H = wrapper.clientHeight || wrapper.scrollHeight;
+        camera.aspect = W / H;
+        camera.updateProjectionMatrix();
+        renderer.setSize(W, H);
+        camera.lookAt(0, 0, 0);
+      });
+      ro.observe(wrapper);
+    });
+  };
+  document.head.appendChild(s);
+})();
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {

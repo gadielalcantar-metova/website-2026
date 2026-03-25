@@ -17,7 +17,8 @@ const filename = `screenshot-${next}${label}.png`;
 const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
-await page.goto(url, { waitUntil: 'networkidle0', timeout: 30000 });
+await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+await new Promise(r => setTimeout(r, 2000));
 
 // Scroll through the page to trigger IntersectionObserver animations
 await page.evaluate(async () => {
