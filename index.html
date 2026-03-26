@@ -544,46 +544,50 @@ tailwind.config = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECTION 6: TOP FEATURES (AI POSITIONING)                 -->
+<!-- SECTION 6: AI-FIRST DEVELOPMENT                           -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative py-24 lg:py-32 noise-bg overflow-hidden">
-  <!-- Gradient orbs -->
-  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full" style="background:radial-gradient(circle, rgba(139,173,65,0.06) 0%, transparent 70%);"></div>
-  <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full" style="background:radial-gradient(circle, rgba(186,235,66,0.04) 0%, transparent 70%);"></div>
-  <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="text-center mb-16 fade-up">
-      <div class="inline-flex items-center gap-2 p-2 mb-4">
-        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">AI-First Development</span>
-      </div>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading max-w-3xl mx-auto">
-        Not Just Another AI Buzzword.<br><span class="text-brand-green">Real AI. Shipped.</span>
-      </h2>
-      <p class="mt-6 text-brand-muted leading-body max-w-2xl mx-auto">
-        Metova is an AI development company that builds production-grade intelligent systems — not slide decks. We integrate large language models, computer vision, and predictive analytics into products used by millions.
-      </p>
+<section class="relative overflow-hidden" style="padding-top:108px;">
+  <!-- Header -->
+  <div class="flex flex-col items-center gap-5 px-6 lg:px-8 mb-8">
+    <!-- Pill -->
+    <div class="inline-flex items-center gap-2 p-2">
+      <span class="w-2 h-2 rounded-full shrink-0" style="background:#8242EA;"></span>
+      <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:16px;">AI-First Development</span>
     </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <div class="card-hover fade-up rounded-card p-8 border border-white/[0.1] text-center cursor-pointer" style="background:rgba(26,26,26,0.9);">
-        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-6" style="background:rgba(139,173,65,0.1); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-3">LLM & NLP Integration</h3>
-        <p class="text-sm text-brand-muted leading-body">GPT, Claude, and custom language models integrated into your product workflows. Chatbots, content generation, document processing, and semantic search at scale.</p>
+    <!-- Heading -->
+    <h2 class="text-3xl sm:text-4xl lg:text-[48px] font-bold text-center leading-[1] lg:leading-[48px] tracking-[-0.02em]">
+      Not Just Another AI Buzzword.<br><span style="color:#B398EC;">Real AI. Shipped.</span>
+    </h2>
+    <!-- Paragraph -->
+    <p class="text-center max-w-[666px] leading-[28px]" style="font-size:16px; color:#B0B1B5;">
+      Metova is an AI development company that builds production-grade intelligent systems — not slide decks. We integrate large language models, computer vision, and predictive analytics into products used by millions.
+    </p>
+  </div>
+
+  <!-- Cards Row -->
+  <div class="flex flex-col md:flex-row items-stretch mx-4 sm:mx-8 lg:mx-[60px]" style="background:rgba(20,20,20,0.5); border:0.56px solid rgba(179,152,236,0.6);">
+    <!-- LLM & NLP Integration -->
+    <div class="flex-1 flex flex-col gap-[14px] px-6 lg:px-8 py-12 border-b md:border-b-0 md:border-l md:border-r" style="border-color:rgba(179,152,236,0.6);">
+      <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">LLM &amp; NLP Integration</h3>
+      <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">GPT, Claude, and custom language models integrated into your product workflows. Chatbots, content generation, document processing, and semantic search at scale.</p>
+      <div class="flex items-center justify-center mt-auto pt-4">
+        <img src="LLM-NLP.png" alt="LLM & NLP Integration" class="w-full max-w-[295px] object-contain" style="opacity:0.9;">
       </div>
-      <div class="card-hover fade-up rounded-card p-8 border border-white/[0.1] text-center cursor-pointer" style="background:rgba(26,26,26,0.9);">
-        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-6" style="background:rgba(139,173,65,0.1); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-3">Computer Vision & ML</h3>
-        <p class="text-sm text-brand-muted leading-body">Image recognition, video analysis, object detection, and custom ML pipelines using TensorFlow, PyTorch, and Hugging Face. Trained on your data, deployed to your cloud.</p>
+    </div>
+    <!-- Computer Vision & ML -->
+    <div class="flex-1 flex flex-col gap-[14px] px-6 lg:px-8 py-12 border-b md:border-b-0 md:border-r" style="border-color:rgba(179,152,236,0.6);">
+      <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">Computer Vision &amp; ML</h3>
+      <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">Image recognition, video analysis, object detection, and custom ML pipelines using TensorFlow, PyTorch, and Hugging Face. Trained on your data, deployed to your cloud.</p>
+      <div class="flex items-center justify-center mt-auto pt-4">
+        <img src="Computer-vision.png" alt="Computer Vision & ML" class="w-full max-w-[298px] object-contain" style="opacity:0.9;">
       </div>
-      <div class="card-hover fade-up rounded-card p-8 border border-white/[0.1] text-center cursor-pointer" style="background:rgba(26,26,26,0.9);">
-        <div class="w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-6" style="background:rgba(139,173,65,0.1); border:1px solid rgba(139,173,65,0.2);">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-        </div>
-        <h3 class="text-lg font-bold mb-3">AI-Powered SaaS</h3>
-        <p class="text-sm text-brand-muted leading-body">End-to-end AI SaaS product development from architecture to launch. Predictive analytics, recommendation engines, and intelligent automation built into your platform.</p>
+    </div>
+    <!-- AI-Powered SaaS -->
+    <div class="flex-1 flex flex-col gap-[14px] px-6 lg:px-8 py-12 md:border-r" style="border-color:rgba(179,152,236,0.6);">
+      <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">AI-Powered SaaS</h3>
+      <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">End-to-end AI SaaS product development from architecture to launch. Predictive analytics, recommendation engines, and intelligent automation built into your platform.</p>
+      <div class="flex items-center justify-center mt-auto pt-4">
+        <img src="AI-Powered.png" alt="AI-Powered SaaS" class="w-full max-w-[295px] object-contain" style="opacity:0.9;">
       </div>
     </div>
   </div>
