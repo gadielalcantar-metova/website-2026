@@ -23,7 +23,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@300;400;600;700;400&display=swap" rel="stylesheet">
 
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -33,8 +33,8 @@ tailwind.config = {
     extend: {
       colors: {
         brand: { green: '#8BAD41', lime: '#BAEB42', navy: '#001A33', surface: '#111111', bg: '#0F0F0F', muted: '#B0B1B5', dimmed: '#96979C' },
-        g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',800:'#374716',900:'#1C240B' },
-        n: { 100:'#E0EAF5',200:'#A3C0D9',300:'#5C8DB5',400:'#1A4D7A',500:'#001A33',600:'#001428',700:'#000E1C',800:'#000810',900:'#000204' }
+        g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',400:'#374716',900:'#1C240B' },
+        n: { 100:'#E0EAF5',200:'#A3C0D9',300:'#5C8DB5',400:'#1A4D7A',500:'#001A33',600:'#001428',700:'#000E1C',400:'#000810',900:'#000204' }
       },
       fontFamily: { brand: ['"Anek Telugu"', 'sans-serif'] },
       letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.15em' },
@@ -196,11 +196,106 @@ tailwind.config = {
     transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   }
 
+  /* ─── Hero background grid ─────────────────────────────── */
+  .hero-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+    background-size: 80px 80px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 85% at 50% 42%, rgba(0,0,0,0.85) 20%, transparent 70%);
+    mask-image: radial-gradient(ellipse 90% 85% at 50% 42%, rgba(0,0,0,0.85) 20%, transparent 70%);
+  }
+
+  /* ─── Logo levitation (smooth, natural float) ──────────── */
+  @keyframes hero-levitate {
+    0%,100% { transform: translateY(0px); }
+    30%     { transform: translateY(-14px); }
+    60%     { transform: translateY(-8px); }
+  }
+  .hero-levitate { animation: hero-levitate 4.2s ease-in-out infinite; will-change: transform; }
+
+  /* ─── Hero page-load entrance animations ────────────────── */
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-anim-1 { opacity:0; animation: hero-in 0.8s cubic-bezier(0.34,1.56,0.64,1) 0s    forwards; }
+  .hero-anim-2 { opacity:0; animation: hero-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.18s forwards; }
+  .hero-anim-3 { opacity:0; animation: hero-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.34s forwards; }
+  .hero-anim-4 { opacity:0; animation: hero-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.5s  forwards; }
+  .hero-anim-5 { opacity:0; animation: hero-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.66s forwards; }
+  .hero-anim-7 { opacity:0; animation: hero-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 2.5s forwards; }
+  .hero-anim-8 { opacity:0; animation: hero-in 0.7s cubic-bezier(0.34,1.56,0.64,1) 2.8s  forwards; }
+
+  /* ─── SCALES: Figma-frame reveal ──────────────────────────
+     1. Empty blue selection frame appears around the full text area.
+     2. Cursor icon materialises at the bottom-right handle.
+     3. Text reveals left-to-right via clip-path (simulating
+        Figma's "drag a corner to reveal" interaction).
+     4. Selection UI fades out, leaving only the text.
+  ──────────────────────────────────────────────────────────── */
+  @keyframes scales-reveal-ltr {
+    from { clip-path: inset(-8px calc(100% + 8px) -8px -8px round 2px); }
+    to   { clip-path: inset(-8px -8px -8px -8px round 2px); }
+  }
+  @keyframes scales-ui-life {
+    0%,6%  { opacity:0; }
+    12%,76% { opacity:1; }
+    100%   { opacity:0; }
+  }
+  /* The text span: starts clipped, reveals on delay */
+  .scales-inner {
+    display: block;
+    white-space: nowrap;
+    /* clip fires 0.7s after hero-anim entry (0.66s+0.7s duration+0.7s pause ≈ 2.1s) */
+    animation: scales-reveal-ltr 0.95s cubic-bezier(0.22,1,0.36,1) 2.1s both;
+  }
+  /* Selection border: surrounds the text area, fades in before clip starts */
+  .scales-border {
+    position: absolute; inset: -4px;
+    border: 1.5px solid #BAEB42;
+    background: rgba(255,255,255,0.2);
+    pointer-events: none; opacity: 0;
+    animation: scales-ui-life 2.8s 0.3s both;
+  }
+  /* Corner handles only — cream fill + lime border, matches Figma */
+  .scales-handle {
+    position: absolute; width: 16px; height: 16px;
+    background: #f6ffdf; border: 2px solid #BAEB42;
+    pointer-events: none; opacity: 0;
+    animation: scales-ui-life 2.8s 1.25s both;
+  }
+  .scales-handle.sh-tl { top:-8px; left:-8px; }
+  .scales-handle.sh-tr { top:-8px; right:-8px; }
+  .scales-handle.sh-bl { bottom:-8px; left:-8px; }
+  .scales-handle.sh-br { bottom:-8px; right:-8px; }
+  /* Resize cursor at BR corner */
+  .scales-cursor {
+    position: absolute; bottom:-22px; right:-22px;
+    pointer-events: none; opacity: 0;
+    animation: scales-ui-life 2.8s 1.25s both;
+  }
+
+  /* ─── Stat box hover: number turns lime ──────────────────── */
+  .stat-box { cursor: default; }
+  .stat-value { transition: color 0.22s ease; }
+  .stat-box:hover .stat-value { color: #BAEB42 !important; }
+
+  /* ─── Lime-tinted secondary CTA ────────────────────────── */
+  .btn-lime { transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, box-shadow 0.2s; }
+  .btn-lime:hover { background: rgba(186,235,66,0.6) !important; transform: translateY(-1px); box-shadow: 0 0 20px rgba(186,235,66,0.15); }
+  .btn-lime:active { transform: scale(0.98); }
+  .btn-lime:focus-visible { outline: 2px solid #BAEB42; outline-offset: 2px; }
+
   @media (prefers-reduced-motion: reduce) {
     .fade-up { opacity: 1; transform: none; transition: none; }
-    .hero-orb-1, .hero-orb-2 { animation: none; }
+    .hero-anim-1,.hero-anim-2,.hero-anim-3,.hero-anim-4,
+    .hero-anim-5,.hero-anim-7,.hero-anim-8 { opacity:1; animation:none; }
+    .hero-levitate { animation: none; }
+    .scales-inner { clip-path: none !important; animation: none !important; }
+    .scales-border,.scales-handle,.scales-cursor { display:none; }
     .ticker-track { animation: none; }
-    .card-hover, .btn-glow, .btn-ghost, .nav-link { transition: none; }
+    .card-hover, .btn-glow, .btn-ghost, .btn-lime, .nav-link { transition: none; }
   }
 </style>
 <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
@@ -251,77 +346,111 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 2: HERO                                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative flex flex-col items-center text-center overflow-hidden" style="height:100vh; min-height:700px;">
+<section id="hero" style="position:relative; min-height:120vh; overflow:hidden; background:#0F0F0F;">
 
-  <!-- Digital World Globe Background -->
-  <div class="absolute left-1/2 -translate-x-1/2 w-[min(100%,120vw)] pointer-events-none opacity-80" style="z-index:1;">
-    <img src="Digital_World.png" alt="" class="w-full block">
-  </div>
+  <!-- Background grid -->
+  <div class="hero-grid absolute inset-0 pointer-events-none" style="z-index:0;"></div>
 
-  <!-- Bottom Glow -->
-  <div class="absolute left-1/2 -translate-x-1/2 pointer-events-none" style="bottom:106px; width:min(50%,50vw); z-index:2;">
-    <img src="Bottom_Glow.png" alt="" class="w-full block">
+  <!-- Bottom glow -->
+  <div class="absolute left-1/2 -translate-x-1/2 pointer-events-none" style="bottom:0; width:min(90%,1000px); z-index:1;">
+    <img src="Bottom_Glow.png" alt="" style="width:100%; display:block; opacity:0.85;">
   </div>
 
   <!-- Noise overlay -->
   <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:3;"></div>
 
-  <!-- Content — fills the space above the stats bar, vertically centered, offset for fixed nav (80px) -->
-  <div class="relative w-full flex flex-col items-center justify-center px-6" style="z-index:10; height:calc(100vh - clamp(200px,22vw,318px)); padding-top:80px;">
-    <!-- Pill Badge -->
-    <div class="fade-up inline-flex items-center gap-2 p-2 mb-8">
-      <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-      <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">AI Development &amp; Custom Software</span>
+  <!-- 3D Logo — absolute right, desktop only, z:20 -->
+  <div class="hero-anim-1 hidden lg:block absolute pointer-events-none"
+    style="right:clamp(-43vw,-43vw,0px); bottom: -25vw; z-index:20;position:absolute;">
+    <img src="metova_logo_3d_big.png" class="hero-levitate w-full" alt="Metova 3D Logo" style="opacity:0.95;">
+  </div>
+
+  <!-- Main text content -->
+  <div style="padding-top:clamp(120px,12vh,160px); padding-left:clamp(24px,5.5vw,80px); padding-right:clamp(24px,5.5vw,80px); padding-bottom:80px;">
+
+    <!-- Pill badge -->
+    <!--<div class="hero-anim-2" style="display:inline-flex; align-items:center; gap:8px; padding:6px 10px; margin-bottom:clamp(24px,3vw,40px);">
+      <span style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
+      <span style="font-size:11px; font-weight:600; color:#fff; text-transform:uppercase; letter-spacing:0.15em; line-height:1;">AI Development &amp; Custom Software</span>
+    </div>-->
+
+    <!-- Headline lines -->
+    <!-- WE BUILD — z:30, in front of logo -->
+    <div class="hero-anim-3" style="position:relative; z-index:30;">
+      <h1 style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap; margin:0;">WE BUILD</h1>
+    </div>
+    <!-- AI-POWERED — z:30, brand green -->
+    <div class="hero-anim-4" style="position:relative; z-index:30;">
+      <span style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap;">AI-POWERED</span>
+    </div>
+    <!-- SOFTWARE THAT — z:5, behind logo -->
+    <div class="hero-anim-5" style="position:relative; z-index:5; margin-bottom: 16px;">
+      <span style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap;">SOFTWARE THAT</span>
+    </div>
+    <!-- SCALES — clip-path reveal, z:30, lime + wide tracking per Figma -->
+    <div class="scales-outer" style="position:relative; display:inline-block; z-index:30; padding-left: 22px;">
+      <span class="scales-inner" style="font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:0.24em; color:#BAEB42; text-transform:uppercase;">SCALES</span>
+      <span class="scales-border"></span>
+      <span class="scales-handle sh-tl"></span>
+      <span class="scales-handle sh-tr"></span>
+      <span class="scales-handle sh-bl"></span>
+      <span class="scales-handle sh-br"></span>
+      <span class="scales-cursor">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 18L8 12M8 12H4M8 12V16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 2L12 8M12 8H16M12 8V4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
     </div>
 
-    <!-- Headline -->
-    <h1 class="fade-up text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-extrabold tracking-display leading-[1] max-w-[791px]">
-      We Buildssss <span class="text-brand-green">AI-Powered</span> Software That Scales
-    </h1>
+    <!-- Mobile logo (below headline) -->
+    <div class="hero-anim-1 lg:hidden mt-10 flex justify-center" style="position:relative; z-index:10;">
+      <img src="metova_logo_3d_big.png" class="hero-levitate" style="max-width:280px; width:72%;" alt="Metova 3D Logo">
+    </div>
 
-    <!-- Subheadline -->
-    <p class="fade-up mt-7 text-base sm:text-lg text-brand-muted max-w-[630px] leading-[28px]">
-      From intelligent automation to custom AI products — 18 years of shipping software trusted by SiriusXM, TruGreen, and 200+ brands.
-    </p>
-
-    <!-- CTAs -->
-    <div class="fade-up flex flex-col sm:flex-row gap-4 mt-10">
-      <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F;">
-        Start Your Project
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#case-studies" class="btn-ghost inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase tracking-label border border-white/[0.12] text-brand-muted cursor-pointer">
-        View Our Work
-      </a>
+    <!-- Description + CTAs -->
+    <div style="position:relative; z-index:30; max-width:520px; margin-top:clamp(28px,3.5vw,56px);">
+      <p class="hero-anim-7" style="color:#9CA3AF; font-size:clamp(13px,1vw,15px); line-height:1.8; margin:0;">
+        From intelligent automation to custom AI products — 18 years of shipping software trusted by SiriusXM, TruGreen, and 200+ brands.
+      </p>
+      <div class="hero-anim-8" style="display:flex; flex-wrap:wrap; gap:16px; margin-top:clamp(24px,3vw,40px);">
+        <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.08em; line-height:1; text-decoration:none;">
+          Start Your Project
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#case-studies" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.08em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+          View Our Work
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Stats Bar (overlaid at bottom) -->
-  <div class="absolute bottom-0 left-0 right-0 flex items-center justify-center" style="background:rgba(20,20,20,0.45); backdrop-filter:blur(100px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); border-top:1px solid rgba(255,255,255,0.06); z-index:10; height:clamp(200px,22vw,318px);">
-    <div class="w-full max-w-[1440px] grid grid-cols-3 h-full">
+  <!-- Stats Bar -->
+  <div style="position:relative; z-index:40; background:rgba(20,20,20,0.5); border-top:1px solid rgba(0,0,0,0.6); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2);">
+    <div class="max-w-[1440px] mx-auto" style="display:grid; grid-template-columns:repeat(3,1fr);">
       <!-- Downloads -->
-      <div class="fade-up flex flex-col items-center justify-center gap-4 sm:gap-6">
-        <div class="flex items-center gap-2 px-2 py-1">
-          <span class="w-2 h-2 rounded-full bg-brand-lime"></span>
-          <span class="text-[10px] sm:text-xs font-normal uppercase tracking-label text-white" style="line-height:1;">Downloads</span>
+      <div class="stat-box fade-up flex flex-col items-center justify-center gap-6" style="height:317px; padding:90px 24px;">
+        <div style="display:flex; align-items:center; gap:8px; padding-left:8px;">
+          <span class="stat-dot-el" style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
+          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:1.8px; color:#fff; line-height:16px; white-space:nowrap;">Downloads</span>
         </div>
-        <div class="stat-num text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold text-brand-lime" data-target="250" data-prefix="" data-suffix="M+">0</div>
+        <div class="stat-num stat-value" style="font-size:clamp(40px,6vw,88px); font-weight:600; color:#fff; line-height:88px; text-align:center;" data-target="250" data-prefix="" data-suffix="M+">0</div>
       </div>
       <!-- Revenue Generated -->
-      <div class="fade-up flex flex-col items-center justify-center gap-4 sm:gap-6">
-        <div class="flex items-center gap-2 px-2 py-1">
-          <span class="w-2 h-2 rounded-full bg-brand-lime"></span>
-          <span class="text-[10px] sm:text-xs font-normal uppercase tracking-label text-white" style="line-height:1;">Revenue Generated</span>
+      <div class="stat-box fade-up flex flex-col items-center justify-center gap-6" style="height:317px; padding:90px 24px;">
+        <div style="display:flex; align-items:center; gap:8px; padding-left:8px;">
+          <span class="stat-dot-el" style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
+          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:1.8px; color:#fff; line-height:16px; white-space:nowrap;">Revenue Generated</span>
         </div>
-        <div class="stat-num text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold text-brand-lime" data-target="1" data-prefix="$" data-suffix="B+">0</div>
+        <div class="stat-num stat-value" style="font-size:clamp(40px,6vw,88px); font-weight:600; color:#fff; line-height:88px; text-align:center;" data-target="1" data-prefix="$" data-suffix="B+">0</div>
       </div>
       <!-- Years of Experience -->
-      <div class="fade-up flex flex-col items-center justify-center gap-4 sm:gap-6">
-        <div class="flex items-center gap-2 px-2 py-1">
-          <span class="w-2 h-2 rounded-full bg-brand-lime"></span>
-          <span class="text-[10px] sm:text-xs font-normal uppercase tracking-label text-white" style="line-height:1;">Years of Experience</span>
+      <div class="stat-box fade-up flex flex-col items-center justify-center gap-6" style="height:317px; padding:90px 24px;">
+        <div style="display:flex; align-items:center; gap:8px; padding-left:8px;">
+          <span class="stat-dot-el" style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
+          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:1.8px; color:#fff; line-height:16px; white-space:nowrap;">Years of Experience</span>
         </div>
-        <div class="stat-num text-4xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold text-brand-lime" data-target="18" data-prefix="" data-suffix="+">0</div>
+        <div class="stat-num stat-value" style="font-size:clamp(40px,6vw,88px); font-weight:600; color:#fff; line-height:88px; text-align:center;" data-target="18" data-prefix="" data-suffix="+">0</div>
       </div>
     </div>
   </div>
@@ -851,7 +980,7 @@ tailwind.config = {
 <!-- SECTION 12: FAQ                                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section id="faq" class="relative py-24 lg:py-32">
-  <div class="max-w-[800px] mx-auto px-6 lg:px-8">
+  <div class="max-w-[400px] mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
       <div class="inline-flex items-center gap-2 p-2 mb-4">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
@@ -932,7 +1061,7 @@ tailwind.config = {
 <section id="contact" class="relative py-24 lg:py-32 overflow-hidden">
   <div class="absolute inset-0" style="background:linear-gradient(135deg, #8BAD41 0%, #BAEB42 100%);"></div>
   <div class="absolute inset-0 noise-bg"></div>
-  <div class="relative z-10 max-w-[800px] mx-auto px-6 lg:px-8 text-center">
+  <div class="relative z-10 max-w-[400px] mx-auto px-6 lg:px-8 text-center">
     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6" style="color:#0F0F0F;">
       Let's Build Something Intelligent
     </h2>
@@ -1160,6 +1289,204 @@ function toggleFaq(item) {
     });
   };
   document.head.appendChild(s);
+})();
+
+// ── SCALES: cursor entrance + all-handle interactive resize ──────
+(function initScalesAnimation() {
+  const outer = document.querySelector('.scales-outer');
+  const inner = outer && outer.querySelector('.scales-inner');
+  if (!outer || !inner) return;
+
+  // z-index: text above semi-transparent background
+  inner.style.position = 'relative';
+  inner.style.zIndex   = '2';
+
+  // Cancel CSS animations on decorative spans (border, handles, cursor)
+  inner.style.animation = 'none';
+  inner.style.clipPath  = 'none';
+  outer.querySelectorAll('.scales-border, .scales-handle, .scales-cursor').forEach(el => {
+    el.style.animation = 'none';
+    el.style.opacity   = '0';
+    el.style.display   = 'none';
+  });
+
+  // Collapse to 0×0 at top-left — cursor will drag it open
+  outer.style.transformOrigin = 'top left';
+  outer.style.transform       = 'scale(0)';
+  outer.style.transition      = 'none';
+
+  // Briefly scale(1) to read natural dimensions, then restore scale(0)
+  function measureRect() {
+    outer.style.transform = 'scale(1)';
+    const r = outer.getBoundingClientRect();
+    outer.style.transform = 'scale(0)';
+    return r;
+  }
+
+  // Shared cursor SVG factory (↙↗ resize arrow)
+  function makeCursor() {
+    const el = document.createElement('div');
+    el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;opacity:0;' +
+      'transform:translate(-50%,-50%);filter:drop-shadow(0 0 6px rgba(186,235,66,0.5));' +
+      'transition:opacity 0.2s ease;';
+    el.innerHTML = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <path d="M3 25L11.5 16.5" stroke="#BAEB42" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M3 25H9.5"       stroke="#BAEB42" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M3 25V18.5"      stroke="#BAEB42" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M25 3L16.5 11.5" stroke="#BAEB42" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M25 3H18.5"      stroke="#BAEB42" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M25 3V9.5"       stroke="#BAEB42" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>`;
+    document.body.appendChild(el);
+    return el;
+  }
+
+  // Easing: ease-out cubic (fast start, decelerates → natural drag feel)
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  const ANIM_START = 1000; // ms — after hero text finishes (~1.36s)
+  const ANIM_DUR   = 950;  // ms — single duration for BOTH cursor travel and box scale
+
+  setTimeout(() => {
+    const r = measureRect(); // measure at scale(1), returns to scale(0)
+
+    // Cursor enters from left edge, travels diagonally to BR corner
+    const curStartX = -14;
+    const curStartY = r.top + r.height * 0.4;
+    const curEndX   = r.right;
+    const curEndY   = r.bottom;
+
+    const animCur = makeCursor();
+    animCur.style.transition = 'none';
+    animCur.style.left       = curStartX + 'px';
+    animCur.style.top        = curStartY + 'px';
+    animCur.style.opacity    = '1';
+
+    const t0 = performance.now();
+
+    // Single RAF loop — SCALES grows AND cursor travels, same eased progress
+    function tick(now) {
+      const ts  = (now !== undefined && !isNaN(+now)) ? +now : performance.now();
+      const raw = Math.min(1, (ts - t0) / ANIM_DUR);
+      const t   = easeOut(raw);
+
+      outer.style.transform = `scale(${t})`;
+      animCur.style.left = (curStartX + (curEndX - curStartX) * t) + 'px';
+      animCur.style.top  = (curStartY + (curEndY - curStartY) * t) + 'px';
+
+      if (raw < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        outer.style.transform = 'scale(1)';
+        animCur.style.opacity = '0';
+        setTimeout(() => { animCur.remove(); enterResizeMode(); }, 0);
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }, ANIM_START);
+
+  function enterResizeMode() {
+    outer.style.transition = 'none';
+    outer.style.transform  = 'none';
+
+    // Restore selection border (z:1, below text z:2)
+    const border = outer.querySelector('.scales-border');
+    if (border) {
+      border.style.display   = '';
+      border.style.animation = 'none';
+      border.style.opacity   = '1';
+      border.style.zIndex    = '1';
+    }
+
+    // Lock width using offsetWidth (unaffected by transforms). Height follows font-size.
+    // No cursor on outer — cursor only appears on handles.
+    const baseW = outer.offsetWidth;
+    outer.style.width = baseW + 'px';
+
+    // Create all 4 corner handles
+    const HS = 'position:absolute;width:16px;height:16px;background:#f6ffdf;border:2px solid #BAEB42;z-index:20;cursor:none;';
+    const handleDefs = [
+      { corner: 'tl', pos: 'top:-8px;left:-8px;'    },
+      { corner: 'tr', pos: 'top:-8px;right:-8px;'   },
+      { corner: 'bl', pos: 'bottom:-8px;left:-8px;' },
+      { corner: 'br', pos: 'bottom:-8px;right:-8px;'},
+    ];
+    const handles = handleDefs.map(({ corner, pos }) => {
+      const h = document.createElement('div');
+      h.style.cssText  = HS + pos;
+      h.dataset.corner = corner;
+      outer.appendChild(h);
+      return h;
+    });
+
+    const hoverCur = makeCursor();
+    let hoveredHandle = null;
+    let dragging = false;
+    let activeCorner = null;
+    let x0, y0, w0, fs0, left0;
+
+    const trackCursor = (e) => { hoverCur.style.left = e.clientX + 'px'; hoverCur.style.top = e.clientY + 'px'; };
+
+    // Each handle shows cursor on hover and starts drag on mousedown
+    handles.forEach(h => {
+      h.addEventListener('mouseenter', (e) => {
+        hoveredHandle = h;
+        trackCursor(e);
+        hoverCur.style.opacity = '1';
+      });
+      h.addEventListener('mouseleave', () => {
+        hoveredHandle = null;
+        if (!dragging) hoverCur.style.opacity = '0';
+      });
+      h.addEventListener('mousedown', (e) => {
+        dragging      = true;
+        activeCorner  = h.dataset.corner;
+        x0   = e.clientX;
+        y0   = e.clientY;
+        w0   = outer.offsetWidth;
+        fs0  = parseFloat(window.getComputedStyle(inner).fontSize);
+        left0 = parseFloat(outer.style.left) || 0;
+        hoverCur.style.opacity = '1';
+        e.preventDefault(); e.stopPropagation();
+        document.body.style.userSelect = 'none';
+      });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (hoveredHandle || dragging) trackCursor(e);
+      if (!dragging) return;
+
+      const dx = e.clientX - x0;
+      const dy = e.clientY - y0;
+
+      // Each corner's "outward" direction maps to positive delta = grow
+      let delta;
+      switch (activeCorner) {
+        case 'br': delta = ( dx + dy) / 2; break;  // right+down  = grow
+        case 'bl': delta = (-dx + dy) / 2; break;  // left+down   = grow
+        case 'tr': delta = ( dx - dy) / 2; break;  // right+up    = grow
+        case 'tl': delta = (-dx - dy) / 2; break;  // left+up     = grow
+      }
+
+      const newW = Math.max(60, w0 + delta);
+      outer.style.width    = newW + 'px';
+      inner.style.fontSize = (fs0 * (newW / w0)) + 'px';
+
+      // Left-side handles (BL, TL): right edge must stay fixed → shift element left
+      if (activeCorner === 'bl' || activeCorner === 'tl') {
+        outer.style.left = (left0 - (newW - w0)) + 'px';
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (dragging) {
+        dragging = false;
+        document.body.style.userSelect = '';
+        if (!hoveredHandle) hoverCur.style.opacity = '0';
+      }
+    });
+  }
 })();
 
 // Smooth scroll
