@@ -214,6 +214,107 @@ tailwind.config = {
   }
   .hero-levitate { animation: hero-levitate 4.2s ease-in-out infinite; will-change: transform; }
 
+  /* ─── AI cards image float ───────────────────────────────── */
+  @keyframes ai-card-float {
+    0%,100% { transform: translateY(0px); }
+    50%     { transform: translateY(-10px); }
+  }
+  .ai-float-wrap {
+    animation: ai-card-float 4s ease-in-out infinite;
+    will-change: transform;
+  }
+  .ai-card-img {
+    transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
+    display: block;
+  }
+  .ai-card:hover .ai-card-img {
+    transform: scale(1.18) translateY(-14px) rotate(4deg);
+  }
+
+  /* ─── AI cards gradient dots overlay ────────────────────── */
+  @keyframes ai-dots-move {
+    from { background-position: 0px 0px, 5px 8.66px, 800% 400%, 1000% -400%, -1200% -600%, 400% 17.32px; }
+    to   { background-position: 0px 0px, 5px 8.66px, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+  }
+  @keyframes ai-dots-hue {
+    from { filter: hue-rotate(0deg); }
+    to   { filter: hue-rotate(360deg); }
+  }
+  .ai-card { position: relative; isolation: isolate; }
+  .ai-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: -1;
+    mix-blend-mode: screen;
+    background-color: #000;
+    background-image:
+      radial-gradient(circle at 50% 50%, transparent 1.5px, #000 0 8px, transparent 8px),
+      radial-gradient(circle at 50% 50%, transparent 1.5px, #000 0 8px, transparent 8px),
+      radial-gradient(circle at 50% 50%, #f00, transparent 60%),
+      radial-gradient(circle at 50% 50%, #ff0, transparent 60%),
+      radial-gradient(circle at 50% 50%, #0f0, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, #00f, transparent 60%);
+    background-size:
+      10px 17.32px,
+      10px 17.32px,
+      200% 200%,
+      200% 200%,
+      200% 200%,
+      200% 17.32px;
+    animation: ai-dots-move 20s linear infinite, ai-dots-hue 6s linear infinite;
+    mask-image: linear-gradient(to bottom, transparent 15%, black 35%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 15%, black 35%);
+  }
+  .ai-card:hover::before { opacity: 1; }
+
+  /* ─── AI pill animated glow border ─────────────────────────── */
+  @property --glow-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes glow-spin {
+    to { --glow-angle: 360deg; }
+  }
+  .ai-pill-glow {
+    position: relative;
+    isolation: isolate;
+  }
+  .ai-pill-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 9999px;
+    background: conic-gradient(from var(--glow-angle, 0deg), #a855f7, #6366f1, #06b6d4, #ec4899, #8b5cf6, #a855f7);
+    z-index: -1;
+    opacity: 1;
+    animation: glow-spin 6s linear infinite;
+    pointer-events: none;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+    filter: blur(1px);
+  }
+  .ai-pill-glow::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    background: conic-gradient(from var(--glow-angle, 0deg), #a855f7, #6366f1, #06b6d4, #ec4899, #8b5cf6, #a855f7);
+    z-index: -2;
+    opacity: 0.5;
+    animation: glow-spin 6s linear infinite;
+    pointer-events: none;
+    filter: blur(6px);
+  }
+
   /* ─── Hero page-load entrance animations ────────────────── */
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(24px); }
@@ -299,6 +400,17 @@ tailwind.config = {
   }
 </style>
 <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<!-- Three.js imports for key ring -->
+<script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+    "cannon-es": "https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/dist/cannon-es.js"
+  }
+}
+</script>
 </head>
 <body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
 
@@ -679,7 +791,7 @@ tailwind.config = {
   <!-- Header -->
   <div class="flex flex-col items-center gap-5 px-6 lg:px-8 mb-8">
     <!-- Pill -->
-    <div class="inline-flex items-center gap-2 p-2">
+    <div class="ai-pill-glow inline-flex items-center gap-2 p-2 rounded-full">
       <span class="w-2 h-2 rounded-full shrink-0" style="background:#8242EA;"></span>
       <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:16px;">AI-First Development</span>
     </div>
@@ -694,32 +806,46 @@ tailwind.config = {
   </div>
 
   <!-- Cards Row -->
-  <div class="flex flex-col md:flex-row items-stretch mx-4 sm:mx-8 lg:mx-[60px]" style="background:rgba(20,20,20,0.5); border:0.56px solid rgba(179,152,236,0.6);">
+  <div style="width:100%; height:0.56px; background:rgba(179,152,236,0.6);"></div>
+  <div class="flex flex-col md:flex-row items-stretch" style="background:rgba(20,20,20,0.5);">
     <!-- LLM & NLP Integration -->
-    <div class="flex-1 flex flex-col gap-[14px] px-6 lg:px-8 py-12 border-b md:border-b-0 md:border-l md:border-r" style="border-color:rgba(179,152,236,0.6);">
-      <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">LLM &amp; NLP Integration</h3>
-      <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">GPT, Claude, and custom language models integrated into your product workflows. Chatbots, content generation, document processing, and semantic search at scale.</p>
-      <div class="flex items-center justify-center mt-auto pt-4">
-        <img src="LLM-NLP.png" alt="LLM & NLP Integration" class="w-full max-w-[295px] object-contain" style="opacity:0.9;">
+    <div class="ai-card flex-1 flex flex-col border-b md:border-b-0" style="border-color:rgba(179,152,236,0.6); border-right:0.56px solid rgba(179,152,236,0.6);">
+      <div class="flex items-center justify-center px-6 lg:px-8 pt-12 pb-6" style="overflow:visible;">
+        <div class="ai-float-wrap" style="animation-delay:0s; max-width:100%;">
+          <img src="LLM-NLP.png" alt="LLM & NLP Integration" class="ai-card-img w-full max-w-[295px] object-contain" style="opacity:0.9;">
+        </div>
+      </div>
+      <div class="flex flex-col gap-[10px] px-6 lg:px-8 py-8 mt-auto" style="background:rgba(20,20,20,0.5); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); border-top:0.56px solid rgb(179 152 236 / 25%);">
+        <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">LLM &amp; NLP Integration</h3>
+        <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">GPT, Claude, and custom language models integrated into your product workflows. Chatbots, content generation, document processing, and semantic search at scale.</p>
       </div>
     </div>
     <!-- Computer Vision & ML -->
-    <div class="flex-1 flex flex-col gap-[14px] px-6 lg:px-8 py-12 border-b md:border-b-0 md:border-r" style="border-color:rgba(179,152,236,0.6);">
-      <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">Computer Vision &amp; ML</h3>
-      <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">Image recognition, video analysis, object detection, and custom ML pipelines using TensorFlow, PyTorch, and Hugging Face. Trained on your data, deployed to your cloud.</p>
-      <div class="flex items-center justify-center mt-auto pt-4">
-        <img src="Computer-vision.png" alt="Computer Vision & ML" class="w-full max-w-[298px] object-contain" style="opacity:0.9;">
+    <div class="ai-card flex-1 flex flex-col border-b md:border-b-0" style="border-color:rgba(179,152,236,0.6); border-right:0.56px solid rgba(179,152,236,0.6);">
+      <div class="flex items-center justify-center px-6 lg:px-8 pt-12 pb-6" style="overflow:visible;">
+        <div class="ai-float-wrap" style="animation-delay:0.9s; max-width:100%;">
+          <img src="Computer-vision.png" alt="Computer Vision & ML" class="ai-card-img w-full max-w-[298px] object-contain" style="opacity:0.9;">
+        </div>
+      </div>
+      <div class="flex flex-col gap-[10px] px-6 lg:px-8 py-8 mt-auto" style="background:rgba(20,20,20,0.5); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); border-top:0.56px solid rgb(179 152 236 / 25%);">
+        <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">Computer Vision &amp; ML</h3>
+        <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">Image recognition, video analysis, object detection, and custom ML pipelines using TensorFlow, PyTorch, and Hugging Face. Trained on your data, deployed to your cloud.</p>
       </div>
     </div>
     <!-- AI-Powered SaaS -->
-    <div class="flex-1 flex flex-col gap-[14px] px-6 lg:px-8 py-12 md:border-r" style="border-color:rgba(179,152,236,0.6);">
-      <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">AI-Powered SaaS</h3>
-      <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">End-to-end AI SaaS product development from architecture to launch. Predictive analytics, recommendation engines, and intelligent automation built into your platform.</p>
-      <div class="flex items-center justify-center mt-auto pt-4">
-        <img src="AI-Powered.png" alt="AI-Powered SaaS" class="w-full max-w-[295px] object-contain" style="opacity:0.9;">
+    <div class="ai-card flex-1 flex flex-col" style="border-color:rgba(179,152,236,0.6);">
+      <div class="flex items-center justify-center px-6 lg:px-8 pt-12 pb-6" style="overflow:visible;">
+        <div class="ai-float-wrap" style="animation-delay:1.8s; max-width:100%;">
+          <img src="AI-Powered.png" alt="AI-Powered SaaS" class="ai-card-img w-full max-w-[295px] object-contain" style="opacity:0.9;">
+        </div>
+      </div>
+      <div class="flex flex-col gap-[10px] px-6 lg:px-8 py-8 mt-auto" style="background:rgba(20,20,20,0.5); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); border-top:0.56px solid rgb(179 152 236 / 25%);">
+        <h3 class="text-2xl font-bold" style="color:#B398EC; line-height:28px;">AI-Powered SaaS</h3>
+        <p class="text-sm leading-[24.5px]" style="color:#B0B1B5;">End-to-end AI SaaS product development from architecture to launch. Predictive analytics, recommendation engines, and intelligent automation built into your platform.</p>
       </div>
     </div>
   </div>
+  <div style="width:100%; height:0.56px; background:rgba(179,152,236,0.6);"></div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -781,11 +907,11 @@ tailwind.config = {
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECTION 8: OUR EXPERTISE                                 -->
+<!-- SECTION 8: OUR EXPERTISE — 3D Key Ring                    -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section class="relative py-24 lg:py-32">
   <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="text-center mb-16 fade-up">
+    <div class="text-center mb-8 fade-up">
       <div class="inline-flex items-center gap-2 p-2 mb-4">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
         <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Our Expertise</span>
@@ -794,41 +920,30 @@ tailwind.config = {
         Technologies We <span class="text-brand-green">Master</span>
       </h2>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <!-- Expertise items -->
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">AI/ML</div>
-        <p class="text-xs text-brand-muted">TensorFlow, PyTorch, Hugging Face</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">LLMs</div>
-        <p class="text-xs text-brand-muted">GPT, Claude, LangChain, RAG</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">iOS</div>
-        <p class="text-xs text-brand-muted">Swift, SwiftUI, Objective-C</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">Android</div>
-        <p class="text-xs text-brand-muted">Kotlin, Jetpack Compose</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">React</div>
-        <p class="text-xs text-brand-muted">Next.js, React Native, TypeScript</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">Cloud</div>
-        <p class="text-xs text-brand-muted">AWS, Azure, GCP, Kubernetes</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">IoT</div>
-        <p class="text-xs text-brand-muted">Embedded, Zebra, Fleet Mgmt</p>
-      </div>
-      <div class="card-hover fade-up rounded-card p-6 border border-white/[0.1] text-center cursor-pointer" style="background:#1A1A1A;">
-        <div class="text-2xl font-extrabold text-brand-green mb-1">Data</div>
-        <p class="text-xs text-brand-muted">PostgreSQL, MongoDB, Redis</p>
+    <!-- 3D Key Ring Canvas -->
+    <div id="keyring-container" style="width:100%; height:clamp(400px,50vw,700px); position:relative; border-radius:16px; overflow:hidden; cursor:grab;">
+      <div id="keyring-loading" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#B0B1B5; font-size:14px; pointer-events:none; transition:opacity 0.5s; z-index:2;">Loading...</div>
+      <!-- Tooltip -->
+      <div id="keyring-tooltip" style="position:absolute; pointer-events:none; z-index:10; opacity:0; transition:opacity 0.18s ease, transform 0.18s ease; transform:translateY(6px);">
+        <div style="background:rgba(15,15,15,0.92); border:1px solid rgba(139,173,65,0.25); border-radius:12px; padding:12px 16px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); box-shadow:0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(139,173,65,0.06); min-width:160px; max-width:240px;">
+          <div id="keyring-tooltip-title" style="font-size:15px; font-weight:700; color:#8BAD41; margin-bottom:4px; letter-spacing:-0.01em;"></div>
+          <div id="keyring-tooltip-desc" style="font-size:12px; color:#B0B1B5; line-height:1.5; letter-spacing:0.01em;"></div>
+        </div>
       </div>
     </div>
+    <!-- Fallback tech list for accessibility / SEO -->
+    <noscript>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">AI/ML</div><p class="text-xs text-brand-muted">TensorFlow, PyTorch, Hugging Face</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">LLMs</div><p class="text-xs text-brand-muted">GPT, Claude, LangChain, RAG</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">iOS</div><p class="text-xs text-brand-muted">Swift, SwiftUI, Objective-C</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">Android</div><p class="text-xs text-brand-muted">Kotlin, Jetpack Compose</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">React</div><p class="text-xs text-brand-muted">Next.js, React Native, TypeScript</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">Cloud</div><p class="text-xs text-brand-muted">AWS, Azure, GCP, Kubernetes</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">IoT</div><p class="text-xs text-brand-muted">Embedded, Zebra, Fleet Mgmt</p></div>
+        <div class="rounded-card p-6 border border-white/[0.1] text-center" style="background:#1A1A1A;"><div class="text-xl font-extrabold text-brand-green mb-1">Data</div><p class="text-xs text-brand-muted">PostgreSQL, MongoDB, Redis</p></div>
+      </div>
+    </noscript>
   </div>
 </section>
 
@@ -1500,6 +1615,450 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+</script>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- 3D KEY RING — Three.js + Cannon-es physics               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import * as CANNON from 'cannon-es';
+
+(function() {
+  const container = document.getElementById('keyring-container');
+  if (!container) return;
+
+  // --- TECH KEYCHAINS ---
+  const keychainConfig = [
+    { text: 'AI / ML',  color: '#8BAD41', shape: 'box',        textColor: '#ffffff', spawnAngle: 175, desc: 'TensorFlow, PyTorch, Hugging Face' },
+    { text: 'LLMs',     color: '#BAEB42', shape: 'cylinder',   textColor: '#ffffff', spawnAngle: 200, desc: 'GPT, Claude, LangChain, RAG' },
+    { text: 'iOS',      color: '#60a5fa', shape: 'hexagon',    textColor: '#ffffff', spawnAngle: 225, desc: 'Swift, SwiftUI, Objective-C' },
+    { text: 'Android',  color: '#34d399', shape: 'capsule',    textColor: '#ffffff', spawnAngle: 250, desc: 'Kotlin, Jetpack Compose' },
+    { text: 'React',    color: '#61dafb', shape: 'octahedron', textColor: '#ffffff', spawnAngle: 280, desc: 'Next.js, React Native, TypeScript' },
+    { text: 'Cloud',    color: '#fbbf24', shape: 'box',        textColor: '#ffffff', spawnAngle: 305, desc: 'AWS, Azure, GCP, Kubernetes' },
+    { text: 'IoT',      color: '#a78bfa', shape: 'cylinder',   textColor: '#ffffff', spawnAngle: 330, desc: 'Embedded, Zebra, Fleet Mgmt' },
+    { text: 'Data',     color: '#f87171', shape: 'hexagon',    textColor: '#ffffff', spawnAngle: 355, desc: 'PostgreSQL, MongoDB, Redis' }
+  ];
+
+  let scene, camera, renderer, controls, pmremGenerator;
+  let physicsWorld;
+  const clock = new THREE.Clock();
+  const physicsObjects = [];
+  const interactableMeshes = [];
+  const keychainBodies = []; // track keychain bodies for fan-out
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+  let isFannedOut = false;
+  let fanCooldown = 0;
+  const lastMousePos = new THREE.Vector2();
+  const params = { forceMultiplier: 3.0 };
+
+  const GROUP_RING = 1, GROUP_KEYCHAIN = 2, GROUP_SMALL_RING = 4, GROUP_DUMMY = 8;
+
+  const sharedGlassMaterial = new THREE.MeshPhysicalMaterial({
+    metalness: 0.1, roughness: 0.15, transmission: 1.0,
+    thickness: 0.8, ior: 1.5, transparent: true, side: THREE.DoubleSide
+  });
+
+  function getSize() {
+    return { w: container.clientWidth, h: container.clientHeight };
+  }
+
+  function init() {
+    const { w, h } = getSize();
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color('#0F0F0F');
+
+    camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+    camera.position.set(0, -1.0, 12);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    container.appendChild(renderer.domElement);
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.target.set(0, -1.0, 0);
+    controls.enableZoom = false;
+    controls.enablePan = false;
+
+    pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+    scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 2);
+    dirLight.position.set(5, 5, 5);
+    scene.add(dirLight);
+
+    // Physics
+    physicsWorld = new CANNON.World({ gravity: new CANNON.Vec3(0, -9.81, 0) });
+    physicsWorld.broadphase = new CANNON.SAPBroadphase(physicsWorld);
+    physicsWorld.solver.iterations = 50;
+
+    const kcMat = new CANNON.Material('keychain');
+    physicsWorld.addContactMaterial(new CANNON.ContactMaterial(kcMat, kcMat, {
+      friction: 0.1, restitution: 0.4, contactEquationStiffness: 1e9, contactEquationRelaxation: 3
+    }));
+    scene.userData.keychainMaterial = kcMat;
+
+    buildMainRing();
+    buildKeychains();
+
+    window.addEventListener('resize', onResize);
+    container.addEventListener('mousemove', onMouseMove);
+    container.addEventListener('mousedown', () => { container.style.cursor = 'grabbing'; });
+    container.addEventListener('mouseup', () => { container.style.cursor = 'grab'; });
+    container.addEventListener('mouseenter', onContainerEnter);
+    container.addEventListener('mouseleave', onContainerLeave);
+
+    const loading = document.getElementById('keyring-loading');
+    if (loading) loading.style.opacity = '0';
+  }
+
+  function buildMainRing() {
+    const ringRadius = 3.0, tubeRadius = 0.08, ringPosY = 4.0;
+    const ringGeo = new THREE.TorusGeometry(ringRadius, tubeRadius, 32, 100);
+    const ringMat = new THREE.MeshStandardMaterial({ color: '#d4d4d8', metalness: 1.0, roughness: 0.2 });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    scene.add(ringMesh);
+
+    const ringBody = new CANNON.Body({ mass: 40.0, type: CANNON.Body.DYNAMIC, position: new CANNON.Vec3(0, ringPosY, 0), linearDamping: 0.1, angularDamping: 0.3 });
+    for (let i = 0; i < 36; i++) {
+      const angle = (i * 10 * Math.PI) / 180;
+      const x = ringRadius * Math.cos(angle), y = ringRadius * Math.sin(angle);
+      const arcLen = (2 * Math.PI * ringRadius) / 36;
+      const boxShape = new CANNON.Box(new CANNON.Vec3(arcLen * 0.55, tubeRadius * 1.5, tubeRadius * 1.5));
+      const q = new CANNON.Quaternion();
+      q.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), angle + Math.PI / 2);
+      ringBody.addShape(boxShape, new CANNON.Vec3(x, y, 0), q);
+    }
+    ringBody.collisionFilterGroup = GROUP_RING;
+    ringBody.collisionFilterMask = GROUP_KEYCHAIN;
+    physicsWorld.addBody(ringBody);
+
+    const topPivot = new CANNON.Body({ mass: 0, type: CANNON.Body.STATIC });
+    topPivot.position.set(0, ringPosY + ringRadius, 0);
+    physicsWorld.addBody(topPivot);
+    physicsWorld.addConstraint(new CANNON.PointToPointConstraint(ringBody, new CANNON.Vec3(0, ringRadius, 0), topPivot, new CANNON.Vec3(0, 0, 0)));
+
+    interactableMeshes.push(ringMesh);
+    ringMesh.userData.physicsBody = ringBody;
+    physicsObjects.push({ mesh: ringMesh, body: ringBody });
+    Object.assign(scene.userData, { ringBody, ringRadius, tubeRadius, ringPosY });
+  }
+
+  function createTextTexture(text, textColor) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512; canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 512, 256);
+    ctx.font = 'bold 80px "Anek Telugu", "Arial Black", sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = textColor;
+    ctx.fillText(text, 256, 128);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    return texture;
+  }
+
+  function buildKeychains() {
+    const { ringRadius, tubeRadius, ringBody, ringPosY } = scene.userData;
+    const smallRingRadius = 0.8;
+    const trackRadius = ringRadius + smallRingRadius - tubeRadius;
+
+    keychainConfig.forEach((skill) => {
+      const angleRad = skill.spawnAngle * (Math.PI / 180);
+      const attachX = trackRadius * Math.cos(angleRad);
+      const attachY = trackRadius * Math.sin(angleRad);
+
+      // Dummy arm
+      const dummyArm = new CANNON.Body({ mass: 3.0, position: new CANNON.Vec3(0, ringPosY, 0), linearDamping: 0.01, angularDamping: 0.01 });
+      dummyArm.addShape(new CANNON.Sphere(trackRadius));
+      dummyArm.collisionFilterGroup = GROUP_DUMMY;
+      dummyArm.collisionFilterMask = 0;
+      dummyArm.quaternion.setFromAxisAngle(new CANNON.Vec3(0, 0, 1), angleRad);
+      physicsWorld.addBody(dummyArm);
+      physicsWorld.addConstraint(new CANNON.HingeConstraint(ringBody, dummyArm, {
+        pivotA: new CANNON.Vec3(0, 0, 0), axisA: new CANNON.Vec3(0, 0, 1),
+        pivotB: new CANNON.Vec3(0, 0, 0), axisB: new CANNON.Vec3(0, 0, 1)
+      }));
+
+      // Small ring
+      const holeGeo = new THREE.TorusGeometry(smallRingRadius, 0.03, 16, 64);
+      const holeMat = new THREE.MeshStandardMaterial({ color: '#d4d4d8', metalness: 1, roughness: 0.2 });
+      const holeMesh = new THREE.Mesh(holeGeo, holeMat);
+      scene.add(holeMesh);
+
+      const smallRingPos = new CANNON.Vec3(attachX, attachY + ringPosY, 0);
+      const tangent = new THREE.Vector3(-Math.sin(angleRad), Math.cos(angleRad), 0).normalize();
+      const radial = new THREE.Vector3(Math.cos(angleRad), Math.sin(angleRad), 0).normalize();
+      const localY = radial.clone().negate();
+      const localZ = tangent;
+      const localX = new THREE.Vector3().crossVectors(localY, localZ).normalize();
+      const mMatrix = new THREE.Matrix4().makeBasis(localX, localY, localZ);
+      const smallRingQuat = new THREE.Quaternion().setFromRotationMatrix(mMatrix);
+
+      const smallRingBody = new CANNON.Body({ mass: 1.0, position: smallRingPos, shape: new CANNON.Sphere(smallRingRadius), linearDamping: 0.01, angularDamping: 0.2 });
+      smallRingBody.collisionFilterGroup = GROUP_SMALL_RING;
+      smallRingBody.collisionFilterMask = 0;
+      smallRingBody.quaternion.set(smallRingQuat.x, smallRingQuat.y, smallRingQuat.z, smallRingQuat.w);
+      physicsWorld.addBody(smallRingBody);
+      physicsWorld.addConstraint(new CANNON.PointToPointConstraint(dummyArm, new CANNON.Vec3(trackRadius, 0, 0), smallRingBody, new CANNON.Vec3(0, 0, 0)));
+
+      physicsObjects.push({ mesh: holeMesh, body: smallRingBody, isSmallRing: true });
+      interactableMeshes.push(holeMesh);
+      holeMesh.userData.physicsBody = smallRingBody;
+
+      // Glass keychain
+      const keychainGroup = new THREE.Group();
+      scene.add(keychainGroup);
+
+      let geometry;
+      const width = 2.4, height = 2.4, depth = 0.15;
+      const shapePhysics = new CANNON.Box(new CANNON.Vec3((width/2)*0.9, (height/2)*0.9, (depth/2)*1.5));
+
+      switch(skill.shape) {
+        case 'box': geometry = new THREE.BoxGeometry(width, height, depth, 4, 4, 4); break;
+        case 'cylinder': geometry = new THREE.CylinderGeometry(width/2, width/2, depth, 32); geometry.rotateX(Math.PI/2); break;
+        case 'capsule': geometry = new THREE.CapsuleGeometry(width/2.5, height/2, 16, 32); geometry.scale(1,1,depth/(2*(width/2.5))); break;
+        case 'hexagon': geometry = new THREE.CylinderGeometry(width/2.2, width/2.2, depth, 6); geometry.rotateX(Math.PI/2); geometry.rotateZ(Math.PI/6); break;
+        case 'octahedron': geometry = new THREE.OctahedronGeometry(width/1.8, 1); geometry.scale(1,1,depth/(2*(width/1.8))); break;
+      }
+      geometry.computeBoundingBox();
+      const visualTopY = geometry.boundingBox.max.y;
+
+      const mat = sharedGlassMaterial.clone();
+      mat.color.set(skill.color);
+      const glassMesh = new THREE.Mesh(geometry, mat);
+      keychainGroup.add(glassMesh);
+      interactableMeshes.push(glassMesh);
+
+      const textTexture = createTextTexture(skill.text, skill.textColor);
+      const textMat = new THREE.MeshBasicMaterial({ map: textTexture, transparent: true, depthWrite: false });
+      const textFront = new THREE.Mesh(new THREE.PlaneGeometry(width*1.2, width*0.6), textMat);
+      textFront.position.z = depth/2 + 0.01;
+      keychainGroup.add(textFront);
+      const textBack = new THREE.Mesh(new THREE.PlaneGeometry(width*1.2, width*0.6), textMat);
+      textBack.position.z = -depth/2 - 0.01;
+      textBack.rotation.y = Math.PI;
+      keychainGroup.add(textBack);
+
+      // Spawn calculation
+      const pivotA_local = new CANNON.Vec3(0, -smallRingRadius, 0);
+      const pivotA_world = new THREE.Vector3(pivotA_local.x, pivotA_local.y, pivotA_local.z);
+      pivotA_world.applyQuaternion(smallRingQuat);
+      pivotA_world.add(new THREE.Vector3(smallRingPos.x, smallRingPos.y, smallRingPos.z));
+      const pivotB_local = new CANNON.Vec3(0, visualTopY - 0.1, 0);
+      const spawnPos = new CANNON.Vec3(pivotA_world.x - pivotB_local.x, pivotA_world.y - pivotB_local.y, pivotA_world.z - pivotB_local.z);
+
+      const keychainBody = new CANNON.Body({
+        mass: 1.5, material: scene.userData.keychainMaterial, shape: shapePhysics,
+        position: spawnPos, linearDamping: 0.3, angularDamping: 0.5
+      });
+      keychainBody.collisionFilterGroup = GROUP_KEYCHAIN;
+      keychainBody.collisionFilterMask = GROUP_KEYCHAIN | GROUP_RING;
+      physicsWorld.addBody(keychainBody);
+      physicsWorld.addConstraint(new CANNON.PointToPointConstraint(smallRingBody, pivotA_local, keychainBody, pivotB_local));
+
+      glassMesh.userData.physicsBody = keychainBody;
+      glassMesh.userData.skillIndex = keychainConfig.indexOf(skill);
+      physicsObjects.push({ mesh: keychainGroup, body: keychainBody });
+      keychainBodies.push({ body: keychainBody, config: skill, group: keychainGroup });
+    });
+  }
+
+  // --- TOOLTIP REFS ---
+  const tooltipEl = document.getElementById('keyring-tooltip');
+  const tooltipTitle = document.getElementById('keyring-tooltip-title');
+  const tooltipDesc = document.getElementById('keyring-tooltip-desc');
+  let hoveredSkill = null;
+  let tooltipVisible = false;
+
+  function showTooltip(skill, screenX, screenY) {
+    const rect = container.getBoundingClientRect();
+    tooltipTitle.textContent = skill.text;
+    tooltipTitle.style.color = skill.color;
+    tooltipDesc.textContent = skill.desc;
+    // Position tooltip above the keychain, clamped inside container
+    let tx = screenX - rect.left;
+    let ty = screenY - rect.top - 20;
+    // Clamp so it doesn't overflow
+    tx = Math.max(10, Math.min(tx - 80, rect.width - 170));
+    ty = Math.max(10, ty);
+    tooltipEl.style.left = tx + 'px';
+    tooltipEl.style.top = ty + 'px';
+    if (!tooltipVisible) {
+      tooltipEl.style.opacity = '1';
+      tooltipEl.style.transform = 'translateY(0)';
+      tooltipVisible = true;
+    }
+  }
+
+  function hideTooltip() {
+    tooltipEl.style.opacity = '0';
+    tooltipEl.style.transform = 'translateY(6px)';
+    tooltipVisible = false;
+    hoveredSkill = null;
+  }
+
+  // --- FAN OUT / COLLAPSE ---
+  // Compute evenly-spaced target positions for the fanned-out state
+  // Arranged in a horizontal arc below the ring
+  function getFanTargets() {
+    const count = keychainBodies.length;
+    const spreadX = 8; // total horizontal spread from center per side
+    const baseY = 0.5;   // vertical target (below ring center)
+    const targets = [];
+    for (let i = 0; i < count; i++) {
+      // Evenly space across a horizontal line
+      const t = count > 1 ? (i / (count - 1)) * 2 - 1 : 0; // -1 to 1
+      targets.push(new CANNON.Vec3(t * spreadX, baseY, 0));
+    }
+    return targets;
+  }
+
+  const fanTargets = []; // populated after keychains are built
+
+  function onContainerEnter() {
+    isFannedOut = true;
+    // Compute targets once
+    if (fanTargets.length === 0) {
+      const targets = getFanTargets();
+      targets.forEach(t => fanTargets.push(t));
+    }
+  }
+
+  function onContainerLeave() {
+    isFannedOut = false;
+    hideTooltip();
+  }
+
+  // Called every frame from animate() — applies spring forces to spread keychains
+  function applyFanForces() {
+    if (!isFannedOut || keychainBodies.length === 0 || fanTargets.length === 0) return;
+    const springK = 12;  // spring stiffness
+    const damping = 4;   // velocity damping to prevent oscillation
+
+    keychainBodies.forEach((kc, i) => {
+      const target = fanTargets[i];
+      const pos = kc.body.position;
+      const vel = kc.body.velocity;
+
+      // Spring force toward target position (X and Z only — let Y be governed by gravity + constraint)
+      const dx = target.x - pos.x;
+      const dz = target.z - pos.z;
+
+      // Also apply gentle upward force to counteract gravity and keep them visible
+      const dy = target.y - pos.y;
+
+      kc.body.applyForce(new CANNON.Vec3(
+        dx * springK - vel.x * damping,
+        dy * springK * 0.5 - vel.y * damping * 0.3, // gentler vertical — let chain physics do its thing
+        dz * springK - vel.z * damping
+      ), pos);
+    });
+  }
+
+  function onMouseMove(event) {
+    const rect = container.getBoundingClientRect();
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    const velocityX = mouse.x - lastMousePos.x;
+    const velocityY = mouse.y - lastMousePos.y;
+    lastMousePos.copy(mouse);
+
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(interactableMeshes, false);
+
+    let foundSkill = null;
+
+    if (intersects.length > 0) {
+      const hit = intersects[0];
+      if (hit.object.userData.physicsBody) {
+        const body = hit.object.userData.physicsBody;
+        const massFactor = body.mass;
+        const forceMag = params.forceMultiplier * 4 * massFactor;
+        const clamp = (val, max) => Math.max(Math.min(val, max), -max);
+        const cVelX = clamp(velocityX, 0.15), cVelY = clamp(velocityY, 0.15);
+        const impulse = new CANNON.Vec3(cVelX * forceMag, cVelY * forceMag, -Math.abs(cVelX + cVelY) * forceMag * 0.8);
+        if (Math.abs(cVelX) < 0.001 && Math.abs(cVelY) < 0.001) {
+          impulse.set((Math.random()-0.5)*massFactor*0.2, (Math.random()-0.5)*massFactor*0.2, -0.2*massFactor);
+        }
+        body.applyImpulse(impulse, new CANNON.Vec3(hit.point.x, hit.point.y, hit.point.z));
+
+        // Check if this is a keychain glass mesh (has skillIndex)
+        const idx = hit.object.userData.skillIndex;
+        if (idx !== undefined) {
+          foundSkill = keychainConfig[idx];
+          // Project the keychain body 3D position to screen 2D
+          const pos3d = new THREE.Vector3().copy(keychainBodies[idx].body.position);
+          pos3d.y += 1.4; // offset above the keychain center
+          pos3d.project(camera);
+          const sx = (pos3d.x * 0.5 + 0.5) * rect.width + rect.left;
+          const sy = (-pos3d.y * 0.5 + 0.5) * rect.height + rect.top;
+          showTooltip(foundSkill, sx, sy);
+        }
+      }
+    }
+
+    if (!foundSkill && tooltipVisible) {
+      hideTooltip();
+    }
+  }
+
+  function onResize() {
+    const { w, h } = getSize();
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const delta = Math.min(clock.getDelta(), 0.1);
+
+    // Apply continuous fan-out spring forces before physics step
+    applyFanForces();
+
+    physicsWorld.step(1/60, delta, 3);
+    const ringBody = scene.userData.ringBody;
+
+    for (let i = 0; i < physicsObjects.length; i++) {
+      const obj = physicsObjects[i];
+      if (obj.isSmallRing && ringBody) {
+        const localPos = ringBody.pointToLocalFrame(obj.body.position);
+        const localTangent = new CANNON.Vec3(-localPos.y, localPos.x, 0);
+        localTangent.normalize();
+        const worldTangent = ringBody.vectorToWorldFrame(localTangent);
+        const currentZ = obj.body.quaternion.vmult(new CANNON.Vec3(0, 0, 1));
+        const torque = currentZ.cross(worldTangent);
+        const k = 20, d = 2, av = obj.body.angularVelocity;
+        obj.body.applyTorque(new CANNON.Vec3(torque.x*k - av.x*d, torque.y*k - av.y*d, torque.z*k - av.z*d));
+      }
+      obj.mesh.position.copy(obj.body.position);
+      obj.mesh.quaternion.copy(obj.body.quaternion);
+    }
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  // Only init when section scrolls into view (performance)
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      observer.disconnect();
+      init();
+      animate();
+    }
+  }, { threshold: 0.1 });
+  observer.observe(container);
+})();
 </script>
 
 </body>
