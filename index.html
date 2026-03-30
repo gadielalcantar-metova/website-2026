@@ -181,19 +181,173 @@ tailwind.config = {
 
   /* Service rows */
   .service-row {
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    border-top: 0.556px solid rgba(255,255,255,0.2);
+    border-bottom: 0.556px solid rgba(255,255,255,0.2);
     transition: background 0.25s ease;
+    cursor: pointer;
   }
-  .service-row:first-child { border-top: 1px solid rgba(255,255,255,0.2); }
   .service-row:last-child  { border-bottom: none; }
   .service-row:hover { background: rgba(139,173,65,0.04); }
-  .service-row:hover .svc-icon-lg {
-    border-color: rgba(186,235,66,0.7);
-    background: rgba(139,173,65,0.18);
-    box-shadow: 0 0 20px rgba(139,173,65,0.12);
+  .service-row .svc-inner {
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  .svc-icon-lg {
-    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  .service-row:hover .svc-inner {
+    transform: translateX(-12px);
+  }
+  /* Floating service image */
+  /* How We Work — zigzag cards with corner brackets */
+  .hww-card {
+    position: relative;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 40px 36px;
+    max-width: 420px;
+    transition: background 0.4s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .hww-card:hover {
+    background: rgba(186,235,66,0.04);
+    transform: translateY(-4px);
+  }
+  .loc-card:hover {
+    background: rgba(186,235,66,0.04);
+    transform: translateY(-4px);
+  }
+  /* Corner brackets */
+  .hww-card::before, .hww-card::after,
+  .hww-card .corner-bl, .hww-card .corner-br {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    transition: border-color 0.4s ease;
+  }
+  .hww-card::before {
+    top: 0; left: 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-left: 1px solid rgba(255,255,255,0.15);
+  }
+  .hww-card::after {
+    top: 0; right: 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .hww-card .corner-bl {
+    bottom: 0; left: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-left: 1px solid rgba(255,255,255,0.15);
+  }
+  .hww-card .corner-br {
+    bottom: 0; right: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .hww-card:hover::before, .hww-card:hover::after,
+  .hww-card:hover .corner-bl, .hww-card:hover .corner-br {
+    border-color: rgba(186,235,66,0.35);
+  }
+  /* Zigzag positioning */
+  .hww-row { display: flex; justify-content: flex-start; }
+  .hww-row.hww-right { justify-content: flex-end; }
+  /* Particle canvas */
+  #hww-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Floating shapes */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(4deg); }
+  }
+  @keyframes float-slow-alt {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(-3deg); }
+  }
+  @keyframes breathe-glow {
+    0%, 100% { opacity: 0.07; }
+    50% { opacity: 0.14; }
+  }
+  /* Pulsating location light */
+  .pulse-dot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #BAEB42;
+    box-shadow: 0 0 8px rgba(186,235,66,0.6);
+    flex-shrink: 0;
+  }
+  .pulse-dot::before, .pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(186,235,66,0.4);
+    animation: pulse-ring 2.4s cubic-bezier(0.21, 0.61, 0.35, 1) infinite;
+  }
+  .pulse-dot::after {
+    animation-delay: 0.8s;
+  }
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(3.2); opacity: 0; }
+  }
+  /* Noise texture */
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .svc-float-img {
+    position: fixed;
+    width: 480px;
+    height: 330px;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+    border-radius: 0;
+    will-change: transform, clip-path;
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    top: 0;
+    left: 0;
+  }
+  .svc-float-img.is-visible {
+    clip-path: inset(0 0 0 0);
+  }
+  .svc-float-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ─── Case study image overlay ─────────────────────────── */
+  .cs-img {
+    position: relative;
+  }
+  .cs-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    opacity: 1;
+  }
+  .cs-img.is-active::after {
+    opacity: 0;
   }
 
   /* ─── Hero background grid ─────────────────────────────── */
@@ -241,11 +395,11 @@ tailwind.config = {
     from { filter: hue-rotate(0deg); }
     to   { filter: hue-rotate(360deg); }
   }
-  .ai-card { position: relative; isolation: isolate; }
+  .ai-card { position: relative; isolation: isolate; overflow: hidden; }
   .ai-card::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: 1px;
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -417,7 +571,7 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 1: NAVIGATION                                   -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="">
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
   <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
     <!-- Logo -->
     <a href="/" class="flex-shrink-0" aria-label="Metova Home">
@@ -458,7 +612,7 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 2: HERO                                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="hero" style="position:relative; min-height:120vh; overflow:hidden; background:#0F0F0F;">
+<section id="hero" style="position:relative; min-height:120vh; overflow:hidden; background:#0F0F0F; display:flex; flex-direction:column;">
 
   <!-- Background grid -->
   <div class="hero-grid absolute inset-0 pointer-events-none" style="z-index:0;"></div>
@@ -473,7 +627,7 @@ tailwind.config = {
 
   <!-- 3D Logo — absolute right, desktop only, z:20 -->
   <div class="hero-anim-1 hidden lg:block absolute pointer-events-none"
-    style="right:clamp(-43vw,-43vw,0px); bottom: -25vw; z-index:20;position:absolute;">
+    style="right:-40vw; top:-20%; transform:translateY(-50%); z-index:20; position:absolute; width:120vw; max-width:none;">
     <img src="metova_logo_3d_big.png" class="hero-levitate w-full" alt="Metova 3D Logo" style="opacity:0.95;">
   </div>
 
@@ -538,7 +692,7 @@ tailwind.config = {
   </div>
 
   <!-- Stats Bar -->
-  <div style="position:relative; z-index:40; background:rgba(20,20,20,0.5); border-top:1px solid rgba(0,0,0,0.6); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2);">
+  <div style="position:relative; z-index:40; background:rgba(20,20,20,0.5); border-top:1px solid rgba(0,0,0,0.6); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); margin-top:auto;">
     <div class="max-w-[1440px] mx-auto" style="display:grid; grid-template-columns:repeat(3,1fr);">
       <!-- Downloads -->
       <div class="stat-box fade-up flex flex-col items-center justify-center gap-6" style="height:317px; padding:90px 24px;">
@@ -681,7 +835,7 @@ tailwind.config = {
 <section id="services" style="background:#141414; border-top:1px solid rgba(255,255,255,0.1); border-bottom:1px solid rgba(255,255,255,0.1); padding:108px 0;">
 
   <!-- Centered header -->
-  <div class="flex flex-col gap-7 items-center text-center px-6 mb-8 fade-up">
+  <div class="flex flex-col gap-7 items-center text-center px-6 mb-[32px] fade-up">
     <div class="flex items-center gap-2 px-2 py-2">
       <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
       <span class="text-xs font-normal uppercase text-white" style="letter-spacing:1.8px;">OUR SERVICES</span>
@@ -703,86 +857,80 @@ tailwind.config = {
     <div class="px-4 sm:px-8 lg:px-[60px]" style="position:relative; z-index:1;">
 
       <!-- Row 1: AI Product Development -->
-      <div class="service-row fade-up">
-        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
-          <div class="flex flex-col gap-1">
+      <div class="service-row fade-up" data-svc-img="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=640&h=440&fit=crop&q=80">
+        <div class="svc-inner flex items-start gap-8 px-4 sm:px-8 lg:px-[60px]" style="padding-top:48px; padding-bottom:40px;">
+          <span class="shrink-0 font-normal" style="font-size:24px; line-height:22.75px; color:#BAEB42;">(01)</span>
+          <div class="flex flex-col gap-4">
             <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">AI Product Development</h3>
-            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">We design and build custom AI solutions from the ground up — LLM integration, intelligent automation, computer vision, and AI-native SaaS platforms. If it can be made smarter, we make it smarter.</p>
-          </div>
-          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:15px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
-            <img src="https://www.figma.com/api/mcp/asset/69243328-e7f3-49d0-b1ac-5a3bbf596ed7" alt="" style="width:38px; height:38px; display:block;">
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Custom AI/ML solutions, LLM integration, intelligent automation, and AI-powered SaaS platforms.</p>
           </div>
         </div>
       </div>
 
       <!-- Row 2: Custom Software Development -->
-      <div class="service-row fade-up">
-        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
-          <div class="flex flex-col gap-1">
+      <div class="service-row fade-up" data-svc-img="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=640&q=80">
+        <div class="svc-inner flex items-start gap-8 px-4 sm:px-8 lg:px-[60px]" style="padding-top:48px; padding-bottom:40px;">
+          <span class="shrink-0 font-normal" style="font-size:24px; line-height:22.75px; color:#BAEB42;">(02)</span>
+          <div class="flex flex-col gap-4">
             <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">Custom Software Development</h3>
-            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Web apps, mobile apps, and enterprise platforms built to carry real load. Our full-stack teams deliver across iOS, Android, and modern web — and have 250M+ downloads worth of production experience to back it up.</p>
-          </div>
-          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
-            <img src="https://www.figma.com/api/mcp/asset/7ccc5d69-0f44-41cf-a8a8-83779e62ed0b" alt="" style="width:54px; height:54px; display:block;">
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Full-stack web and mobile applications built to scale across iOS, Android, and enterprise platforms.</p>
           </div>
         </div>
       </div>
 
       <!-- Row 3: Digital Consulting & Strategy -->
-      <div class="service-row fade-up">
-        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
-          <div class="flex flex-col gap-1">
+      <div class="service-row fade-up" data-svc-img="https://images.unsplash.com/photo-1552664730-d307ca884978?w=640&q=80">
+        <div class="svc-inner flex items-start gap-8 px-4 sm:px-8 lg:px-[60px]" style="padding-top:48px; padding-bottom:40px;">
+          <span class="shrink-0 font-normal" style="font-size:24px; line-height:22.75px; color:#BAEB42;">(03)</span>
+          <div class="flex flex-col gap-4">
             <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">Digital Consulting &amp; Strategy</h3>
-            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">We audit your tech stack, identify the gaps, and hand you a clear roadmap. From feasibility studies to technical due diligence, we turn uncertainty into a confident, actionable go-forward plan.</p>
-          </div>
-          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
-            <img src="https://www.figma.com/api/mcp/asset/56f212b6-b881-4905-b513-6e79f0a7c71d" alt="" style="width:54px; height:54px; display:block;">
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Research, prototyping, tech assessments, and strategic roadmapping for digital transformation.</p>
           </div>
         </div>
       </div>
 
       <!-- Row 4: UX/UI Design -->
-      <div class="service-row fade-up">
-        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
-          <div class="flex flex-col gap-1">
+      <div class="service-row fade-up" data-svc-img="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=640&q=80">
+        <div class="svc-inner flex items-start gap-8 px-4 sm:px-8 lg:px-[60px]" style="padding-top:48px; padding-bottom:40px;">
+          <span class="shrink-0 font-normal" style="font-size:24px; line-height:22.75px; color:#BAEB42;">(04)</span>
+          <div class="flex flex-col gap-4">
             <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">UX/UI Design</h3>
-            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Interfaces that earn loyalty, not just clicks. We start with user research and behavioral analysis, then design polished, accessible products — tested against real behavior, not assumptions.</p>
-          </div>
-          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
-            <img src="https://www.figma.com/api/mcp/asset/eb781610-e940-4605-acb5-ba59bbe0358e" alt="" style="width:54px; height:54px; display:block;">
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Human-centered design for complex products. Research-driven interfaces that users love.</p>
           </div>
         </div>
       </div>
 
       <!-- Row 5: Nearshore Talent Solutions -->
-      <div class="service-row fade-up">
-        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
-          <div class="flex flex-col gap-1">
+      <div class="service-row fade-up" data-svc-img="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=640&q=80">
+        <div class="svc-inner flex items-start gap-8 px-4 sm:px-8 lg:px-[60px]" style="padding-top:48px; padding-bottom:40px;">
+          <span class="shrink-0 font-normal" style="font-size:24px; line-height:22.75px; color:#BAEB42;">(05)</span>
+          <div class="flex flex-col gap-4">
             <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">Nearshore Talent Solutions</h3>
-            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Senior engineers from Guadalajara who work your hours, speak your language, and ship like insiders. We handle Employer of Record compliance so you can scale your team fast without the HR overhead.</p>
-          </div>
-          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
-            <img src="https://www.figma.com/api/mcp/asset/99b7d580-9662-4a20-afe4-c5ea1e90b258" alt="" style="width:54px; height:54px; display:block;">
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Dedicated engineering teams from Latin America, your timezone. Employer of Record services included.</p>
           </div>
         </div>
       </div>
 
       <!-- Row 6: IoT & Emerging Tech -->
-      <div class="service-row fade-up">
-        <div class="flex items-center justify-between gap-6 px-4 sm:px-8 lg:px-[60px] py-[40px]">
-          <div class="flex flex-col gap-1">
+      <div class="service-row fade-up" data-svc-img="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=640&q=80">
+        <div class="svc-inner flex items-start gap-8 px-4 sm:px-8 lg:px-[60px]" style="padding-top:48px; padding-bottom:40px;">
+          <span class="shrink-0 font-normal" style="font-size:24px; line-height:22.75px; color:#BAEB42;">(06)</span>
+          <div class="flex flex-col gap-4">
             <h3 class="font-bold text-white" style="font-size:clamp(20px,2.5vw,32px); line-height:normal;">IoT &amp; Emerging Tech</h3>
-            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">We connect the physical and digital — from firmware to fleet dashboards. Smart devices, environmental sensors, FinTech rails, and embedded systems. If it has a circuit board, we can build the software around it.</p>
-          </div>
-          <div class="svc-icon-lg shrink-0 hidden sm:flex items-center justify-center" style="width:108px; height:108px; border-radius:21px; background:rgba(139,173,65,0.1); border:1px solid #BAEB42;">
-            <img src="https://www.figma.com/api/mcp/asset/773c074c-3ad8-4fee-89e6-5b13d660105b" alt="" style="width:54px; height:54px; display:block;">
+            <p class="text-[#b0b1b5] text-sm max-w-[474px]" style="line-height:22.75px;">Connected devices, fleet management, FinTech solutions, and embedded systems engineering.</p>
           </div>
         </div>
       </div>
 
     </div>
+
   </div>
 </section>
+
+<!-- Floating cursor-following image (outside overflow:hidden) -->
+<div class="svc-float-img" id="svc-float-img">
+  <img src="" alt="">
+</div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 6: AI-FIRST DEVELOPMENT                           -->
@@ -851,55 +999,171 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 7: WHY CHOOSE US / CASE STUDIES                  -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="case-studies" class="relative py-24 lg:py-32" style="background:#141414;">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="text-center mb-16 fade-up">
+<!-- Case studies: desktop = sticky left + scrolling right images; mobile = vertical cards -->
+<section id="case-studies" style="background:#141414;">
+
+  <!-- ── MOBILE: vertical cards (lg:hidden) ── -->
+  <div class="lg:hidden px-6 py-24">
+    <div class="text-center mb-12">
       <div class="inline-flex items-center gap-2 p-2 mb-4">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Proven Results</span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">Proven Results</span>
       </div>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
-        Products Used by <span class="text-brand-green">Millions</span>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-[-0.02em]">
+        Products Used by <span style="color:#BAEB42;">Millions</span>
       </h2>
     </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <!-- Case Study 1 -->
-      <div class="card-hover fade-up rounded-card overflow-hidden border border-white/[0.1] cursor-pointer group" style="background:#1F1F1F;">
-        <div class="relative h-52 overflow-hidden">
-          <img src="https://placehold.co/640x400/262626/8BAD41?text=FitOn" alt="FitOn fitness app case study" class="w-full h-full object-cover opacity-90 group-hover:opacity-90" style="transition:opacity 0.3s; mix-blend-mode:normal;">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
-          <span class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-label text-brand-green px-3 py-1 rounded-full border border-brand-green/30" style="background:rgba(139,173,65,0.1);">Fitness</span>
+    <div class="flex flex-col gap-12">
+      <!-- Mobile Card 1 -->
+      <div class="fade-up">
+        <div class="aspect-square overflow-hidden mb-6" style="background:#1A1A1A;">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=800&fit=crop" alt="FitOn" class="w-full h-full object-cover">
         </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold mb-2">FitOn</h3>
-          <p class="text-sm text-brand-muted leading-body mb-4">Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.</p>
-          <span class="text-brand-green text-sm font-semibold">50% cost reduction →</span>
+        <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">FitOn</h3>
+        <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Cloud Infrastructure</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">DevOps</span>
         </div>
+        <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.</p>
+        <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
       </div>
-      <!-- Case Study 2 -->
-      <div class="card-hover fade-up rounded-card overflow-hidden border border-white/[0.1] cursor-pointer group" style="background:#1F1F1F;">
-        <div class="relative h-52 overflow-hidden">
-          <img src="https://placehold.co/640x400/262626/8BAD41?text=MyBambu" alt="MyBambu fintech app case study" class="w-full h-full object-cover opacity-90 group-hover:opacity-90" style="transition:opacity 0.3s; mix-blend-mode:normal;">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
-          <span class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-label text-brand-green px-3 py-1 rounded-full border border-brand-green/30" style="background:rgba(139,173,65,0.1);">FinTech</span>
+      <!-- Mobile Card 2 -->
+      <div class="fade-up">
+        <div class="aspect-square overflow-hidden mb-6" style="background:#1A1A1A;">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=800&fit=crop" alt="MyBambu" class="w-full h-full object-cover">
         </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold mb-2">MyBambu</h3>
-          <p class="text-sm text-brand-muted leading-body mb-4">Built a neobanking platform for underserved communities with real-time payments, virtual cards, and bilingual support.</p>
-          <span class="text-brand-green text-sm font-semibold">Full-stack FinTech →</span>
+        <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">MyBambu</h3>
+        <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">FinTech</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Full-Stack Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
         </div>
+        <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Built a neobanking platform for underserved communities with real-time payments, virtual cards, and bilingual support.</p>
+        <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
       </div>
-      <!-- Case Study 3 -->
-      <div class="card-hover fade-up rounded-card overflow-hidden border border-white/[0.1] cursor-pointer group" style="background:#1F1F1F;">
-        <div class="relative h-52 overflow-hidden">
-          <img src="https://placehold.co/640x400/262626/8BAD41?text=Barwis" alt="Barwis performance app case study" class="w-full h-full object-cover opacity-90 group-hover:opacity-90" style="transition:opacity 0.3s; mix-blend-mode:normal;">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] via-transparent to-transparent"></div>
-          <span class="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-label text-brand-green px-3 py-1 rounded-full border border-brand-green/30" style="background:rgba(139,173,65,0.1);">Health & Fitness</span>
+      <!-- Mobile Card 3 -->
+      <div class="fade-up">
+        <div class="aspect-square overflow-hidden mb-6" style="background:#1A1A1A;">
+          <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800&h=800&fit=crop" alt="Barwis Methods" class="w-full h-full object-cover">
         </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold mb-2">Barwis Methods</h3>
-          <p class="text-sm text-brand-muted leading-body mb-4">Designed and developed a performance training platform connecting elite athletes with data-driven workout programs.</p>
-          <span class="text-brand-green text-sm font-semibold">Data-driven training →</span>
+        <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">Barwis Methods</h3>
+        <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Health &amp; Fitness</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
+        </div>
+        <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Designed and developed a performance training platform connecting elite athletes with data-driven workout programs.</p>
+        <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
+      </div>
+      <!-- Mobile Card 4 -->
+      <div class="fade-up">
+        <div class="aspect-square overflow-hidden mb-6" style="background:#1A1A1A;">
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&h=800&fit=crop" alt="FleetPulse" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">FleetPulse</h3>
+        <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">IoT</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Fleet Management</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Data Analytics</span>
+        </div>
+        <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Real-time fleet tracking and predictive maintenance platform managing 12,000+ vehicles across North America with 99.9% uptime.</p>
+        <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
+      </div>
+      <!-- Mobile Card 5 -->
+      <div class="fade-up">
+        <div class="aspect-square overflow-hidden mb-6" style="background:#1A1A1A;">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=800&fit=crop" alt="MediSync" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">MediSync</h3>
+        <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Healthcare</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">AI Integration</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">HIPAA Compliance</span>
+        </div>
+        <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">AI-powered patient scheduling and triage system that reduced wait times by 40% across a 200-clinic hospital network.</p>
+        <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
+      </div>
+      <!-- Mobile Card 6 -->
+      <div class="fade-up">
+        <div class="aspect-square overflow-hidden mb-6" style="background:#1A1A1A;">
+          <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=800&fit=crop" alt="Verdant" class="w-full h-full object-cover">
+        </div>
+        <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">Verdant</h3>
+        <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">E-Commerce</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
+          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Full-Stack Dev</span>
+        </div>
+        <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Sustainable marketplace platform connecting eco-conscious consumers with verified green brands. 3x revenue growth in first year post-launch.</p>
+        <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
+      </div>
+      <!-- Mobile: View All Projects -->
+      <a href="#" class="fade-up flex items-center justify-center mt-12 py-6 text-sm uppercase tracking-[2px] font-normal" style="color:rgba(255,255,255,0.5); font-family:monospace; background:#1A1A1A; border:0.556px solid rgba(255,255,255,0.1); text-decoration:none;">[ <span style="color:#BAEB42;">VIEW ALL PROJECTS</span> ]</a>
+    </div>
+  </div>
+
+  <!-- ── DESKTOP: sticky scroll (hidden below lg) ── -->
+  <div class="hidden lg:block" id="cs-desktop">
+    <!-- Tall wrapper — height = 100vh × number of case studies for scroll room -->
+    <div class="relative" id="cs-scroll-wrapper" style="height:600vh;">
+      <!-- Sticky container pinned at top -->
+      <div class="sticky top-0 h-screen flex" style="overflow:hidden;">
+        <!-- LEFT column — text -->
+        <div class="w-[45%] flex flex-col justify-between px-[60px] py-24">
+          <div>
+            <div class="inline-flex items-center gap-2 p-2 mb-6">
+              <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+              <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">Proven Results</span>
+            </div>
+            <h2 class="text-[48px] font-bold leading-[1] tracking-[-0.02em] mb-12">
+              Products Used by<br><span style="color:#fff;">Millions</span>
+            </h2>
+            <!-- Client name — crossfades -->
+            <div class="relative flex items-baseline gap-4" style="min-height:40px;">
+              <span class="cs-client-num shrink-0 font-normal transition-all duration-500" style="font-size:24px; line-height:22.75px; color:#BAEB42; opacity:1;">(01)</span>
+              <h3 class="cs-client-name text-[32px] font-bold leading-[1] tracking-[-0.01em] transition-all duration-500" style="opacity:1; color:#9CA3AF;">FitOn</h3>
+            </div>
+          </div>
+          <div>
+            <!-- Tags — crossfade (muted so CTA stands out) -->
+            <div class="cs-tags flex flex-wrap gap-2 mb-6 transition-all duration-500" style="opacity:1;">
+              <span class="text-[10px] font-medium uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Cloud Infrastructure</span>
+              <span class="text-[10px] font-medium uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
+              <span class="text-[10px] font-medium uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">DevOps</span>
+            </div>
+            <!-- Description — crossfades -->
+            <p class="cs-description text-[16px] leading-[28px] max-w-[380px] mb-8 transition-all duration-500" style="color:#B0B1B5; opacity:1;">Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.</p>
+            <!-- CTA button — crossfades -->
+            <a href="#" class="cs-cta inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase transition-all duration-500" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none; opacity:1;">View Case Study</a>
+          </div>
+        </div>
+        <!-- RIGHT column — images scroll via translateY -->
+        <div class="w-[55%] relative overflow-hidden">
+          <div class="cs-images-track absolute top-0 left-0 w-full flex flex-col" style="gap:24px; padding:24px 24px 24px 0;">
+            <a href="#" class="cs-img aspect-square w-full block cursor-pointer" style="background:#1A1A1A;">
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=800&fit=crop" alt="FitOn" class="w-full h-full object-cover">
+            </a>
+            <a href="#" class="cs-img aspect-square w-full block cursor-pointer" style="background:#1A1A1A;">
+              <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=800&fit=crop" alt="MyBambu" class="w-full h-full object-cover">
+            </a>
+            <a href="#" class="cs-img aspect-square w-full block cursor-pointer" style="background:#1A1A1A;">
+              <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800&h=800&fit=crop" alt="Barwis Methods" class="w-full h-full object-cover">
+            </a>
+            <a href="#" class="cs-img aspect-square w-full block cursor-pointer" style="background:#1A1A1A;">
+              <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&h=800&fit=crop" alt="FleetPulse" class="w-full h-full object-cover">
+            </a>
+            <a href="#" class="cs-img aspect-square w-full block cursor-pointer" style="background:#1A1A1A;">
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=800&fit=crop" alt="MediSync" class="w-full h-full object-cover">
+            </a>
+            <a href="#" class="cs-img aspect-square w-full block cursor-pointer" style="background:#1A1A1A;">
+              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=800&fit=crop" alt="Verdant" class="w-full h-full object-cover">
+            </a>
+            <!-- View All Projects card -->
+            <a href="#" class="w-full flex items-end justify-end p-8 group" style="background:#1A1A1A; border:0.556px solid rgba(255,255,255,0.1); text-decoration:none; height:180px;">
+              <span class="text-sm uppercase tracking-[2px] font-normal transition-colors duration-300" style="color:rgba(255,255,255,0.5); font-family:monospace; letter-spacing:2px;">[ <span class="group-hover:text-white transition-colors duration-300" style="color:#BAEB42;">VIEW ALL PROJECTS</span> ]</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -950,133 +1214,148 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 9: ABOUT                                         -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="about" class="relative py-24 lg:py-32" style="background:#141414;">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <!-- Left: Images grid -->
-      <div class="fade-up grid grid-cols-2 gap-4">
-        <div class="rounded-card overflow-hidden border border-white/[0.1]">
-          <img src="https://placehold.co/400x500/262626/8BAD41?text=Team" alt="Metova team collaboration" class="w-full h-full object-cover opacity-90" style="mix-blend-mode:normal;">
-        </div>
-        <div class="rounded-card overflow-hidden border border-white/[0.1] mt-8">
-          <img src="https://placehold.co/400x500/262626/8BAD41?text=Office" alt="Metova office in Bentonville" class="w-full h-full object-cover opacity-90" style="mix-blend-mode:normal;">
-        </div>
-      </div>
-      <!-- Right: Text -->
-      <div>
-        <div class="inline-flex items-center gap-2 p-2 mb-4 fade-up">
+<section id="about" class="relative overflow-hidden noise-overlay" style="background:#0F0F0F; padding:0;">
+
+  <!-- Particle canvas — covers ENTIRE section -->
+  <canvas id="hww-particles" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0;"></canvas>
+
+  <!-- Floating decorative orbs -->
+  <div style="position:absolute; top:10%; left:-5%; width:500px; height:500px; background:radial-gradient(circle, rgba(186,235,66,0.07) 0%, transparent 65%); filter:blur(80px); pointer-events:none; animation:breathe-glow 8s ease-in-out infinite; z-index:0;"></div>
+  <div style="position:absolute; bottom:15%; right:-8%; width:400px; height:400px; background:radial-gradient(circle, rgba(139,173,65,0.05) 0%, transparent 65%); filter:blur(60px); pointer-events:none; animation:breathe-glow 10s ease-in-out infinite 3s; z-index:0;"></div>
+
+  <!-- Floating shape decorations -->
+  <div style="position:absolute; top:18%; right:12%; width:12px; height:12px; border:1.5px solid rgba(186,235,66,0.2); border-radius:50%; animation:float-slow 7s ease-in-out infinite; pointer-events:none; z-index:1;"></div>
+  <div style="position:absolute; top:55%; left:8%; width:8px; height:8px; background:rgba(186,235,66,0.15); border-radius:2px; animation:float-slow-alt 9s ease-in-out infinite 1s; pointer-events:none; z-index:1;"></div>
+  <div style="position:absolute; bottom:20%; right:20%; width:6px; height:6px; background:rgba(186,235,66,0.12); border-radius:50%; animation:float-slow 6s ease-in-out infinite 2s; pointer-events:none; z-index:1;"></div>
+
+  <!-- Top border -->
+  <div style="width:100%; height:0.556px; background:rgba(255,255,255,0.08); position:relative; z-index:2;"></div>
+
+  <!-- ====== ABOUT INTRO — with frosted overlay that fades out ====== -->
+  <div class="relative" style="z-index:2;">
+    <!-- Frosted overlay: solid at top, fades to transparent at bottom -->
+    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, #0F0F0F 0%, #0F0F0F 40%, rgba(15,15,15,0.85) 65%, rgba(15,15,15,0.4) 85%, transparent 100%); pointer-events:none; z-index:1;"></div>
+
+    <!-- Top row: About text left, Location cards right — flush to section top -->
+    <div class="relative flex flex-col lg:flex-row" style="z-index:2; border-bottom:0.56px solid rgba(255,255,255,0.12);">
+
+      <!-- Left column: About content -->
+      <div class="flex-1 px-6 lg:px-[60px]" style="padding-top:120px; padding-bottom:80px;">
+        <!-- Pill -->
+        <div class="inline-flex items-center gap-2 p-2 mb-10 fade-up">
           <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">About Metova</span>
+          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">About Metova</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-heading leading-tight mb-6 fade-up">
-          Building Software Since <span class="text-brand-green">2006</span>
+        <!-- Headline -->
+        <h2 class="fade-up font-bold tracking-[-0.03em] text-white mb-8" style="font-size:clamp(32px,4.5vw,56px); line-height:1.05;">
+          <span style="color:#BAEB42;">18 years</span> building products people actually <em style="font-style:normal; color:#BAEB42;">use.</em>
         </h2>
-        <p class="text-brand-muted leading-body mb-6 fade-up">
-          Metova is a custom software and AI development company headquartered in Bentonville, Arkansas with a nearshore development center in Guadalajara, Mexico. For over 18 years, we've helped companies from startups to Fortune 500 enterprises build products that reach millions of users.
+        <!-- Supporting copy -->
+        <p class="fade-up text-[16px] leading-[28px]" style="color:#B0B1B5; max-width:560px;">
+          From startups to Fortune 500 — we build, scale, and ship intelligent software across AI, mobile, web, and emerging tech.
         </p>
-        <p class="text-brand-muted leading-body mb-8 fade-up">
-          Our team spans 21 U.S. states and Latin America, bringing together senior engineers, designers, and strategists who've delivered 250M+ downloads and generated over $1B in client revenue. Today, we're leading the charge in AI product development — helping companies integrate intelligent automation into their core products.
-        </p>
-        <div class="grid grid-cols-2 gap-4 fade-up">
-          <div class="rounded-xl p-4 border border-white/[0.1]" style="background:#262626;">
-            <div class="text-2xl font-extrabold text-brand-green">Bentonville</div>
-            <div class="text-xs text-brand-muted mt-1">Arkansas, USA — HQ</div>
+      </div>
+
+      <!-- Right column: Location cards — flush top, full height, no corner brackets -->
+      <div class="fade-up flex flex-col sm:flex-row lg:flex-row shrink-0 loc-cards-wrap" style="border-left:0.56px solid rgba(255,255,255,0.12); position:relative;">
+        <!-- Bentonville -->
+        <div class="loc-card" style="padding:28px 32px; border-right:0.56px solid rgba(255,255,255,0.12); transition: background 0.4s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); cursor:pointer;">
+          <div class="flex items-center gap-5">
+            <div class="pulse-dot"></div>
+            <div>
+              <span class="text-white font-semibold text-[15px]">Bentonville, AR</span>
+              <span class="block text-[13px] mt-1" style="color:#B0B1B5;">U.S. Headquarters</span>
+              <span class="block text-[12px] mt-2 uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">60+ team members</span>
+            </div>
           </div>
-          <div class="rounded-xl p-4 border border-white/[0.1]" style="background:#262626;">
-            <div class="text-2xl font-extrabold text-brand-green">Guadalajara</div>
-            <div class="text-xs text-brand-muted mt-1">Jalisco, Mexico — Dev Center</div>
+        </div>
+        <!-- Guadalajara -->
+        <div class="loc-card" style="padding:28px 32px; transition: background 0.4s ease, transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); cursor:pointer;">
+          <div class="flex items-center gap-5">
+            <div class="pulse-dot" style="animation-delay:0.4s;"></div>
+            <div>
+              <span class="text-white font-semibold text-[15px]">Guadalajara, MX</span>
+              <span class="block text-[13px] mt-1" style="color:#B0B1B5;">Mexico Headquarters</span>
+              <span class="block text-[12px] mt-2 uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">40+ team members</span>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
+
+  <!-- ====== HOW WE WORK — zigzag (particles bleed through from canvas above) ====== -->
+  <div class="relative" style="padding:80px 0 120px; z-index:2;">
+
+    <!-- Center heading -->
+    <div class="text-center mb-20 relative z-10 px-6">
+      <div class="inline-flex items-center gap-2 p-2 mb-4 fade-up">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">How We Work</span>
+      </div>
+      <h3 class="fade-up font-bold tracking-[-0.02em] text-white" style="font-size:clamp(28px,3.5vw,44px); line-height:1.15;">
+        From Idea to Launch
+      </h3>
+    </div>
+
+    <!-- Zigzag cards + SVG connectors -->
+    <div id="hww-zigzag" class="relative z-10 flex flex-col gap-10 lg:gap-0 px-6 lg:px-[60px] max-w-[1200px] mx-auto">
+
+      <!-- SVG connector layer — above cards -->
+      <svg id="hww-connectors" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:5; overflow:visible;"></svg>
+
+      <!-- Row 01 — left -->
+      <div class="hww-row fade-up" style="margin-bottom:60px;">
+        <div class="hww-card" data-step="1" data-side="left">
+          <div class="corner-bl"></div><div class="corner-br"></div>
+          <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">01</span>
+          <h4 class="text-[20px] font-bold text-white mb-3">Discovery</h4>
+          <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Deep dive into your goals, users, market, and technical landscape to define the path forward.</p>
+          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">1–2 weeks</span>
+        </div>
+      </div>
+
+      <!-- Row 02 — right -->
+      <div class="hww-row hww-right fade-up" style="margin-bottom:60px;">
+        <div class="hww-card" data-step="2" data-side="right">
+          <div class="corner-bl"></div><div class="corner-br"></div>
+          <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">02</span>
+          <h4 class="text-[20px] font-bold text-white mb-3">Strategy & Proposal</h4>
+          <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Architecture, timeline, and pricing — transparent from day one. No surprises, no guesswork.</p>
+          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">1–2 weeks</span>
+        </div>
+      </div>
+
+      <!-- Row 03 — left -->
+      <div class="hww-row fade-up" style="margin-bottom:60px;">
+        <div class="hww-card" data-step="3" data-side="left">
+          <div class="corner-bl"></div><div class="corner-br"></div>
+          <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">03</span>
+          <h4 class="text-[20px] font-bold text-white mb-3">Build & Ship</h4>
+          <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Bi-weekly demos, continuous delivery. You see working software, not slide decks.</p>
+          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">4–12 weeks</span>
+        </div>
+      </div>
+
+      <!-- Row 04 — right -->
+      <div class="hww-row hww-right fade-up">
+        <div class="hww-card" data-step="4" data-side="right">
+          <div class="corner-bl"></div><div class="corner-br"></div>
+          <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">04</span>
+          <h4 class="text-[20px] font-bold text-white mb-3">Scale & Support</h4>
+          <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Post-launch optimization, monitoring, and growth engineering as your product scales.</p>
+          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">Ongoing</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom border -->
+  <div style="width:100%; height:0.556px; background:rgba(255,255,255,0.08);"></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECTION 10: PROCESS                                      -->
-<!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative py-24 lg:py-32">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
-    <div class="text-center mb-16 fade-up">
-      <div class="inline-flex items-center gap-2 p-2 mb-4">
-        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Our Process</span>
-      </div>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
-        The Metova <span class="text-brand-green">Way</span>
-      </h2>
-      <p class="mt-4 text-brand-muted leading-body max-w-2xl mx-auto">We use a systematic approach for optimal results, including research, design, and testing.</p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-5">
-      <!-- Week 01 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(139,173,65,0.12); border:1px solid rgba(139,173,65,0.25);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          </div>
-          <span class="text-xs font-semibold text-brand-muted tracking-wide">Week 01</span>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Discovery</h3>
-        <p class="text-sm text-brand-muted leading-body">We start with a deep dive to understand your goals, users, market, and technical requirements.</p>
-      </div>
-      <!-- Week 02 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(139,173,65,0.12); border:1px solid rgba(139,173,65,0.25);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <span class="text-xs font-semibold text-brand-muted tracking-wide">Week 02</span>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Proposal</h3>
-        <p class="text-sm text-brand-muted leading-body">Based on our discovery, we'll give you a detailed proposal outlining our approach, timeline, and pricing.</p>
-      </div>
-      <!-- Week 03 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(139,173,65,0.12); border:1px solid rgba(139,173,65,0.25);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <span class="text-xs font-semibold text-brand-muted tracking-wide">Week 03</span>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Execution</h3>
-        <p class="text-sm text-brand-muted leading-body">Once approved, we'll start the project and keep you updated throughout with bi-weekly demos.</p>
-      </div>
-      <!-- Week 04 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(139,173,65,0.12); border:1px solid rgba(139,173,65,0.25);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <span class="text-xs font-semibold text-brand-muted tracking-wide">Week 04</span>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Delivery</h3>
-        <p class="text-sm text-brand-muted leading-body">We'll deliver the final product, ensuring it meets your expectations, requirements, and quality standards.</p>
-      </div>
-      <!-- Week 05 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(139,173,65,0.12); border:1px solid rgba(139,173,65,0.25);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <span class="text-xs font-semibold text-brand-muted tracking-wide">Week 05</span>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Support</h3>
-        <p class="text-sm text-brand-muted leading-body">Our support doesn't end after delivery. We'll continue to support you and your project's growth.</p>
-      </div>
-      <!-- Week 06 -->
-      <div class="card-hover fade-up rounded-card p-7 border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;">
-        <div class="flex items-center justify-between mb-6">
-          <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(139,173,65,0.12); border:1px solid rgba(139,173,65,0.25);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BAEB42" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <span class="text-xs font-semibold text-brand-muted tracking-wide">Week 06</span>
-        </div>
-        <h3 class="text-lg font-bold mb-2">Feedback</h3>
-        <p class="text-sm text-brand-muted leading-body">Continuous improvement is key. We value your input and use feedback to refine our processes.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 11: TESTIMONIAL                                  -->
@@ -1099,7 +1378,7 @@ tailwind.config = {
 <!-- SECTION 12: FAQ                                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <section id="faq" class="relative py-24 lg:py-32">
-  <div class="max-w-[400px] mx-auto px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto px-6 lg:px-8">
     <div class="text-center mb-16 fade-up">
       <div class="inline-flex items-center gap-2 p-2 mb-4">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
@@ -1180,7 +1459,7 @@ tailwind.config = {
 <section id="contact" class="relative py-24 lg:py-32 overflow-hidden">
   <div class="absolute inset-0" style="background:linear-gradient(135deg, #8BAD41 0%, #BAEB42 100%);"></div>
   <div class="absolute inset-0 noise-bg"></div>
-  <div class="relative z-10 max-w-[400px] mx-auto px-6 lg:px-8 text-center">
+  <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6" style="color:#0F0F0F;">
       Let's Build Something Intelligent
     </h2>
@@ -1330,6 +1609,335 @@ function toggleFaq(item) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!wasOpen) item.classList.add('open');
 }
+
+// How We Work — SVG flow connectors
+(function() {
+  const container = document.getElementById('hww-zigzag');
+  const svg = document.getElementById('hww-connectors');
+  if (!container || !svg) return;
+
+  const NS = 'http://www.w3.org/2000/svg';
+  let paths = [];
+  let dots = [];
+
+  function rel(card) {
+    const cr = card.getBoundingClientRect();
+    const pr = container.getBoundingClientRect();
+    return {
+      left: cr.left - pr.left,
+      right: cr.right - pr.left,
+      top: cr.top - pr.top,
+      bottom: cr.bottom - pr.top,
+      cx: cr.left - pr.left + cr.width * 0.5,
+      cy: cr.top - pr.top + cr.height * 0.5,
+      w: cr.width,
+      h: cr.height
+    };
+  }
+
+  function buildPaths() {
+    // Clear old
+    svg.innerHTML = '';
+    paths = [];
+    dots = [];
+
+    const cards = container.querySelectorAll('.hww-card[data-step]');
+    if (cards.length < 2) return;
+
+    // Temporarily force all cards to final position for accurate measurement
+    const rows = container.querySelectorAll('.hww-row');
+    rows.forEach(r => {
+      r.style.opacity = '1';
+      r.style.transform = 'translateY(0)';
+      r.style.transition = 'none';
+    });
+
+    const isMobile = window.innerWidth < 1024;
+
+    // Defs for glow filter
+    const defs = document.createElementNS(NS, 'defs');
+    const filter = document.createElementNS(NS, 'filter');
+    filter.setAttribute('id', 'connector-glow');
+    filter.setAttribute('x', '-50%');
+    filter.setAttribute('y', '-50%');
+    filter.setAttribute('width', '200%');
+    filter.setAttribute('height', '200%');
+    const blur = document.createElementNS(NS, 'feGaussianBlur');
+    blur.setAttribute('stdDeviation', '3');
+    blur.setAttribute('result', 'glow');
+    filter.appendChild(blur);
+    const merge = document.createElementNS(NS, 'feMerge');
+    const mn1 = document.createElementNS(NS, 'feMergeNode');
+    mn1.setAttribute('in', 'glow');
+    const mn2 = document.createElementNS(NS, 'feMergeNode');
+    mn2.setAttribute('in', 'SourceGraphic');
+    merge.appendChild(mn1);
+    merge.appendChild(mn2);
+    filter.appendChild(merge);
+    defs.appendChild(filter);
+    svg.appendChild(defs);
+
+    for (let i = 0; i < cards.length - 1; i++) {
+      const cardA = cards[i];
+      const cardB = cards[i + 1];
+      const rA = rel(cardA);
+      const rB = rel(cardB);
+
+      let start, end, cp1, cp2;
+
+      if (isMobile) {
+        // Mobile: bottom-center of A → top-center of B
+        start = { x: rA.cx, y: rA.bottom };
+        end = { x: rB.cx, y: rB.top };
+        const midY = (start.y + end.y) / 2;
+        cp1 = { x: start.x, y: midY };
+        cp2 = { x: end.x, y: midY };
+      } else {
+        // Desktop: bottom-right/left edge of A → top-left/right edge of B
+        const aIsLeft = cardA.dataset.side === 'left';
+
+        // Start from bottom edge of card A, offset toward the connecting side
+        start = {
+          x: aIsLeft ? rA.right : rA.left,
+          y: rA.bottom
+        };
+        // End at top edge of card B, offset toward the connecting side
+        end = {
+          x: aIsLeft ? rB.left : rB.right,
+          y: rB.top
+        };
+
+        // S-curve: exit vertically, then sweep horizontally to the next card
+        const dropY = (end.y - start.y) * 0.4;
+        cp1 = { x: start.x, y: start.y + dropY };
+        cp2 = { x: end.x, y: end.y - dropY };
+      }
+
+      // Draw path
+      const d = `M ${start.x} ${start.y} C ${cp1.x} ${cp1.y}, ${cp2.x} ${cp2.y}, ${end.x} ${end.y}`;
+
+      // Glow path (wider, softer)
+      const glowPath = document.createElementNS(NS, 'path');
+      glowPath.setAttribute('d', d);
+      glowPath.setAttribute('fill', 'none');
+      glowPath.setAttribute('stroke', 'rgba(186,235,66,0.05)');
+      glowPath.setAttribute('stroke-width', '4');
+      glowPath.setAttribute('filter', 'url(#connector-glow)');
+      svg.appendChild(glowPath);
+
+      // Main dashed path
+      const path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', 'rgba(186,235,66,0.2)');
+      path.setAttribute('stroke-width', '1');
+      path.setAttribute('stroke-dasharray', '6 4');
+      path.setAttribute('stroke-linecap', 'round');
+
+      // Measure length for draw animation
+      svg.appendChild(path);
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.transition = 'none';
+      paths.push({ el: path, len, index: i });
+
+      // Start dot
+      const dotStart = document.createElementNS(NS, 'circle');
+      dotStart.setAttribute('cx', start.x);
+      dotStart.setAttribute('cy', start.y);
+      dotStart.setAttribute('r', '3');
+      dotStart.setAttribute('fill', '#BAEB42');
+      dotStart.setAttribute('opacity', '0');
+      dotStart.style.transition = 'opacity 0.4s ease';
+      svg.appendChild(dotStart);
+      dots.push(dotStart);
+
+      // End dot
+      const dotEnd = document.createElementNS(NS, 'circle');
+      dotEnd.setAttribute('cx', end.x);
+      dotEnd.setAttribute('cy', end.y);
+      dotEnd.setAttribute('r', '3');
+      dotEnd.setAttribute('fill', '#BAEB42');
+      dotEnd.setAttribute('opacity', '0');
+      dotEnd.style.transition = 'opacity 0.4s ease';
+      svg.appendChild(dotEnd);
+      dots.push(dotEnd);
+
+      // Glow path also needs dash animation
+      glowPath.style.strokeDasharray = len;
+      glowPath.style.strokeDashoffset = len;
+      glowPath.style.transition = 'none';
+      paths.push({ el: glowPath, len, index: i, isGlow: true });
+    }
+
+    // Restore rows to their pre-animation state (let fade-up handle reveal)
+    rows.forEach(r => {
+      r.style.opacity = '';
+      r.style.transform = '';
+      r.style.transition = '';
+    });
+
+    // Trigger draw animation on scroll
+    requestAnimationFrame(observePaths);
+  }
+
+  function observePaths() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          // Animate all paths with staggered delay
+          const uniqueIndices = [...new Set(paths.map(p => p.index))];
+          uniqueIndices.forEach((idx, order) => {
+            const group = paths.filter(p => p.index === idx);
+            const delay = order * 600;
+            group.forEach(p => {
+              setTimeout(() => {
+                p.el.style.transition = `stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1)`;
+                p.el.style.strokeDashoffset = '0';
+              }, delay);
+            });
+            // Animate dots for this connector
+            const dotPair = dots.slice(idx * 2, idx * 2 + 2);
+            setTimeout(() => {
+              dotPair.forEach(d => d.setAttribute('opacity', '0.6'));
+            }, delay);
+            setTimeout(() => {
+              dotPair.forEach(d => d.setAttribute('opacity', '0.4'));
+            }, delay + 1200);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(container);
+  }
+
+  // Build on load + resize
+  let resizeTimer;
+  function rebuild() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildPaths, 200);
+  }
+
+  // Wait for layout to settle
+  window.addEventListener('load', () => setTimeout(buildPaths, 500));
+  window.addEventListener('resize', rebuild);
+
+  // Also rebuild after fade-up animations complete (cards may shift)
+  setTimeout(buildPaths, 2000);
+})();
+
+// How We Work — particle nebula background
+(function() {
+  const canvas = document.getElementById('hww-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = { x: -9999, y: -9999 };
+  const PARTICLE_COUNT = 180;
+  const CONNECTION_DIST = 120;
+
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width;
+    h = canvas.height = rect.height;
+  }
+
+  function createParticles() {
+    particles = [];
+    // Concentrate particles in center column
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const centerBias = (Math.random() * 0.6 + 0.2); // 20%-80% of width
+      particles.push({
+        x: centerBias * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.8 + 0.5,
+        // Green/lime tint with some blue variation
+        color: Math.random() > 0.3
+          ? `rgba(186,235,66,${Math.random() * 0.25 + 0.05})`
+          : `rgba(139,173,65,${Math.random() * 0.2 + 0.05})`
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Central nebula glow
+    const grd = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, w * 0.4);
+    grd.addColorStop(0, 'rgba(186,235,66,0.04)');
+    grd.addColorStop(0.5, 'rgba(139,173,65,0.02)');
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, w, h);
+
+    // Update + draw particles
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+
+      // Draw particle
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+
+      // Draw connections to nearby particles
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dx = p.x - p2.x;
+        const dy = p.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(186,235,66,${0.06 * (1 - dist / CONNECTION_DIST)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  // Add grain overlay via offscreen canvas
+  function addGrain() {
+    const grainCanvas = document.createElement('canvas');
+    grainCanvas.width = 256;
+    grainCanvas.height = 256;
+    const gctx = grainCanvas.getContext('2d');
+    const imageData = gctx.createImageData(256, 256);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+      const v = Math.random() * 255;
+      imageData.data[i] = v;
+      imageData.data[i + 1] = v;
+      imageData.data[i + 2] = v;
+      imageData.data[i + 3] = 8; // Very subtle
+    }
+    gctx.putImageData(imageData, 0, 0);
+    // Apply as repeating pattern to the parent
+    canvas.parentElement.style.backgroundImage = `url(${grainCanvas.toDataURL()})`;
+    canvas.parentElement.style.backgroundRepeat = 'repeat';
+  }
+
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+  resize();
+  createParticles();
+  addGrain();
+  draw();
+})();
 
 // Services section — Three.js dotted wave background
 (function() {
@@ -2058,6 +2666,260 @@ import * as CANNON from 'cannon-es';
     }
   }, { threshold: 0.1 });
   observer.observe(container);
+})();
+</script>
+
+<!-- Service rows floating image interaction -->
+<script>
+(function() {
+  const wrapper = document.getElementById('service-rows-wrapper');
+  const floatEl = document.getElementById('svc-float-img');
+  const floatImg = floatEl.querySelector('img');
+  const rows = wrapper.querySelectorAll('.service-row');
+
+  // Lerp state
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+  let isActive = false;
+  let currentSrc = '';
+  let rafId = null;
+
+  // Preload all images
+  rows.forEach(row => {
+    const src = row.dataset.svcImg;
+    if (src) { const i = new Image(); i.src = src; }
+  });
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function animate() {
+    if (!isActive) { rafId = null; return; }
+    currentX = lerp(currentX, targetX, 0.08);
+    currentY = lerp(currentY, targetY, 0.08);
+    floatEl.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+    rafId = requestAnimationFrame(animate);
+  }
+
+  function startLoop() {
+    if (!rafId) { rafId = requestAnimationFrame(animate); }
+  }
+
+  // Mouse move on wrapper — update target position (fixed positioning = use clientX/Y directly)
+  wrapper.addEventListener('mousemove', (e) => {
+    targetX = e.clientX + 24;
+    targetY = e.clientY - 110;
+  });
+
+  rows.forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      const src = row.dataset.svcImg;
+      if (!src) return;
+
+      isActive = true;
+
+      // If image source changed, swap it
+      if (src !== currentSrc) {
+        // Hide first, swap, then reveal
+        floatEl.classList.remove('is-visible');
+        setTimeout(() => {
+          floatImg.src = src;
+          currentSrc = src;
+          // Small delay for the image to load then reveal
+          floatImg.onload = () => {
+            floatEl.classList.add('is-visible');
+            floatImg.onload = null;
+          };
+          // If already cached, onload fires synchronously or not at all
+          if (floatImg.complete) {
+            floatEl.classList.add('is-visible');
+            floatImg.onload = null;
+          }
+        }, currentSrc ? 200 : 0); // If switching between rows, brief hide first
+      } else {
+        floatEl.classList.add('is-visible');
+      }
+
+      // Init position near cursor to avoid jump
+      if (!currentSrc) {
+        currentX = targetX;
+        currentY = targetY;
+      }
+
+      startLoop();
+    });
+
+    row.addEventListener('mouseleave', (e) => {
+      // Only hide if leaving to outside wrapper or to a non-service-row
+      const related = e.relatedTarget;
+      if (related && related.closest && related.closest('.service-row')) return;
+      isActive = false;
+      floatEl.classList.remove('is-visible');
+      currentSrc = '';
+    });
+  });
+
+  // Also handle leaving the wrapper entirely
+  wrapper.addEventListener('mouseleave', () => {
+    isActive = false;
+    floatEl.classList.remove('is-visible');
+    currentSrc = '';
+  });
+})();
+</script>
+
+<!-- Case studies sticky scroll controller -->
+<script>
+(function() {
+  const wrapper = document.getElementById('cs-scroll-wrapper');
+  if (!wrapper) return;
+
+  const track = wrapper.querySelector('.cs-images-track');
+  const clientNum = wrapper.querySelector('.cs-client-num');
+  const clientName = wrapper.querySelector('.cs-client-name');
+  const description = wrapper.querySelector('.cs-description');
+  const tagsEl = wrapper.querySelector('.cs-tags');
+  const ctaBtn = wrapper.querySelector('.cs-cta');
+
+  const studies = [
+    {
+      name: 'FitOn',
+      desc: 'Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.',
+      tags: ['Cloud Infrastructure', 'Mobile Dev', 'DevOps']
+    },
+    {
+      name: 'MyBambu',
+      desc: 'Built a neobanking platform for underserved communities with real-time payments, virtual cards, and bilingual support.',
+      tags: ['FinTech', 'Full-Stack Dev', 'UX Design']
+    },
+    {
+      name: 'Barwis Methods',
+      desc: 'Designed and developed a performance training platform connecting elite athletes with data-driven workout programs.',
+      tags: ['Health & Fitness', 'Mobile Dev', 'UX Design']
+    },
+    {
+      name: 'FleetPulse',
+      desc: 'Real-time fleet tracking and predictive maintenance platform managing 12,000+ vehicles across North America with 99.9% uptime.',
+      tags: ['IoT', 'Fleet Management', 'Data Analytics']
+    },
+    {
+      name: 'MediSync',
+      desc: 'AI-powered patient scheduling and triage system that reduced wait times by 40% across a 200-clinic hospital network.',
+      tags: ['Healthcare', 'AI Integration', 'HIPAA Compliance']
+    },
+    {
+      name: 'Verdant',
+      desc: 'Sustainable marketplace platform connecting eco-conscious consumers with verified green brands. 3x revenue growth in first year post-launch.',
+      tags: ['E-Commerce', 'UX Design', 'Full-Stack Dev']
+    }
+  ];
+
+  const totalStudies = studies.length;
+  const csImages = track.querySelectorAll('.cs-img');
+  let currentIndex = -1;
+
+  function makeTagHTML(tags) {
+    return tags.map(t =>
+      `<span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">${t}</span>`
+    ).join('');
+  }
+
+  function updateText(index) {
+    if (index === currentIndex) return;
+    currentIndex = index;
+    const study = studies[index];
+
+    // Update image focus
+    csImages.forEach((img, i) => {
+      if (i === index) img.classList.add('is-active');
+      else img.classList.remove('is-active');
+    });
+
+    // Fade out
+    clientNum.style.opacity = '0';
+    clientName.style.opacity = '0';
+    clientName.style.transform = 'translateY(8px)';
+    description.style.opacity = '0';
+    tagsEl.style.opacity = '0';
+    ctaBtn.style.opacity = '0';
+
+    setTimeout(() => {
+      clientNum.textContent = `(${String(index + 1).padStart(2, '0')})`;
+      clientName.textContent = study.name;
+      description.textContent = study.desc;
+      tagsEl.innerHTML = makeTagHTML(study.tags);
+
+      // Fade in
+      requestAnimationFrame(() => {
+        clientNum.style.opacity = '1';
+        clientName.style.opacity = '1';
+        clientName.style.transform = 'translateY(0)';
+        description.style.opacity = '1';
+        tagsEl.style.opacity = '1';
+        ctaBtn.style.opacity = '1';
+      });
+    }, 250);
+  }
+
+  // Add transition for the transform on client name
+  clientName.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+  function onScroll() {
+    const rect = wrapper.getBoundingClientRect();
+    const wrapperTop = -rect.top; // how far we've scrolled into the wrapper
+    const scrollRange = wrapper.offsetHeight - window.innerHeight;
+
+    if (wrapperTop < 0 || scrollRange <= 0) {
+      track.style.transform = 'translateY(0)';
+      updateText(0);
+      return;
+    }
+
+    const progress = Math.min(Math.max(wrapperTop / scrollRange, 0), 1);
+
+    // Calculate how far the image track needs to move
+    // Total track height minus one viewport height
+    const trackHeight = track.scrollHeight;
+    const viewH = window.innerHeight;
+    const maxTranslate = trackHeight - viewH + 48; // 48 = top+bottom padding
+    const translateY = -progress * maxTranslate;
+    track.style.transform = `translateY(${translateY}px)`;
+
+    // Determine which image is closest to the vertical center of the viewport
+    const viewCenter = viewH / 2;
+    let closestIndex = 0;
+    let closestDist = Infinity;
+    csImages.forEach((img, i) => {
+      if (i >= totalStudies) return; // skip "view all projects" card
+      const r = img.getBoundingClientRect();
+      const imgCenter = r.top + r.height / 2;
+      const dist = Math.abs(imgCenter - viewCenter);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIndex = i;
+      }
+    });
+    updateText(closestIndex);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+<!-- Navbar hide on scroll down, show on scroll up -->
+<script>
+(function() {
+  const nav = document.getElementById('navbar');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > lastY && y > 80) {
+      nav.style.transform = 'translateY(-100%)';
+    } else {
+      nav.style.transform = 'translateY(0)';
+    }
+    lastY = y;
+  }, { passive: true });
 })();
 </script>
 
