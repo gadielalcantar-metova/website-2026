@@ -119,6 +119,11 @@ tailwind.config = {
   .faq-item.open .faq-answer { max-height: 300px; opacity: 1; }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
   .faq-icon { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+  .faq-item { background: transparent; transition: background 0.25s ease, border-left 0.25s ease; border-left: 1px solid rgba(255,255,255,0.1); }
+  .faq-item:hover { background: rgba(255,255,255,0.03); }
+  .faq-item.open { background: rgba(255,255,255,0.05); border-left: 3px solid #BAEB42; }
+  .faq-item.open h3 { color: #BAEB42; }
+  .faq-item h3 { transition: color 0.25s ease; }
 
   /* Button hover glow */
   .btn-glow { transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s, opacity 0.2s; }
@@ -1377,80 +1382,84 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 12: FAQ                                          -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="faq" class="relative py-24 lg:py-32">
-  <div class="max-w-3xl mx-auto px-6 lg:px-8">
-    <div class="text-center mb-16 fade-up">
-      <div class="inline-flex items-center gap-2 p-2 mb-4">
-        <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">FAQ</span>
-      </div>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
-        AI Development: Your <span class="text-brand-green">Questions</span> Answered
-      </h2>
-    </div>
-    <div class="flex flex-col gap-3">
-      <!-- FAQ 1 -->
-      <div class="faq-item fade-up rounded-card border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between p-6">
-          <h3 class="text-base font-semibold pr-4">How much does custom AI development cost?</h3>
-          <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+<section id="faq" class="relative">
+  <div class="lg:grid lg:grid-cols-2">
+    <!-- Left column: heading -->
+    <div class="px-6 lg:px-0 mb-12 lg:mb-0 lg:flex lg:items-start lg:pt-16">
+      <div class="lg:max-w-xl lg:pl-8 fade-up pt-16 lg:pt-0">
+        <div class="inline-flex items-center gap-2 p-2 mb-4">
+          <span class="w-2 h-2 shrink-0" style="background:#BAEB42;"></span>
+          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">FAQ</span>
         </div>
-        <div class="faq-answer px-6 pb-6">
-          <p class="text-sm text-brand-muted leading-body">Custom AI development typically ranges from $50,000 to $500,000+, depending on complexity, data requirements, model training needs, and integration scope. Metova provides detailed estimates after a free discovery session where we assess your specific needs, existing infrastructure, and desired outcomes. Simple LLM integrations start around $25,000, while complex ML platforms with custom model training typically fall in the $150,000-$400,000 range.</p>
-        </div>
-      </div>
-      <!-- FAQ 2 -->
-      <div class="faq-item fade-up rounded-card border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between p-6">
-          <h3 class="text-base font-semibold pr-4">What industries does Metova serve?</h3>
-          <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
-        </div>
-        <div class="faq-answer px-6 pb-6">
-          <p class="text-sm text-brand-muted leading-body">Metova serves 10+ industries including healthcare, fintech, fitness, entertainment, logistics, energy, retail, and enterprise SaaS. Our clients range from Fortune 500 companies like SiriusXM and TruGreen to high-growth startups like FitOn and MyBambu. We bring deep domain expertise to each vertical, understanding the unique regulatory, technical, and user experience challenges that each industry presents.</p>
-        </div>
-      </div>
-      <!-- FAQ 3 -->
-      <div class="faq-item fade-up rounded-card border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between p-6">
-          <h3 class="text-base font-semibold pr-4">How long does it take to build an AI product?</h3>
-          <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
-        </div>
-        <div class="faq-answer px-6 pb-6">
-          <p class="text-sm text-brand-muted leading-body">A typical AI product takes 3 to 9 months from discovery to launch, depending on scope. Simple LLM integrations can ship in 4-6 weeks. Complex ML pipelines with custom model training may take 6-12 months. Metova's agile process delivers working prototypes within the first 2-4 weeks, so you see tangible progress from day one rather than waiting months for a big-bang reveal.</p>
-        </div>
-      </div>
-      <!-- FAQ 4 -->
-      <div class="faq-item fade-up rounded-card border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between p-6">
-          <h3 class="text-base font-semibold pr-4">What's the difference between AI consulting and AI development?</h3>
-          <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
-        </div>
-        <div class="faq-answer px-6 pb-6">
-          <p class="text-sm text-brand-muted leading-body">AI consulting focuses on strategy, feasibility studies, and roadmapping — helping you decide what to build and how. AI development is the actual engineering: building, training, deploying, and maintaining AI systems. Metova offers both, providing end-to-end service from strategy through production deployment. Many clients start with a consulting engagement to validate feasibility before committing to full development.</p>
-        </div>
-      </div>
-      <!-- FAQ 5 -->
-      <div class="faq-item fade-up rounded-card border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between p-6">
-          <h3 class="text-base font-semibold pr-4">Does Metova offer nearshore development teams?</h3>
-          <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
-        </div>
-        <div class="faq-answer px-6 pb-6">
-          <p class="text-sm text-brand-muted leading-body">Yes. Metova operates a nearshore development center in Guadalajara, Mexico, providing dedicated engineering teams in US time zones at competitive rates. Our Talent Solutions program offers Employer of Record services, making it easy to scale your team with vetted Latin American engineers who work as embedded members of your organization — same standup, same Slack, same sprint.</p>
-        </div>
-      </div>
-      <!-- FAQ 6 -->
-      <div class="faq-item fade-up rounded-card border border-white/[0.1] cursor-pointer" style="background:#1A1A1A;" onclick="toggleFaq(this)">
-        <div class="flex items-center justify-between p-6">
-          <h3 class="text-base font-semibold pr-4">What AI technologies does Metova work with?</h3>
-          <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
-        </div>
-        <div class="faq-answer px-6 pb-6">
-          <p class="text-sm text-brand-muted leading-body">Metova works with leading AI technologies including OpenAI GPT, Claude (Anthropic), LangChain, TensorFlow, PyTorch, Hugging Face, computer vision frameworks like OpenCV, and vector databases like Pinecone and Weaviate. We specialize in LLM integration, natural language processing, predictive analytics, recommendation engines, and AI-powered SaaS platforms. We're technology-agnostic — we choose the best tool for each project.</p>
-        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading leading-tight">
+          Answers to<br><span class="text-brand-green">Your Queries</span>
+        </h2>
       </div>
     </div>
-  </div>
+    <!-- Right column: accordion — full width to right edge -->
+    <div class="flex flex-col px-6 lg:px-0">
+        <!-- FAQ 1 -->
+        <div class="faq-item open fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-base font-semibold pr-4">How much does custom AI development cost?</h3>
+            <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-sm text-brand-muted leading-body">Custom AI development typically ranges from $50,000 to $500,000+, depending on complexity, data requirements, model training needs, and integration scope. Metova provides detailed estimates after a free discovery session where we assess your specific needs, existing infrastructure, and desired outcomes. Simple LLM integrations start around $25,000, while complex ML platforms with custom model training typically fall in the $150,000-$400,000 range.</p>
+          </div>
+        </div>
+        <!-- FAQ 2 -->
+        <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-base font-semibold pr-4">What industries does Metova serve?</h3>
+            <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-sm text-brand-muted leading-body">Metova serves 10+ industries including healthcare, fintech, fitness, entertainment, logistics, energy, retail, and enterprise SaaS. Our clients range from Fortune 500 companies like SiriusXM and TruGreen to high-growth startups like FitOn and MyBambu. We bring deep domain expertise to each vertical, understanding the unique regulatory, technical, and user experience challenges that each industry presents.</p>
+          </div>
+        </div>
+        <!-- FAQ 3 -->
+        <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-base font-semibold pr-4">How long does it take to build an AI product?</h3>
+            <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-sm text-brand-muted leading-body">A typical AI product takes 3 to 9 months from discovery to launch, depending on scope. Simple LLM integrations can ship in 4-6 weeks. Complex ML pipelines with custom model training may take 6-12 months. Metova's agile process delivers working prototypes within the first 2-4 weeks, so you see tangible progress from day one rather than waiting months for a big-bang reveal.</p>
+          </div>
+        </div>
+        <!-- FAQ 4 -->
+        <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-base font-semibold pr-4">What's the difference between AI consulting and AI development?</h3>
+            <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-sm text-brand-muted leading-body">AI consulting focuses on strategy, feasibility studies, and roadmapping — helping you decide what to build and how. AI development is the actual engineering: building, training, deploying, and maintaining AI systems. Metova offers both, providing end-to-end service from strategy through production deployment. Many clients start with a consulting engagement to validate feasibility before committing to full development.</p>
+          </div>
+        </div>
+        <!-- FAQ 5 -->
+        <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-base font-semibold pr-4">Does Metova offer nearshore development teams?</h3>
+            <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-sm text-brand-muted leading-body">Yes. Metova operates a nearshore development center in Guadalajara, Mexico, providing dedicated engineering teams in US time zones at competitive rates. Our Talent Solutions program offers Employer of Record services, making it easy to scale your team with vetted Latin American engineers who work as embedded members of your organization — same standup, same Slack, same sprint.</p>
+          </div>
+        </div>
+        <!-- FAQ 6 -->
+        <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+          <div class="flex items-center justify-between p-6">
+            <h3 class="text-base font-semibold pr-4">What AI technologies does Metova work with?</h3>
+            <span class="faq-icon flex-shrink-0 text-brand-green text-2xl font-light leading-none">+</span>
+          </div>
+          <div class="faq-answer px-6 pb-6">
+            <p class="text-sm text-brand-muted leading-body">Metova works with leading AI technologies including OpenAI GPT, Claude (Anthropic), LangChain, TensorFlow, PyTorch, Hugging Face, computer vision frameworks like OpenCV, and vector databases like Pinecone and Weaviate. We specialize in LLM integration, natural language processing, predictive analytics, recommendation engines, and AI-powered SaaS platforms. We're technology-agnostic — we choose the best tool for each project.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════ -->

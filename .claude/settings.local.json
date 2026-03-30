@@ -8,7 +8,8 @@
       "Bash(node screenshot.mjs http://localhost:3000 hero-v1)",
       "Bash(ls \"/Users/gadielalcantar/Documents/Metova Website 2026/\"*.png)",
       "Bash(node /Users/gadielalcantar/Documents/Metova_Website_2026/screenshot.mjs http://localhost:3000 faq-cta-fix)",
-      "Bash(node /Users/gadielalcantar/Documents/Metova_Website_2026/screenshot.mjs http://localhost:3000 full-page)"
+      "Bash(node /Users/gadielalcantar/Documents/Metova_Website_2026/screenshot.mjs http://localhost:3000 full-page)",
+      "Bash(git:*)"
     ]
   }
 }
