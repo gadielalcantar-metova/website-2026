@@ -463,6 +463,13 @@ a.ai-card { cursor: pointer; }
   transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity;
 }
+.sh-bg-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
 .sh-bg-img.sh-bg-active {
   opacity: 1;
 }
