@@ -156,7 +156,7 @@ tailwind.config = {
   <!-- Background layers — one per service, crossfade on hover -->
   <div id="sh-bg-wrap" class="absolute inset-0" style="z-index:0;">
     <!-- AI Product Development -->
-    <div class="sh-bg-img sh-bg-active" style="background: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&q=80&fit=crop') center/cover no-repeat;"></div>
+    <div class="sh-bg-img" style="background: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&q=80&fit=crop') center/cover no-repeat;"></div>
     <!-- Custom Software Development -->
     <div class="sh-bg-img" style="background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1920&q=80&fit=crop') center/cover no-repeat;"></div>
     <!-- Digital Consulting & Strategy -->
@@ -186,7 +186,7 @@ tailwind.config = {
 
         <!-- Service nav -->
         <nav id="sh-service-nav" class="sh-anim-2" style="display:flex; flex-direction:column; align-items:flex-start; gap:clamp(6px,0.8vw,12px);">
-          <a href="#services" class="sh-svc-link sh-svc-active" data-index="0" data-title="AI Product Development"
+          <a href="#services" class="sh-svc-link" data-index="0" data-title="AI Product Development"
              style="font-size:clamp(16px,1.5vw,24px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
             AI Product Development
           </a>
@@ -324,9 +324,12 @@ tailwind.config = {
     }, 3500);
   }
 
-  // Initialize
-  activate(0);
-  startAuto();
+  // Initialize — short delay so browser paints the hidden state first,
+  // then the zoom-out + fade-in transition plays on the first image
+  setTimeout(() => {
+    activate(0);
+    startAuto();
+  }, 100);
 
   // Headline service text transition
   headlineService.style.transition = 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1)';

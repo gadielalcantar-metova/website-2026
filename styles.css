@@ -460,8 +460,9 @@ a.ai-card { cursor: pointer; }
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity;
+  transform: scale(1.08);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 .sh-bg-img::after {
   content: '';
@@ -472,6 +473,7 @@ a.ai-card { cursor: pointer; }
 }
 .sh-bg-img.sh-bg-active {
   opacity: 1;
+  transform: scale(1);
 }
 
 /* ─── Second Hero: service nav links ─────────────────── */
