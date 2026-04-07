@@ -244,6 +244,13 @@ a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
   display: block;
 }
 
+/* ─── AI card explore tertiary button ────────────────────── */
+.ai-card-explore svg { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+a.ai-card:hover .ai-card-explore { color: #c9b4f0; gap: 10px; }
+a.ai-card:hover .ai-card-explore svg { transform: translateX(4px); }
+a.ai-card:focus-visible { outline: 2px solid #B398EC; outline-offset: -2px; }
+a.ai-card { cursor: pointer; }
+
 /* ─── Case study image overlay ─────────────────────────── */
 .cs-img {
   position: relative;
