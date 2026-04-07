@@ -446,11 +446,63 @@ a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
 .btn-lime:active { transform: scale(0.98); }
 .btn-lime:focus-visible { outline: 2px solid #BAEB42; outline-offset: 2px; }
 
+/* ─── Second Hero: background crossfade ──────────────── */
+.sh-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+.sh-bg-img.sh-bg-active {
+  opacity: 1;
+}
+
+/* ─── Second Hero: service nav links ─────────────────── */
+.sh-svc-link {
+  opacity: 0.35;
+  position: relative;
+  padding: 2px 0;
+}
+.sh-svc-link.sh-svc-active {
+  opacity: 1 !important;
+  color: #BAEB42 !important;
+}
+.sh-svc-link:hover {
+  opacity: 0.85 !important;
+}
+
+/* Play showreel button hover */
+#hero button:hover {
+  border-color: rgba(186,235,66,0.5) !important;
+}
+
+/* ─── Second Hero: CTA link hover ────────────────────── */
+.sh-cta-link:hover { opacity: 0.75; }
+
+/* ─── Second Hero: mobile overrides ──────────────────── */
+@media (max-width: 768px) {
+  .sh-headline-wrap { text-align: left !important; }
+  .sh-bottom-zone { flex-direction: column; align-items: flex-start; gap: 24px !important; }
+}
+
+/* ─── Second Hero: entrance stagger ──────────────────── */
+.sh-anim-1 { opacity:0; animation: hero-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
+.sh-anim-2 { opacity:0; animation: hero-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
+.sh-anim-3 { opacity:0; animation: hero-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s forwards; }
+.sh-anim-4 { opacity:0; animation: hero-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.7s forwards; }
+.sh-anim-5 { opacity:0; animation: hero-in 0.9s cubic-bezier(0.22,1,0.36,1) 0.9s forwards; }
+
 @media (prefers-reduced-motion: reduce) {
   .fade-up { opacity: 1; transform: none; transition: none; }
   .hero-anim-1,.hero-anim-2,.hero-anim-3,.hero-anim-4,
   .hero-anim-5,.hero-anim-7,.hero-anim-8 { opacity:1; animation:none; }
   .hero-levitate { animation: none; }
+  .sh-anim-1,.sh-anim-2,.sh-anim-3,.sh-anim-4,.sh-anim-5 { opacity:1; animation:none; }
+  .sh-bg-img { transition:none; }
+  .sh-svc-link, .sh-svc-link::after { transition:none; }
   .scales-inner { clip-path: none !important; animation: none !important; }
   .scales-border,.scales-handle,.scales-cursor { display:none; }
   .ticker-track { animation: none; }

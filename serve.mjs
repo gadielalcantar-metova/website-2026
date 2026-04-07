@@ -6,7 +6,10 @@ const MIME = { '.html':'text/html','.css':'text/css','.js':'application/javascri
 const ROOT = decodeURIComponent(new URL('.', import.meta.url).pathname);
 
 createServer(async (req, res) => {
-  let path = join(ROOT, decodeURIComponent(req.url === '/' ? '/index.html' : req.url));
+  let url = decodeURIComponent(req.url);
+  if (url === '/') url = '/index.html';
+  else if (url === '/second-hero') url = '/second-hero.html';
+  let path = join(ROOT, url);
   try {
     const data = await readFile(path);
     res.writeHead(200, { 'Content-Type': MIME[extname(path)] || 'application/octet-stream' });

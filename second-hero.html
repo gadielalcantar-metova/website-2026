@@ -149,89 +149,195 @@ tailwind.config = {
 </nav>
 
 <!-- ═══════════════════════════════════════════════════════ -->
-<!-- SECTION 2: HERO                                          -->
+<!-- SECTION 2: HERO (mcshannock-style interactive)           -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section id="hero" style="position:relative; min-height:120vh; overflow:hidden; background:#0F0F0F; display:flex; flex-direction:column;">
+<section id="hero" style="position:relative; height:100vh; min-height:700px; overflow:hidden; background:#0A0A0A; display:flex; flex-direction:column;">
 
-  <!-- Background grid -->
-  <div class="hero-grid absolute inset-0 pointer-events-none" style="z-index:0;"></div>
+  <!-- Background layers — one per service, crossfade on hover -->
+  <div id="sh-bg-wrap" class="absolute inset-0" style="z-index:0;">
+    <!-- AI Product Development — warm lime radial -->
+    <div class="sh-bg-img sh-bg-active" style="background: radial-gradient(ellipse at 60% 40%, rgba(139,173,65,0.15) 0%, rgba(186,235,66,0.05) 35%, #0A0A0A 70%);"></div>
+    <!-- Custom Software — cool blue-green -->
+    <div class="sh-bg-img" style="background: radial-gradient(ellipse at 55% 50%, rgba(66,180,235,0.12) 0%, rgba(56,130,190,0.04) 35%, #0A0A0A 70%);"></div>
+    <!-- Mobile Development — purple tint -->
+    <div class="sh-bg-img" style="background: radial-gradient(ellipse at 50% 45%, rgba(167,139,250,0.12) 0%, rgba(139,92,246,0.04) 35%, #0A0A0A 70%);"></div>
+    <!-- UX/UI Design — warm amber -->
+    <div class="sh-bg-img" style="background: radial-gradient(ellipse at 65% 35%, rgba(251,191,36,0.1) 0%, rgba(245,158,11,0.03) 35%, #0A0A0A 70%);"></div>
+    <!-- Cloud & DevOps — teal -->
+    <div class="sh-bg-img" style="background: radial-gradient(ellipse at 45% 55%, rgba(52,211,153,0.1) 0%, rgba(16,185,129,0.03) 35%, #0A0A0A 70%);"></div>
+    <!-- AI Consulting — lime accent stronger -->
+    <div class="sh-bg-img" style="background: radial-gradient(ellipse at 50% 50%, rgba(186,235,66,0.12) 0%, rgba(139,173,65,0.06) 30%, #0A0A0A 65%);"></div>
+  </div>
 
+  <!-- Dark overlay gradient -->
+  <div class="absolute inset-0 pointer-events-none" style="z-index:1; background: linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.15) 40%, rgba(10,10,10,0.65) 100%);"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:2;"></div>
+
+  <!-- Hero content layer -->
+  <div style="position:relative; z-index:10; flex:1; display:flex; flex-direction:column; padding:0 clamp(24px,5.5vw,80px);">
+
+    <!-- Bottom zone: left column (nav + description) + right headline -->
+    <div class="sh-bottom-zone" style="flex:1; display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:clamp(24px,3vw,48px); padding-bottom:clamp(32px,5vh,64px); padding-top:clamp(90px,10vh,120px);">
+
+      <!-- Left column: service nav on top, description below -->
+      <div style="max-width:420px; flex-shrink:0; display:flex; flex-direction:column; justify-content:flex-end; gap:clamp(28px,3vw,48px);">
+
+        <!-- Service nav -->
+        <nav id="sh-service-nav" class="sh-anim-2" style="display:flex; flex-direction:column; align-items:flex-start; gap:clamp(6px,0.8vw,12px);">
+          <a href="#services" class="sh-svc-link sh-svc-active" data-index="0" data-title="AI Product Development"
+             style="font-size:clamp(18px,1.8vw,28px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
+            AI Product Development
+          </a>
+          <a href="#services" class="sh-svc-link" data-index="1" data-title="Custom Software Development"
+             style="font-size:clamp(18px,1.8vw,28px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
+            Custom Software Development
+          </a>
+          <a href="#services" class="sh-svc-link" data-index="2" data-title="Digital Consulting &amp; Strategy"
+             style="font-size:clamp(18px,1.8vw,28px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
+            Digital Consulting &amp; Strategy
+          </a>
+          <a href="#services" class="sh-svc-link" data-index="3" data-title="UX/UI Design"
+             style="font-size:clamp(18px,1.8vw,28px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
+            UX/UI Design
+          </a>
+          <a href="#services" class="sh-svc-link" data-index="4" data-title="Nearshore Talent Solutions"
+             style="font-size:clamp(18px,1.8vw,28px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
+            Nearshore Talent Solutions
+          </a>
+          <a href="#services" class="sh-svc-link" data-index="5" data-title="IoT &amp; Emerging Tech"
+             style="font-size:clamp(18px,1.8vw,28px); font-weight:500; color:#fff; text-decoration:none; letter-spacing:-0.01em; line-height:1.4; cursor:pointer; transition: opacity 0.4s ease, color 0.4s ease;">
+            IoT &amp; Emerging Tech
+          </a>
+        </nav>
+
+        <!-- Description + CTA -->
+        <div class="sh-anim-3">
+          <p style="color:rgba(255,255,255,0.6); font-size:clamp(13px,0.95vw,15px); line-height:1.75; margin:0 0 16px 0;">
+            We work with ambitious companies to turn complex ideas into shipped software; without agency theatrics they just don't need.
+          </p>
+          <p style="color:rgba(255,255,255,0.85); font-size:clamp(13px,0.95vw,15px); font-weight:500; line-height:1.4; margin:0 0 20px 0;">
+            Less process, more progress.
+          </p>
+          <a href="#case-studies" class="sh-cta-link" style="display:inline-flex; align-items:center; gap:8px; color:#BAEB42; font-size:13px; font-weight:500; text-decoration:none; letter-spacing:0.02em; transition: opacity 0.3s ease;">
+            See what we've been up to
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: large dynamic headline -->
+      <div class="sh-anim-4 sh-headline-wrap" style="flex:1; min-width:280px; text-align:right;">
+        <h1 id="sh-headline" style="font-size:clamp(32px,5.2vw,82px); font-weight:600; line-height:0.95; letter-spacing:-0.03em; color:#fff; margin:0;">
+          AI-Powered <span id="sh-headline-service" style="color:#BAEB42;">AI Product Development</span> for Ambitious Businesses
+        </h1>
+      </div>
+    </div>
+
+    <!-- Play showreel (absolute right, vertically centered) -->
+    <div class="sh-anim-5 hidden lg:flex" style="position:absolute; right:clamp(24px,5.5vw,80px); top:50%; transform:translateY(-50%); flex-direction:row-reverse; align-items:center; gap:14px; z-index:20;">
+      <button onclick="document.getElementById('sh-showreel-modal').style.display='flex'" style="width:56px; height:56px; border-radius:50%; border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:center; cursor:pointer; transition: border-color 0.3s ease;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><polygon points="5,3 19,12 5,21"/></svg>
+      </button>
+      <span style="font-size:11px; font-weight:500; color:rgba(255,255,255,0.6); letter-spacing:0.1em; text-transform:uppercase;">Play Showreel</span>
+    </div>
+  </div>
+
+  <!-- Showreel modal (hidden by default) -->
+  <div id="sh-showreel-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; cursor:pointer;" onclick="this.style.display='none'">
+    <div style="width:min(90vw,1100px); aspect-ratio:16/9; background:#000; border-radius:12px; overflow:hidden; position:relative;">
+      <div style="display:flex; align-items:center; justify-content:center; height:100%; color:rgba(255,255,255,0.3); font-size:18px;">Showreel placeholder</div>
+    </div>
+  </div>
+</section>
+
+<!-- Hero interaction script -->
+<script>
+(function() {
+  const links = document.querySelectorAll('.sh-svc-link');
+  const bgs = document.querySelectorAll('.sh-bg-img');
+  const headlineService = document.getElementById('sh-headline-service');
+  let activeIndex = 0;
+  let autoTimer = null;
+
+  function activate(index) {
+    if (index === activeIndex && links[index].classList.contains('sh-svc-active')) return;
+    activeIndex = index;
+
+    // Update service links
+    links.forEach((l, i) => {
+      if (i === index) {
+        l.classList.add('sh-svc-active');
+        l.style.opacity = '1';
+        l.style.transform = 'translateX(0)';
+      } else {
+        l.classList.remove('sh-svc-active');
+        l.style.opacity = '0.35';
+        l.style.transform = 'translateX(0)';
+      }
+    });
+
+    // Crossfade background
+    bgs.forEach((bg, i) => {
+      if (i === index) {
+        bg.classList.add('sh-bg-active');
+      } else {
+        bg.classList.remove('sh-bg-active');
+      }
+    });
+
+    // Update headline text
+    const title = links[index].getAttribute('data-title');
+    headlineService.style.opacity = '0';
+    headlineService.style.transform = 'translateY(8px)';
+    setTimeout(() => {
+      headlineService.textContent = title;
+      headlineService.style.opacity = '1';
+      headlineService.style.transform = 'translateY(0)';
+    }, 250);
+  }
+
+  // Hover interaction
+  links.forEach((link, i) => {
+    link.addEventListener('mouseenter', () => {
+      clearInterval(autoTimer);
+      activate(i);
+    });
+  });
+
+  // Resume auto-cycle on mouse leave from nav
+  const nav = document.getElementById('sh-service-nav');
+  nav.addEventListener('mouseleave', () => {
+    startAuto();
+  });
+
+  // Auto-cycle every 3.5s
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      activate((activeIndex + 1) % links.length);
+    }, 3500);
+  }
+
+  // Initialize
+  activate(0);
+  startAuto();
+
+  // Headline service text transition
+  headlineService.style.transition = 'opacity 0.25s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1)';
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- STATS BAR (restored from main homepage)                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div style="position:relative; overflow:hidden; background:#0F0F0F;">
   <!-- Bottom glow -->
   <div class="absolute left-1/2 -translate-x-1/2 pointer-events-none" style="bottom:0; width:min(90%,1000px); z-index:1;">
     <img src="Bottom_Glow.png" alt="" style="width:100%; display:block; opacity:0.85;">
   </div>
-
-  <!-- Noise overlay -->
-  <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:3;"></div>
-
-  <!-- 3D Logo — absolute right, desktop only, z:20 -->
-  <div class="hero-anim-1 hidden lg:block absolute pointer-events-none"
-    style="right:-40vw; top:-20%; transform:translateY(-50%); z-index:20; position:absolute; width:120vw; max-width:none;">
-    <img src="metova_logo_3d_big.png" class="hero-levitate w-full" alt="Metova 3D Logo" style="opacity:0.95;">
-  </div>
-
-  <!-- Main text content -->
-  <div style="padding-top:clamp(120px,12vh,160px); padding-left:clamp(24px,5.5vw,80px); padding-right:clamp(24px,5.5vw,80px); padding-bottom:80px;">
-
-    <!-- Pill badge -->
-    <!--<div class="hero-anim-2" style="display:inline-flex; align-items:center; gap:8px; padding:6px 10px; margin-bottom:clamp(24px,3vw,40px);">
-      <span style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
-      <span style="font-size:11px; font-weight:600; color:#fff; text-transform:uppercase; letter-spacing:0.15em; line-height:1;">AI Development &amp; Custom Software</span>
-    </div>-->
-
-    <!-- Headline lines -->
-    <!-- WE BUILD — z:30, in front of logo -->
-    <div class="hero-anim-3" style="position:relative; z-index:30;">
-      <h1 style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap; margin:0;">WE BUILD</h1>
-    </div>
-    <!-- AI-POWERED — z:30, brand green -->
-    <div class="hero-anim-4" style="position:relative; z-index:30;">
-      <span style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap;">AI-POWERED</span>
-    </div>
-    <!-- SOFTWARE THAT — z:5, behind logo -->
-    <div class="hero-anim-5" style="position:relative; z-index:5; margin-bottom: 16px;">
-      <span style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap;">SOFTWARE THAT</span>
-    </div>
-    <!-- SCALES — clip-path reveal, z:30, lime + wide tracking per Figma -->
-    <div class="scales-outer" style="position:relative; display:inline-block; z-index:30; padding-left: 22px;">
-      <span class="scales-inner" style="font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:0.24em; color:#BAEB42; text-transform:uppercase;">SCALES</span>
-      <span class="scales-border"></span>
-      <span class="scales-handle sh-tl"></span>
-      <span class="scales-handle sh-tr"></span>
-      <span class="scales-handle sh-bl"></span>
-      <span class="scales-handle sh-br"></span>
-      <span class="scales-cursor">
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 18L8 12M8 12H4M8 12V16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M18 2L12 8M12 8H16M12 8V4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-    </div>
-
-    <!-- Mobile logo (below headline) -->
-    <div class="hero-anim-1 lg:hidden mt-10 flex justify-center" style="position:relative; z-index:10;">
-      <img src="metova_logo_3d_big.png" class="hero-levitate" style="max-width:280px; width:72%;" alt="Metova 3D Logo">
-    </div>
-
-    <!-- Description + CTAs -->
-    <div style="position:relative; z-index:30; max-width:520px; margin-top:clamp(28px,3.5vw,56px);">
-      <p class="hero-anim-7" style="color:#9CA3AF; font-size:clamp(13px,1vw,15px); line-height:1.8; margin:0;">
-        From intelligent automation to custom AI products — 18 years of shipping software trusted by SiriusXM, TruGreen, and 200+ brands.
-      </p>
-      <div class="hero-anim-8" style="display:flex; flex-wrap:wrap; gap:16px; margin-top:clamp(24px,3vw,40px);">
-        <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.08em; line-height:1; text-decoration:none;">
-          Start Your Project
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#case-studies" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.08em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
-          View Our Work
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stats Bar -->
-  <div style="position:relative; z-index:40; background:rgba(20,20,20,0.5); border-top:1px solid rgba(0,0,0,0.6); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2); margin-top:auto;">
+  <div style="position:relative; z-index:10; background:rgba(20,20,20,0.5); border-top:1px solid rgba(0,0,0,0.6); backdrop-filter:blur(24px) saturate(1.2); -webkit-backdrop-filter:blur(24px) saturate(1.2);">
     <div class="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-3">
       <!-- Downloads -->
       <div class="stat-box fade-up flex flex-col items-center justify-center gap-4 sm:gap-6 py-10 px-6 sm:py-[90px] sm:px-6" style="border-bottom:1px solid rgba(255,255,255,0.06);">
@@ -259,7 +365,7 @@ tailwind.config = {
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 4: WHAT SETS US APART                            -->
