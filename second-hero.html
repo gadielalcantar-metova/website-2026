@@ -24,7 +24,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@300;400;600;700;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -37,7 +37,7 @@ tailwind.config = {
         g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',400:'#374716',900:'#1C240B' },
         n: { 100:'#E0EAF5',200:'#A3C0D9',300:'#5C8DB5',400:'#1A4D7A',500:'#001A33',600:'#001428',700:'#000E1C',400:'#000810',900:'#000204' }
       },
-      fontFamily: { brand: ['"Anek Telugu"', 'sans-serif'] },
+      fontFamily: { brand: ['"Geist"', 'sans-serif'] },
       letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.15em' },
       lineHeight: { body: '1.75' },
       borderRadius: { card: '16px' }
@@ -118,14 +118,14 @@ tailwind.config = {
     </a>
     <!-- Desktop Nav Pill -->
     <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill">
-      <a href="#services" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Services</a>
-      <a href="#case-studies" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Case Studies</a>
-      <a href="#about" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">About</a>
-      <a href="#faq" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">FAQ</a>
-      <a href="#contact" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Contact</a>
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Contact</a>
     </div>
     <!-- CTA (outline/ghost style per reference) -->
-    <a href="#contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.08em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+    <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.08em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
       Get started
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
     </a>
@@ -139,11 +139,11 @@ tailwind.config = {
   <!-- Mobile Drawer -->
   <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
     <div class="flex flex-col items-center justify-center gap-8 pt-16">
-      <a href="#services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
-      <a href="#case-studies" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Case Studies</a>
-      <a href="#about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
-      <a href="#faq" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">FAQ</a>
-      <a href="#contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Get started</a>
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Get started</a>
     </div>
   </div>
 </nav>
@@ -1124,7 +1124,7 @@ tailwind.config = {
   <section id="contact" class="relative py-24 lg:py-40 z-10">
     <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">
-        Let's Build Something Intelligent
+        We ship what others are still scoping.
       </h2>
       <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">
         Whether you're integrating AI into an existing product or building from scratch, we're ready to help you ship something extraordinary.
@@ -1151,20 +1151,20 @@ tailwind.config = {
       <div>
         <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
         <ul class="space-y-2">
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
         </ul>
       </div>
       <!-- Company -->
       <div>
         <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
         <ul class="space-y-2">
-          <li><a href="#about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
-          <li><a href="#case-studies" class="nav-link text-sm text-brand-muted cursor-pointer">Case Studies</a></li>
-          <li><a href="#" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
-          <li><a href="#contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+          <li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+          <li><a href="/work" class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li>
+          <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+          <li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
         </ul>
       </div>
       <!-- Offices -->

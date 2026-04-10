@@ -55,6 +55,21 @@
 .btn-glow, .btn-ghost,
 a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
 
+/* Nav pill links: inline-flex so line-height:1 centers glyphs properly */
+.nav-pill-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Letter-spacing trailing space fix — margin-right cancels phantom space */
+.btn-glow, .btn-lime, .btn-ghost,
+a[class*="btn-"], button[class*="btn-"] { margin-right: -0.04em; }
+
+/* tracking-label now 0.04em — compensate */
+.tracking-label { margin-right: -0.04em; }
+
 /* Nav pill container — dark bg with inner green glow */
 .nav-pill {
   background: rgba(10, 15, 10, 0.65);
@@ -69,6 +84,7 @@ a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
 }
 .nav-pill-link { transition: color 0.2s, background-color 0.2s; }
 .nav-pill-link:hover { color: #fff; background: rgba(139, 173, 65, 0.1); }
+.nav-pill-link.active { color: #fff; background: rgba(139, 173, 65, 0.12); }
 .nav-pill-link:focus-visible { outline: 2px solid #8BAD41; outline-offset: -2px; }
 
 /* Nav CTA (outline button) */
@@ -76,6 +92,11 @@ a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
 .nav-cta:hover { border-color: rgba(139, 173, 65, 0.4); background: rgba(139, 173, 65, 0.08); transform: translateY(-1px); }
 .nav-cta:active { transform: scale(0.98); }
 .nav-cta:focus-visible { outline: 2px solid #8BAD41; outline-offset: 2px; }
+
+/* Service detail link — arrow shift on hover */
+.svc-detail-link:hover { gap: 10px; }
+.svc-detail-link svg { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.svc-detail-link:hover svg { transform: translateX(4px); }
 
 /* Nav link hover (mobile + footer) */
 .nav-link { transition: color 0.2s; }
@@ -89,6 +110,18 @@ a[class*="btn-"], button[class*="btn-"] { line-height: 1; }
 .ticker-track { animation: ticker 30s linear infinite; }
 @keyframes marquee-xl { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .marquee-xl-track { animation: marquee-xl 28s linear infinite; will-change: transform; }
+
+/* Service detail rows — last child never gets bottom border */
+.svc-detail:last-child { border-bottom: none !important; }
+
+/* Mobile: image first, then text; buttons stay on one row */
+@media (max-width: 1023px) {
+  .svc-detail { display: flex; flex-direction: column; }
+  .svc-detail > div:first-child { order: 2; }
+  .svc-detail > div:last-child { order: 1; }
+  .svc-detail .flex.flex-wrap { flex-wrap: nowrap; }
+  .svc-detail .flex.flex-wrap a { font-size: 14px; padding: 16px 16px; white-space: nowrap; }
+}
 
 /* Service rows */
 .service-row {
@@ -446,6 +479,7 @@ a.ai-card { cursor: pointer; }
 .stat-box { cursor: default; }
 .stat-value { transition: color 0.22s ease; }
 .stat-box:hover .stat-value { color: #BAEB42 !important; }
+
 
 /* ─── Lime-tinted secondary CTA ────────────────────────── */
 .btn-lime { transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s, box-shadow 0.2s; }

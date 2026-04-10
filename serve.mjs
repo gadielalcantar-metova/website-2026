@@ -9,6 +9,17 @@ createServer(async (req, res) => {
   let url = decodeURIComponent(req.url);
   if (url === '/') url = '/index.html';
   else if (url === '/second-hero') url = '/second-hero.html';
+  else if (url === '/services') url = '/services.html';
+  else if (url === '/services/ux-ui-design') url = '/services/ux-ui-design.html';
+  else if (url === '/services/ai-product-development') url = '/services/ai-product-development.html';
+  else if (url === '/services/custom-software-engineering') url = '/services/custom-software-engineering.html';
+  else if (url === '/services/digital-consulting-strategy') url = '/services/digital-consulting-strategy.html';
+  else if (url === '/services/nearshore-talent-solutions') url = '/services/nearshore-talent-solutions.html';
+  else if (url === '/services/iot-emerging-tech') url = '/services/iot-emerging-tech.html';
+  else if (url === '/work') url = '/work.html';
+  else if (url === '/about') url = '/about.html';
+  else if (url === '/contact') url = '/contact.html';
+  else if (url === '/insights') url = '/insights.html';
   let path = join(ROOT, url);
   try {
     const data = await readFile(path);

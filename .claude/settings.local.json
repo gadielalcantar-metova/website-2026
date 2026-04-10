@@ -14,7 +14,14 @@
       "mcp__plugin_figma_figma__use_figma",
       "mcp__plugin_figma_figma__search_design_system",
       "Bash(node screenshot.mjs http://localhost:3000/second-hero second-hero-v1)",
-      "Bash(lsof -ti:3000)"
+      "Bash(lsof -ti:3000)",
+      "Read(//Users/gadielalcantar/**)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"B2B software AI enterprise services dark\" --design-system -p \"Metova Services\")",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"card layout grid service\" --domain ux -n 5)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"layout responsive form\" --stack html-tailwind)",
+      "Bash(node screenshot.mjs http://localhost:3000/services services-v1)",
+      "Bash(node -e \":*)",
+      "Bash(NODE_PATH=/usr/local/lib/node_modules node -e \":*)"
     ]
   }
 }

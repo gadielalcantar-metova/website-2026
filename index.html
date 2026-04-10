@@ -24,7 +24,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@300;400;600;700;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -37,8 +37,8 @@ tailwind.config = {
         g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',400:'#374716',900:'#1C240B' },
         n: { 100:'#E0EAF5',200:'#A3C0D9',300:'#5C8DB5',400:'#1A4D7A',500:'#001A33',600:'#001428',700:'#000E1C',400:'#000810',900:'#000204' }
       },
-      fontFamily: { brand: ['"Anek Telugu"', 'sans-serif'] },
-      letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.15em' },
+      fontFamily: { brand: ['"Geist"', 'sans-serif'] },
+      letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.04em' },
       lineHeight: { body: '1.75' },
       borderRadius: { card: '16px' }
     }
@@ -111,24 +111,28 @@ tailwind.config = {
 <!-- SECTION 1: NAVIGATION                                   -->
 <!-- ═══════════════════════════════════════════════════════ -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
-  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
-    <!-- Logo -->
-    <a href="/" class="flex-shrink-0" aria-label="Metova Home">
-      <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
-    </a>
-    <!-- Desktop Nav Pill -->
-    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill">
-      <a href="#services" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Services</a>
-      <a href="#case-studies" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Case Studies</a>
-      <a href="#about" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">About</a>
-      <a href="#faq" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">FAQ</a>
-      <a href="#contact" class="nav-pill-link px-5 py-2 rounded-full text-sm font-medium text-brand-muted cursor-pointer">Contact</a>
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <!-- Logo — left, fixed width so pill can be truly centered -->
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
     </div>
-    <!-- CTA (outline/ghost style per reference) -->
-    <a href="#contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.08em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
-      Get started
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-    </a>
+    <!-- Desktop Nav Pill — absolutely centered on the nav bar -->
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <!-- CTA — right, flex-1 so it mirrors logo side -->
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Get started
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
     <!-- Mobile Menu Button -->
     <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
       <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
@@ -139,11 +143,11 @@ tailwind.config = {
   <!-- Mobile Drawer -->
   <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
     <div class="flex flex-col items-center justify-center gap-8 pt-16">
-      <a href="#services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
-      <a href="#case-studies" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Case Studies</a>
-      <a href="#about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
-      <a href="#faq" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">FAQ</a>
-      <a href="#contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Get started</a>
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Get started</a>
     </div>
   </div>
 </nav>
@@ -193,8 +197,8 @@ tailwind.config = {
       <span style="display:block; font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:-0.03em; color:#fff; text-transform:uppercase; white-space:nowrap;">SOFTWARE THAT</span>
     </div>
     <!-- SCALES — clip-path reveal, z:30, lime + wide tracking per Figma -->
-    <div class="scales-outer" style="position:relative; display:inline-block; z-index:30; padding-left: 22px;">
-      <span class="scales-inner" style="font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:0.24em; color:#BAEB42; text-transform:uppercase;">SCALES</span>
+    <div class="scales-outer" style="position:relative; display:inline-block; z-index:30;">
+      <span class="scales-inner" style="font-size:clamp(52px,8vw,124px); font-weight:400; line-height:0.92; letter-spacing:0.24em; color:#BAEB42; text-transform:uppercase; margin-right:-0.24em;">SCALES</span>
       <span class="scales-border"></span>
       <span class="scales-handle sh-tl"></span>
       <span class="scales-handle sh-tr"></span>
@@ -219,11 +223,11 @@ tailwind.config = {
         From intelligent automation to custom AI products — 18 years of shipping software trusted by SiriusXM, TruGreen, and 200+ brands.
       </p>
       <div class="hero-anim-8" style="display:flex; flex-wrap:wrap; gap:16px; margin-top:clamp(24px,3vw,40px);">
-        <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.08em; line-height:1; text-decoration:none;">
+        <a href="#contact" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
           Start Your Project
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#case-studies" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.08em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+        <a href="#case-studies" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
           View Our Work
         </a>
       </div>
@@ -237,7 +241,7 @@ tailwind.config = {
       <div class="stat-box fade-up flex flex-col items-center justify-center gap-4 sm:gap-6 py-10 px-6 sm:py-[90px] sm:px-6" style="border-bottom:1px solid rgba(255,255,255,0.06);">
         <div style="display:flex; align-items:center; gap:8px; padding-left:8px;">
           <span class="stat-dot-el" style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
-          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:1.8px; color:#fff; line-height:16px; white-space:nowrap;">Downloads</span>
+          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:0.04em; color:#fff; line-height:1; white-space:nowrap;">Downloads</span>
         </div>
         <div class="stat-num stat-value" style="font-size:clamp(40px,6vw,88px); font-weight:600; color:#fff; line-height:1; text-align:center;" data-target="250" data-prefix="" data-suffix="M+">0</div>
       </div>
@@ -245,7 +249,7 @@ tailwind.config = {
       <div class="stat-box fade-up flex flex-col items-center justify-center gap-4 sm:gap-6 py-10 px-6 sm:py-[90px] sm:px-6" style="border-bottom:1px solid rgba(255,255,255,0.06);">
         <div style="display:flex; align-items:center; gap:8px; padding-left:8px;">
           <span class="stat-dot-el" style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
-          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:1.8px; color:#fff; line-height:16px; white-space:nowrap;">Revenue Generated</span>
+          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:0.04em; color:#fff; line-height:1; white-space:nowrap;">Revenue Generated</span>
         </div>
         <div class="stat-num stat-value" style="font-size:clamp(40px,6vw,88px); font-weight:600; color:#fff; line-height:1; text-align:center;" data-target="1" data-prefix="$" data-suffix="B+">0</div>
       </div>
@@ -253,7 +257,7 @@ tailwind.config = {
       <div class="stat-box fade-up flex flex-col items-center justify-center gap-4 sm:gap-6 py-10 px-6 sm:py-[90px] sm:px-6">
         <div style="display:flex; align-items:center; gap:8px; padding-left:8px;">
           <span class="stat-dot-el" style="width:8px;height:8px;border-radius:50%;background:#BAEB42;flex-shrink:0;"></span>
-          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:1.8px; color:#fff; line-height:16px; white-space:nowrap;">Years of Experience</span>
+          <span class="stat-label-txt" style="font-size:12px; font-weight:400; text-transform:uppercase; letter-spacing:0.04em; color:#fff; line-height:1; white-space:nowrap;">Years of Experience</span>
         </div>
         <div class="stat-num stat-value" style="font-size:clamp(40px,6vw,88px); font-weight:600; color:#fff; line-height:1; text-align:center;" data-target="18" data-prefix="" data-suffix="+">0</div>
       </div>
@@ -271,7 +275,7 @@ tailwind.config = {
     <div class="flex flex-col items-center gap-4 text-center fade-up">
       <div class="inline-flex items-center gap-2 p-2">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">What Sets Us Apart</span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">What Sets Us Apart</span>
       </div>
       <h2 class="text-4xl lg:text-5xl font-bold tracking-heading">
         Why Leading Brands Choose <span class="text-brand-green">Metova</span>
@@ -377,7 +381,7 @@ tailwind.config = {
   <div class="flex flex-col gap-7 items-center text-center px-6 mb-[32px] fade-up">
     <div class="flex items-center gap-2 px-2 py-2">
       <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-      <span class="text-xs font-normal uppercase text-white" style="letter-spacing:1.8px;">OUR SERVICES</span>
+      <span class="text-xs font-normal uppercase text-white" style="letter-spacing:0.04em; line-height:1;">OUR SERVICES</span>
     </div>
     <h2 class="font-bold leading-[1.1] tracking-[-0.88px]" style="font-size:clamp(32px,3vw,44px);">
       AI Development Meets<br>18 Years of Product Engineering
@@ -480,7 +484,7 @@ tailwind.config = {
     <!-- Pill -->
     <div class="ai-pill-glow inline-flex items-center gap-2 p-2 rounded-full">
       <span class="w-2 h-2 rounded-full shrink-0" style="background:#8242EA;"></span>
-      <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:16px;">AI-First Development</span>
+      <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">AI-First Development</span>
     </div>
     <!-- Heading -->
     <h2 class="text-3xl sm:text-4xl lg:text-[48px] font-bold text-center leading-[1] lg:leading-[48px] tracking-[-0.02em]">
@@ -549,7 +553,7 @@ tailwind.config = {
     <div class="text-center mb-12">
       <div class="inline-flex items-center gap-2 p-2 mb-4">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">Proven Results</span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">Proven Results</span>
       </div>
       <h2 class="text-3xl sm:text-4xl font-bold tracking-[-0.02em]">
         Products Used by <span style="color:#BAEB42;">Millions</span>
@@ -563,9 +567,9 @@ tailwind.config = {
         </div>
         <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">FitOn</h3>
         <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Cloud Infrastructure</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">DevOps</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Cloud Infrastructure</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">DevOps</span>
         </div>
         <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.</p>
         <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
@@ -577,9 +581,9 @@ tailwind.config = {
         </div>
         <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">MyBambu</h3>
         <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">FinTech</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Full-Stack Dev</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">FinTech</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Full-Stack Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
         </div>
         <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Built a neobanking platform for underserved communities with real-time payments, virtual cards, and bilingual support.</p>
         <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
@@ -591,9 +595,9 @@ tailwind.config = {
         </div>
         <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">Barwis Methods</h3>
         <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Health &amp; Fitness</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Health &amp; Fitness</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
         </div>
         <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Designed and developed a performance training platform connecting elite athletes with data-driven workout programs.</p>
         <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
@@ -605,9 +609,9 @@ tailwind.config = {
         </div>
         <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">FleetPulse</h3>
         <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">IoT</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Fleet Management</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Data Analytics</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">IoT</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Fleet Management</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Data Analytics</span>
         </div>
         <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Real-time fleet tracking and predictive maintenance platform managing 12,000+ vehicles across North America with 99.9% uptime.</p>
         <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
@@ -619,9 +623,9 @@ tailwind.config = {
         </div>
         <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">MediSync</h3>
         <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Healthcare</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">AI Integration</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">HIPAA Compliance</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Healthcare</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">AI Integration</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">HIPAA Compliance</span>
         </div>
         <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">AI-powered patient scheduling and triage system that reduced wait times by 40% across a 200-clinic hospital network.</p>
         <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
@@ -633,9 +637,9 @@ tailwind.config = {
         </div>
         <h3 class="text-2xl font-bold mb-3" style="color:#9CA3AF;">Verdant</h3>
         <div class="flex gap-2 mb-4 overflow-x-auto" style="-webkit-overflow-scrolling:touch; scrollbar-width:none;">
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">E-Commerce</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
-          <span class="text-[10px] font-bold uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Full-Stack Dev</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">E-Commerce</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">UX Design</span>
+          <span class="text-[10px] font-bold uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border whitespace-nowrap shrink-0" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Full-Stack Dev</span>
         </div>
         <p class="text-sm leading-[22.75px] mb-6" style="color:#B0B1B5;">Sustainable marketplace platform connecting eco-conscious consumers with verified green brands. 3x revenue growth in first year post-launch.</p>
         <a href="#" class="inline-flex items-center justify-center rounded-full text-white text-sm font-semibold uppercase" style="padding:17px 33px; letter-spacing:2.1px; line-height:20px; border:1px solid rgba(255,255,255,0.2); background-image:linear-gradient(177deg, rgba(139,173,65,0.3) 6%, rgba(186,235,66,0.3) 94%); text-decoration:none;">View Case Study</a>
@@ -656,7 +660,7 @@ tailwind.config = {
           <div>
             <div class="inline-flex items-center gap-2 p-2 mb-6">
               <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-              <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">Proven Results</span>
+              <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">Proven Results</span>
             </div>
             <h2 class="text-[48px] font-bold leading-[1] tracking-[-0.02em] mb-12">
               Products Used by<br><span style="color:#fff;">Millions</span>
@@ -670,9 +674,9 @@ tailwind.config = {
           <div>
             <!-- Tags — crossfade (muted so CTA stands out) -->
             <div class="cs-tags flex flex-wrap gap-2 mb-6 transition-all duration-500" style="opacity:1;">
-              <span class="text-[10px] font-medium uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Cloud Infrastructure</span>
-              <span class="text-[10px] font-medium uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
-              <span class="text-[10px] font-medium uppercase tracking-[1.5px] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">DevOps</span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Cloud Infrastructure</span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">Mobile Dev</span>
+              <span class="text-[10px] font-medium uppercase tracking-[0.04em] px-3 py-1.5 rounded-full border" style="color:#9CA3AF; border-color:rgba(156,163,175,0.2); background:rgba(156,163,175,0.06);">DevOps</span>
             </div>
             <!-- Description — crossfades -->
             <p class="cs-description text-[16px] leading-[28px] max-w-[380px] mb-8 transition-all duration-500" style="color:#B0B1B5; opacity:1;">Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.</p>
@@ -720,7 +724,7 @@ tailwind.config = {
     <div class="text-center mb-8 fade-up">
       <div class="inline-flex items-center gap-2 p-2 mb-4">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">Our Expertise</span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">Our Expertise</span>
       </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading">
         Technologies We <span class="text-brand-green">Master</span>
@@ -786,7 +790,7 @@ tailwind.config = {
         <!-- Pill -->
         <div class="inline-flex items-center gap-2 p-2 mb-10 fade-up">
           <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">About Metova</span>
+          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">About Metova</span>
         </div>
         <!-- Headline -->
         <h2 class="fade-up font-bold tracking-[-0.03em] text-white mb-8" style="font-size:clamp(32px,4.5vw,56px); line-height:1.05;">
@@ -807,7 +811,7 @@ tailwind.config = {
             <div>
               <span class="text-white font-semibold text-[15px]">Bentonville, AR</span>
               <span class="block text-[13px] mt-1" style="color:#B0B1B5;">U.S. Headquarters</span>
-              <span class="block text-[12px] mt-2 uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">60+ team members</span>
+              <span class="block text-[12px] mt-2 uppercase tracking-[0.04em] font-medium" style="color:rgba(186,235,66,0.5);">60+ team members</span>
             </div>
           </div>
         </div>
@@ -818,7 +822,7 @@ tailwind.config = {
             <div>
               <span class="text-white font-semibold text-[15px]">Guadalajara, MX</span>
               <span class="block text-[13px] mt-1" style="color:#B0B1B5;">Mexico Headquarters</span>
-              <span class="block text-[12px] mt-2 uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">40+ team members</span>
+              <span class="block text-[12px] mt-2 uppercase tracking-[0.04em] font-medium" style="color:rgba(186,235,66,0.5);">40+ team members</span>
             </div>
           </div>
         </div>
@@ -834,7 +838,7 @@ tailwind.config = {
     <div class="text-center mb-20 relative z-10 px-6">
       <div class="inline-flex items-center gap-2 p-2 mb-4 fade-up">
         <span class="w-2 h-2 rounded-full shrink-0" style="background:#BAEB42;"></span>
-        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px;">How We Work</span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">How We Work</span>
       </div>
       <h3 class="fade-up font-bold tracking-[-0.02em] text-white" style="font-size:clamp(28px,3.5vw,44px); line-height:1.15;">
         From Idea to Launch
@@ -854,7 +858,7 @@ tailwind.config = {
           <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">01</span>
           <h4 class="text-[20px] font-bold text-white mb-3">Discovery</h4>
           <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Deep dive into your goals, users, market, and technical landscape to define the path forward.</p>
-          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">1–2 weeks</span>
+          <span class="block mt-4 text-[11px] uppercase tracking-[0.04em] font-medium" style="color:rgba(186,235,66,0.5);">1–2 weeks</span>
         </div>
       </div>
 
@@ -865,7 +869,7 @@ tailwind.config = {
           <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">02</span>
           <h4 class="text-[20px] font-bold text-white mb-3">Strategy & Proposal</h4>
           <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Architecture, timeline, and pricing — transparent from day one. No surprises, no guesswork.</p>
-          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">1–2 weeks</span>
+          <span class="block mt-4 text-[11px] uppercase tracking-[0.04em] font-medium" style="color:rgba(186,235,66,0.5);">1–2 weeks</span>
         </div>
       </div>
 
@@ -876,7 +880,7 @@ tailwind.config = {
           <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">03</span>
           <h4 class="text-[20px] font-bold text-white mb-3">Build & Ship</h4>
           <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Bi-weekly demos, continuous delivery. You see working software, not slide decks.</p>
-          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">4–12 weeks</span>
+          <span class="block mt-4 text-[11px] uppercase tracking-[0.04em] font-medium" style="color:rgba(186,235,66,0.5);">4–12 weeks</span>
         </div>
       </div>
 
@@ -887,7 +891,7 @@ tailwind.config = {
           <span class="text-[13px] font-medium mb-3 block" style="color:#BAEB42;">04</span>
           <h4 class="text-[20px] font-bold text-white mb-3">Scale & Support</h4>
           <p class="text-[14px] leading-[24px]" style="color:#B0B1B5;">Post-launch optimization, monitoring, and growth engineering as your product scales.</p>
-          <span class="block mt-4 text-[11px] uppercase tracking-[1.5px] font-medium" style="color:rgba(186,235,66,0.5);">Ongoing</span>
+          <span class="block mt-4 text-[11px] uppercase tracking-[0.04em] font-medium" style="color:rgba(186,235,66,0.5);">Ongoing</span>
         </div>
       </div>
 
@@ -926,7 +930,7 @@ tailwind.config = {
       <div class="lg:max-w-xl lg:pl-8 fade-up pt-16 lg:pt-0">
         <div class="inline-flex items-center gap-2 p-2 mb-4">
           <span class="w-2 h-2 shrink-0" style="background:#BAEB42;"></span>
-          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:1;">FAQ</span>
+          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">FAQ</span>
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading leading-tight">
           Answers to<br><span class="text-brand-green">Your Queries</span>
@@ -1011,13 +1015,13 @@ tailwind.config = {
   <section id="contact" class="relative py-24 lg:py-40 z-10">
     <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">
-        Let's Build Something Intelligent
+        We ship what others are still scoping.
       </h2>
       <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">
         Whether you're integrating AI into an existing product or building from scratch, we're ready to help you ship something extraordinary.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
-        <a href="mailto:hello@metova.com" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px);">
+        <a href="mailto:hello@metova.com" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px); margin-right:-0.04em;">
           Start a Conversation
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         </a>
@@ -1038,20 +1042,20 @@ tailwind.config = {
       <div>
         <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
         <ul class="space-y-2">
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
-          <li><a href="#services" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
         </ul>
       </div>
       <!-- Company -->
       <div>
         <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
         <ul class="space-y-2">
-          <li><a href="#about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
-          <li><a href="#case-studies" class="nav-link text-sm text-brand-muted cursor-pointer">Case Studies</a></li>
-          <li><a href="#" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
-          <li><a href="#contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+          <li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+          <li><a href="/work" class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li>
+          <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+          <li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
         </ul>
       </div>
       <!-- Offices -->

@@ -886,6 +886,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 (function() {
   const wrapper = document.getElementById('service-rows-wrapper');
   const floatEl = document.getElementById('svc-float-img');
+  if (!wrapper || !floatEl) return;
   const floatImg = floatEl.querySelector('img');
   const rows = wrapper.querySelectorAll('.service-row');
 

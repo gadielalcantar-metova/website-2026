@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Metova — AI Development & Custom Software</title>
+<meta name="description" content="From AI product development to custom software engineering, UX/UI design, and nearshore talent — Metova delivers end-to-end digital solutions for enterprises and startups.">
+<meta name="keywords" content="AI product development, custom software engineering, UX UI design services, fintech development, IoT solutions, nearshore development team">
+<link rel="canonical" href="https://metova.com/services">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Services | Metova — AI Development & Custom Software">
+<meta property="og:description" content="End-to-end digital product engineering. AI, custom software, UX/UI design, and nearshore talent solutions.">
+<meta property="og:url" content="https://metova.com/services">
+<meta property="og:site_name" content="Metova">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Services | Metova — AI Development & Custom Software">
+<meta name="twitter:description" content="End-to-end digital product engineering. AI, custom software, UX/UI design, and nearshore talent solutions.">
+
+<!-- Fonts -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { green: '#8BAD41', lime: '#BAEB42', navy: '#001A33', surface: '#111111', bg: '#0F0F0F', muted: '#B0B1B5', dimmed: '#96979C' },
+        g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',800:'#374716',900:'#1C240B' },
+        n: { 100:'#E0EAF5',200:'#A3C0D9',300:'#5C8DB5',400:'#1A4D7A',500:'#001A33',600:'#001428',700:'#000E1C',800:'#000810',900:'#000204' }
+      },
+      fontFamily: { brand: ['"Geist"', 'sans-serif'] },
+      letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.04em' },
+      lineHeight: { body: '1.75' },
+      borderRadius: { card: '16px' }
+    }
+  }
+}
+</script>
+
+<!-- JSON-LD: Service -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "provider": {
+    "@type": "Organization",
+    "name": "Metova",
+    "url": "https://metova.com"
+  },
+  "serviceType": ["AI Product Development", "Custom Software Engineering", "UX/UI Design", "FinTech Development", "IoT Solutions", "Nearshore Talent"],
+  "areaServed": "Worldwide",
+  "description": "End-to-end digital product engineering services including AI development, custom software, UX/UI design, and nearshore talent solutions."
+}
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-brand-bg font-brand text-white antialiased overflow-x-hidden">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NAVIGATION                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <!-- Logo -->
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
+    </div>
+    <!-- Desktop Nav Pill — absolutely centered -->
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link active px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <!-- CTA -->
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Get started
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span>
+    </button>
+  </div>
+  <!-- Mobile Drawer -->
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Get started</a>
+    </div>
+  </div>
+</nav>
+<!-- active pill style scoped to services page -->
+<style>.nav-pill-link.active{color:#fff;background:rgba(139,173,65,0.12);}</style>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 1: HERO                                         -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="relative pt-32 lg:pt-44 overflow-hidden" style="min-height:60vh;">
+  <!-- Background grid -->
+  <div class="hero-grid absolute inset-0 pointer-events-none" style="z-index:0;"></div>
+  <!-- Radial glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 50% at 50% 30%, rgba(139,173,65,0.06) 0%, transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
+
+
+    <!-- Headline -->
+    <h1 class="hero-anim-2 text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-display text-center max-w-4xl mx-auto mb-6">
+      Your Direct Line to<br>
+      <span class="text-brand-lime">Senior Engineering</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="hero-anim-3 text-lg lg:text-xl text-brand-muted text-center max-w-2xl mx-auto leading-body mb-12">
+      From strategy to deployment, we bring 18 years of product expertise to every engagement. No gatekeepers, no layers — just the talent your product needs.
+    </p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- SECTION 2: SERVICES — Editorial rows (text left, image right) -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="relative py-20 lg:py-32">
+  <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <!-- Service Detail 1: AI Product Development -->
+    <article class="svc-detail fade-up grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div>
+        <span class="text-brand-lime font-normal text-lg mb-4 block" style="letter-spacing:0.02em;">(01)</span>
+        <h3 class="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-heading mb-5" style="line-height:1.1;">AI Product Development</h3>
+        <p class="text-brand-muted leading-body mb-8 max-w-lg">
+          We're the team you bring in when AI needs to actually ship — not sit in a pitch deck. From intelligent automation to computer vision and LLM integration, we build AI products that solve real business problems and scale in production.
+        </p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>LLM & NLP Integration</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Computer Vision</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Predictive Analytics</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>AI-Powered Automation</li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/services/ai-product-development" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+            Start a project
+          </a>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80" alt="AI Product Development" class="w-full h-full object-cover" style="transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,173,65,0.08);"></div>
+      </div>
+    </article>
+
+    <!-- Service Detail 2: Custom Software Engineering -->
+    <article class="svc-detail fade-up grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div>
+        <span class="text-brand-lime font-normal text-lg mb-4 block" style="letter-spacing:0.02em;">(02)</span>
+        <h3 class="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-heading mb-5" style="line-height:1.1;">Custom Software Engineering</h3>
+        <p class="text-brand-muted leading-body mb-8 max-w-lg">
+          Full-stack development from concept to production. We architect systems designed for scale, security, and long-term maintainability — because the code you ship today is the foundation you'll build on for years.
+        </p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Web & Mobile Apps</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Cloud & DevOps</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>API & Microservices</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Legacy Modernization</li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/services/custom-software-engineering" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+            Start a project
+          </a>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&q=80" alt="Custom Software Engineering" class="w-full h-full object-cover" style="transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,173,65,0.08);"></div>
+      </div>
+    </article>
+
+    <!-- Service Detail 3: UX/UI Design -->
+    <article class="svc-detail fade-up grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div>
+        <span class="text-brand-lime font-normal text-lg mb-4 block" style="letter-spacing:0.02em;">(03)</span>
+        <h3 class="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-heading mb-5" style="line-height:1.1;">UX/UI Design</h3>
+        <p class="text-brand-muted leading-body mb-8 max-w-lg">
+          Research-driven design that converts. We craft interfaces where every interaction is intentional and every pixel serves the user's goal — not just something that looks good in a mockup.
+        </p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>User Research</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Prototyping</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Design Systems</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Usability Testing</li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/services/ux-ui-design" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+            Start a project
+          </a>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80" alt="UX/UI Design" class="w-full h-full object-cover" style="transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,173,65,0.08);"></div>
+      </div>
+    </article>
+
+    <!-- Service Detail 4: Digital Consulting & Strategy -->
+    <article class="svc-detail fade-up grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div>
+        <span class="text-brand-lime font-normal text-lg mb-4 block" style="letter-spacing:0.02em;">(04)</span>
+        <h3 class="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-heading mb-5" style="line-height:1.1;">Digital Consulting &amp; Strategy</h3>
+        <p class="text-brand-muted leading-body mb-8 max-w-lg">
+          Before a single line of code, we help you untangle the hard decisions. Research, prototyping, tech assessments, and strategic roadmapping that de-risks your investment and sharpens your vision.
+        </p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Discovery Workshops</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Tech Assessments</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Product Roadmapping</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Rapid Prototyping</li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/services/digital-consulting-strategy" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+            Start a project
+          </a>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80" alt="Digital Consulting" class="w-full h-full object-cover" style="transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,173,65,0.08);"></div>
+      </div>
+    </article>
+
+    <!-- Service Detail 5: Nearshore Talent Solutions -->
+    <article class="svc-detail fade-up grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div>
+        <span class="text-brand-lime font-normal text-lg mb-4 block" style="letter-spacing:0.02em;">(05)</span>
+        <h3 class="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-heading mb-5" style="line-height:1.1;">Nearshore Talent Solutions</h3>
+        <p class="text-brand-muted leading-body mb-8 max-w-lg">
+          Scale your team with senior engineers in your timezone. Our Guadalajara office provides dedicated talent that integrates seamlessly with your workflow — no offshore friction, no communication gaps.
+        </p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Dedicated Teams</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Same-Timezone</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Staff Augmentation</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Managed Delivery</li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/services/nearshore-talent-solutions" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+            Start a project
+          </a>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop&q=80" alt="Nearshore Talent" class="w-full h-full object-cover" style="transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,173,65,0.08);"></div>
+      </div>
+    </article>
+
+    <!-- Service Detail 6: IoT & Emerging Tech -->
+    <article class="svc-detail fade-up grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-16 lg:py-24" style="border-top:1px solid rgba(255,255,255,0.08);">
+      <div>
+        <span class="text-brand-lime font-normal text-lg mb-4 block" style="letter-spacing:0.02em;">(06)</span>
+        <h3 class="text-2xl sm:text-3xl lg:text-[40px] font-bold text-white tracking-heading mb-5" style="line-height:1.1;">IoT &amp; Emerging Tech</h3>
+        <p class="text-brand-muted leading-body mb-8 max-w-lg">
+          Connected devices, fleet management, FinTech platforms, and embedded systems engineering. We handle the full stack — from firmware to cloud dashboard — so your hardware and software speak the same language.
+        </p>
+        <ul class="grid grid-cols-2 gap-x-6 gap-y-3 mb-8">
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Fleet Management</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Embedded Systems</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>Real-Time Pipelines</li>
+          <li class="flex items-center gap-2 text-sm text-brand-dimmed"><span class="w-1.5 h-1.5 rounded-full bg-brand-lime flex-shrink-0"></span>FinTech Platforms</li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/services/iot-emerging-tech" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none;">
+            Learn more
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/contact" class="btn-lime inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none;">
+            Start a project
+          </a>
+        </div>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl" style="aspect-ratio:4/3;">
+        <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&h=600&fit=crop&q=80" alt="IoT & Emerging Tech" class="w-full h-full object-cover" style="transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.04)'" onmouseleave="this.style.transform='scale(1)'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,173,65,0.08);"></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MARQUEE TEXT STRIP (same as homepage)                    -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section style="background:#141414; padding:80px 0; overflow:hidden;">
+  <div class="marquee-xl-track" style="display:flex; align-items:center; width:max-content;">
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FINAL CTA + FOOTER (with halo canvas)                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <!-- Three.js noise halo canvas -->
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+
+  <section id="contact" class="relative py-24 lg:py-40 z-10">
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">
+        We ship what others are still scoping.
+      </h2>
+      <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">
+        Whether you're integrating AI into an existing product or building from scratch, we're ready to help you ship something extraordinary.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+        <a href="mailto:hello@metova.com" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px); margin-right:-0.04em;">
+          Start a Conversation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 py-16">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <!-- Logo + tagline -->
+      <div class="md:col-span-1">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4">
+        <p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p>
+      </div>
+      <!-- Services -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
+        <ul class="space-y-2">
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+        </ul>
+      </div>
+      <!-- Company -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+          <li><a href="/work" class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li>
+          <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+          <li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Offices -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4>
+        <div class="space-y-3">
+          <div>
+            <div class="text-sm font-semibold text-white">Bentonville, AR</div>
+            <div class="text-xs text-brand-muted">United States Headquarters</div>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">Guadalajara, MX</div>
+            <div class="text-xs text-brand-muted">Mexico Headquarters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom bar -->
+    <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a>
+        <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</div><!-- end aurora wrapper -->
+
+<!-- External JS -->
+<script src="main.js" defer></script>
+<script type="module" src="keyring.mjs"></script>
+
+</body></html>
