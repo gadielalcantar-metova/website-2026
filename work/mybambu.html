@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══ SEO: Title & Meta ═══ -->
+<title>MyBambu Case Study | Metova — Banking the Unbanked</title>
+<meta name="description" content="How Metova built MyBambu's full-stack mobile banking platform for the underserved — debit cards, international transfers, and FISGlobal-backed infrastructure for iOS and Android.">
+<meta name="keywords" content="MyBambu, fintech app development, mobile banking unbanked, FISGlobal, digital wallet, Metova case study, iOS Android banking app">
+<link rel="canonical" href="https://metova.com/work/mybambu">
+
+<!-- ═══ SEO: Open Graph ═══ -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBambu Case Study | Metova — Banking the Unbanked">
+<meta property="og:description" content="How Metova built a full-stack fintech platform for the underserved population — debit cards, international money transfers, FISGlobal-backed, 75B+ transactions.">
+<meta property="og:url" content="https://metova.com/work/mybambu">
+<meta property="og:site_name" content="Metova">
+<meta property="og:image" content="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=630&fit=crop&q=85">
+
+<!-- ═══ SEO: Twitter Card ═══ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MyBambu Case Study | Metova — Banking the Unbanked">
+<meta name="twitter:description" content="Full-stack fintech platform for the underserved. FISGlobal-backed, 75B+ transactions, iOS & Android.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=630&fit=crop&q=85">
+
+<!-- ═══ SEO: Schema Markup ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Banking the Unbanked — How Metova Built MyBambu's Fintech Platform",
+  "description": "Metova built MyBambu's full-stack mobile banking platform for the underserved — debit cards, international transfers, FISGlobal-backed, iOS & Android.",
+  "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=630&fit=crop&q=85",
+  "datePublished": "2022-01-01",
+  "dateModified": "2022-12-31",
+  "author": { "@type": "Organization", "name": "Metova", "url": "https://metova.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Metova",
+    "logo": { "@type": "ImageObject", "url": "https://metova.com/brand_assets/Metova_Logo_Dark.png" }
+  },
+  "about": { "@type": "Organization", "name": "MyBambu", "industry": "Financial Technology" },
+  "keywords": "fintech, mobile banking, unbanked, FISGlobal, digital wallet, iOS, Android"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { green:'#8BAD41', lime:'#BAEB42', surface:'#111111', bg:'#0F0F0F', muted:'#B0B1B5', dimmed:'#96979C' }
+      },
+      fontFamily: { brand:['"Geist"','sans-serif'] },
+      letterSpacing: { display:'-0.03em', heading:'-0.02em', label:'0.04em' }
+    }
+  }
+}
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+
+<style>
+  @keyframes heroFadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .hero-anim { opacity:0; animation:heroFadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  .hero-anim-1 { animation-delay:0.05s; }
+  .hero-anim-2 { animation-delay:0.18s; }
+  .hero-anim-3 { animation-delay:0.30s; }
+  .hero-anim-4 { animation-delay:0.46s; }
+
+  .cs-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#96979C; margin-bottom:6px; }
+  .cs-value { font-size:14px; font-weight:500; color:#fff; line-height:1.5; }
+  .cs-summary { font-size:clamp(22px,2.8vw,34px); font-weight:700; line-height:1.2; letter-spacing:-0.02em; color:#fff; margin-bottom:28px; }
+  .cs-body { font-size:16px; line-height:1.8; color:#B0B1B5; }
+  .cs-section-label { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#BAEB42; margin-bottom:14px; }
+  .cs-section-heading { font-size:clamp(26px,3vw,40px); font-weight:700; letter-spacing:-0.02em; color:#fff; line-height:1.2; margin-bottom:20px; }
+  .cs-stat-num { font-size:clamp(40px,5vw,72px); font-weight:800; letter-spacing:-0.04em; color:#fff; line-height:1; }
+  .cs-stat-label { font-size:13px; color:#96979C; margin-top:8px; text-transform:uppercase; letter-spacing:0.05em; font-weight:500; }
+  .cs-pill { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; padding:6px 14px; border-radius:100px; background:rgba(186,235,66,0.08); color:#BAEB42; border:1px solid rgba(186,235,66,0.2); }
+  .cs-divider { width:100%; height:1px; background:rgba(255,255,255,0.07); }
+  .next-card { display:block; text-decoration:none; cursor:pointer; }
+  .next-card-img { position:relative; overflow:hidden; border-radius:16px; }
+  .next-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .next-card:hover .next-card-img img { transform:scale(1.04); }
+  .next-card-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent 40%, rgba(10,10,10,0.5) 100%); pointer-events:none; }
+  @media (min-width:1024px) { .cs-sidebar { position:sticky; top:120px; } }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
+    </div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm cursor-pointer" style="background:rgba(186,235,66,0.08); color:#BAEB42;">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-white cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="relative pt-36 lg:pt-44 pb-16 lg:pb-20 overflow-hidden" style="background:#0F0F0F;">
+  <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <!-- Breadcrumb -->
+    <div class="hero-anim hero-anim-1 mb-8">
+      <a href="/work" class="inline-flex items-center gap-2 text-sm text-brand-muted hover:text-white transition-colors" style="text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        All Work
+      </a>
+    </div>
+
+    <!-- Tags -->
+    <div class="hero-anim hero-anim-1 flex items-center gap-3 mb-8">
+      <span style="display:inline-flex; align-items:center; font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:5px 12px; border-radius:100px; background:rgba(179,152,238,0.1); color:#B398EE; border:1px solid rgba(179,152,238,0.25);">FinTech</span>
+      <span style="display:inline-flex; align-items:center; font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:5px 12px; border-radius:100px; background:rgba(179,152,238,0.1); color:#B398EE; border:1px solid rgba(179,152,238,0.25);">Financial Inclusion</span>
+    </div>
+
+    <!-- H1 — primary keyword upfront for SEO -->
+    <h1 class="hero-anim hero-anim-2 font-bold tracking-display text-white mb-6" style="font-size:clamp(40px,6.5vw,88px); line-height:0.95; max-width:1000px;">
+      Banking the unbanked<br>through digital solutions.
+    </h1>
+
+    <!-- Meta row -->
+    <div class="hero-anim hero-anim-3 flex flex-wrap items-center gap-6 lg:gap-10 mt-8">
+      <div>
+        <div class="cs-label">Client</div>
+        <div class="cs-value">MyBambu</div>
+      </div>
+      <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
+      <div>
+        <div class="cs-label">Industry</div>
+        <div class="cs-value">FinTech · Financial Inclusion</div>
+      </div>
+      <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
+      <div>
+        <div class="cs-label">Timeline</div>
+        <div class="cs-value">2021–2022</div>
+      </div>
+      <div style="width:1px; height:32px; background:rgba(255,255,255,0.1);"></div>
+      <div>
+        <div class="cs-label">Platforms</div>
+        <div class="cs-value">iOS · Android · Web</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ HERO IMAGE ═══ -->
+<section style="background:#0F0F0F; padding-bottom:80px;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="fade-up" style="border-radius:20px; overflow:hidden; aspect-ratio:21/9;">
+      <img
+        src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1600&h=686&fit=crop&q=90"
+        alt="MyBambu mobile banking platform — financial tools for the underserved"
+        width="1600" height="686"
+        style="width:100%; height:100%; object-fit:cover; display:block;"
+        loading="eager"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ═══ META + OVERVIEW ═══ -->
+<section style="background:#0F0F0F; padding-bottom:100px;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="cs-divider mb-16"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+      <!-- Sticky sidebar -->
+      <aside class="lg:col-span-3 cs-sidebar" aria-label="Project details">
+        <div>
+          <div style="padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:24px;">
+            <div class="cs-label">Client</div>
+            <div class="cs-value">MyBambu, Inc.</div>
+          </div>
+          <div style="padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:24px;">
+            <div class="cs-label">Completed</div>
+            <div class="cs-value">2022</div>
+          </div>
+          <div style="padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:24px;">
+            <div class="cs-label">Industry</div>
+            <div class="cs-value">FinTech & Financial Inclusion</div>
+          </div>
+          <div style="padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,0.07); margin-bottom:24px;">
+            <div class="cs-label">Platforms</div>
+            <div class="cs-value">iOS · Android · Web</div>
+          </div>
+          <div>
+            <div class="cs-label">How we helped</div>
+            <div class="cs-value" style="display:flex; flex-direction:column; gap:6px;">
+              <span>Tech Assessment</span>
+              <span>UX/UI Design</span>
+              <span>iOS Development</span>
+              <span>Android Development</span>
+              <span>SDK Integration</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <div class="lg:col-span-9">
+        <p class="cs-summary">
+          MyBambu set out to give underserved communities access to real financial tools — debit cards, international money transfers, savings, and check deposits. Backed by FISGlobal and built to process 75 billion+ transactions globally, they needed a partner who could deliver a production-grade platform from the ground up.
+        </p>
+        <p class="cs-body">
+          The underserved population in the U.S. has long been excluded from traditional banking. MyBambu was built to change that — offering a bilingual (Spanish & English) digital banking experience with debit cards, international transfers, and immediate check deposit access. With FISGlobal backing and a global transaction network behind them, the stakes for quality were high.
+        </p>
+        <p class="cs-body" style="margin-top:16px;">
+          Metova provided the full engineering team to take MyBambu from concept to launch. That meant assessing and rewriting the mobile codebase, building out feature integration across third-party SDKs, and delivering a refined UX that made complex financial operations feel simple for first-time digital banking users.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE CHALLENGE ═══ -->
+<section class="fade-up" style="background:#111111; padding:80px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div>
+        <div class="cs-section-label">The Challenge</div>
+        <h2 class="cs-section-heading">A mobile codebase that needed a full remediation — before a single new feature could ship.</h2>
+        <p class="cs-body">When Metova reviewed MyBambu's existing mobile and web applications, it was clear the foundation wasn't ready for launch scale. The mobile codebase needed significant improvement across architecture, stability, and performance. Shipping new features on top of it wasn't an option.</p>
+        <p class="cs-body" style="margin-top:16px;">On top of the technical debt, bringing a transactional banking app to market meant integrating a complex web of third-party SDKs — each with its own security requirements, documentation, and representative teams to coordinate with. Getting all of that right, on time, for a bilingual audience with no prior digital banking experience, was the real challenge.</p>
+      </div>
+      <div style="border-radius:16px; overflow:hidden; aspect-ratio:4/3;">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&h=675&fit=crop&q=85"
+          alt="Mobile fintech app development challenge"
+          width="900" height="675"
+          style="width:100%; height:100%; object-fit:cover; display:block;"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS STRIP ═══ -->
+<section class="fade-up" style="background:#0A0A0A; padding:80px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-0 lg:divide-x" style="border-color:rgba(255,255,255,0.08);">
+      <div class="text-center lg:px-12">
+        <div class="cs-stat-num">75B+</div>
+        <div class="cs-stat-label">Global Transactions via FISGlobal</div>
+      </div>
+      <div class="text-center lg:px-12">
+        <div class="cs-stat-num">2</div>
+        <div class="cs-stat-label">Languages — English & Spanish</div>
+      </div>
+      <div class="text-center lg:px-12">
+        <div class="cs-stat-num">3+</div>
+        <div class="cs-stat-label">Major SDK Integrations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE SOLUTION ═══ -->
+<section class="fade-up" style="background:#0F0F0F; padding:100px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div style="border-radius:16px; overflow:hidden; aspect-ratio:4/3;">
+        <img
+          src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&h=675&fit=crop&q=85"
+          alt="MyBambu mobile banking app — iOS and Android"
+          width="900" height="675"
+          style="width:100%; height:100%; object-fit:cover; display:block;"
+          loading="lazy"
+        >
+      </div>
+      <div>
+        <div class="cs-section-label">The Solution</div>
+        <h2 class="cs-section-heading">Full remediation, feature delivery, and SDK orchestration — shipped to both app stores.</h2>
+        <p class="cs-body">Metova started with a comprehensive research, strategy, and tech assessment. We identified every architectural weakness, created a full remediation plan, prioritized the work, and rebuilt the mobile foundation — then launched the MyBambu app on both iOS and Android.</p>
+        <p class="cs-body" style="margin-top:16px;">Throughout development, we collaborated directly with MyBambu stakeholders to translate business requirements into polished features. User stories, UX flows, and content architecture drove both the mobile app and website wire-frames — ensuring the product vision was preserved from first-draft spec to shipped feature.</p>
+        <p class="cs-body" style="margin-top:16px;">SDK integration was handled end-to-end: Metova made the team fluent in each third-party SDK's documentation, coordinated with each vendor's representatives, and optimized the implementation workflow so every integration landed on time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FULL-WIDTH IMAGE ═══ -->
+<section class="fade-up" style="background:#0F0F0F; padding-bottom:100px;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div style="border-radius:20px; overflow:hidden; aspect-ratio:16/7;">
+      <img
+        src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=1600&h=700&fit=crop&q=85"
+        alt="Financial inclusion — digital banking for underserved communities"
+        width="1600" height="700"
+        style="width:100%; height:100%; object-fit:cover; display:block;"
+        loading="lazy"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES USED ═══ -->
+<section class="fade-up" style="background:#111111; padding:72px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="cs-divider mb-12"></div>
+    <div class="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
+      <div class="flex-none">
+        <div class="cs-label">Services Delivered</div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <span class="cs-pill">Tech Assessment</span>
+        <span class="cs-pill">UX/UI Design</span>
+        <span class="cs-pill">iOS Development</span>
+        <span class="cs-pill">Android Development</span>
+        <span class="cs-pill">SDK Integration</span>
+        <span class="cs-pill">Strategy &amp; Research</span>
+      </div>
+    </div>
+    <div class="cs-divider mt-12"></div>
+  </div>
+</section>
+
+<!-- ═══ NEXT PROJECT ═══ -->
+<section class="fade-up" style="background:#0F0F0F; padding:80px 0 100px;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-10">
+      <div class="cs-label">Next Project</div>
+      <a href="/work" class="text-sm text-brand-muted hover:text-white transition-colors" style="text-decoration:none;">View all work →</a>
+    </div>
+    <a href="/work/tnaa" class="next-card block" aria-label="TNAA case study">
+      <div class="next-card-img" style="aspect-ratio:21/9;">
+        <img
+          src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1600&h=686&fit=crop&q=85"
+          alt="TNAA — travel nurse staffing platform"
+          width="1600" height="686"
+          loading="lazy"
+        >
+      </div>
+      <div style="padding:24px 0 0;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span style="display:inline-flex; align-items:center; font-size:11px; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; padding:4px 10px; border-radius:100px; background:rgba(179,152,238,0.1); color:#B398EE; border:1px solid rgba(179,152,238,0.25);">Healthcare</span>
+          <span style="font-size:16px; color:#96979C; letter-spacing:0.02em;">TNAA &bull; 2022</span>
+        </div>
+        <p style="font-size:clamp(20px,2.5vw,32px); font-weight:700; color:#fff; line-height:1.2; letter-spacing:-0.02em;">Travel nurse staffing modernized — new marketing site and mobile app across all 50 states.</p>
+        <span style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:13px; font-weight:600; color:#96979C;">
+          View case study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ CTA + FOOTER ═══ -->
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+
+  <section id="contact" class="relative py-24 lg:py-40 z-10">
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">
+        We ship what others are still scoping.
+      </h2>
+      <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">
+        Whether you're integrating AI into an existing product or building from scratch, we're ready to help you ship something extraordinary.
+      </p>
+      <a href="mailto:hello@metova.com" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px);">
+        Start a Conversation
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer class="relative z-10 py-16">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4">
+          <p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="/services/ai-product-development" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+            <li><a href="/services/custom-software-engineering" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+            <li><a href="/services/ux-ui-design" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+            <li><a href="/services/nearshore-talent-solutions" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+            <li><a href="/services/iot-emerging-tech" class="nav-link text-sm text-brand-muted cursor-pointer">IoT &amp; Emerging Tech</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+            <li><a href="/work" class="nav-link text-sm text-white cursor-pointer">Work</a></li>
+            <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+            <li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4>
+          <div class="space-y-3">
+            <div>
+              <div class="text-sm font-semibold text-white">Bentonville, AR</div>
+              <div class="text-xs text-brand-muted">United States Headquarters</div>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white">Guadalajara, MX</div>
+              <div class="text-xs text-brand-muted">Mexico Headquarters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a>
+          <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../main.js" defer></script>
+<script type="module" src="../keyring.mjs"></script>
+
+</body>
+</html>

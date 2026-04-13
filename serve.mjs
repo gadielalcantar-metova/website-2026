@@ -17,6 +17,12 @@ createServer(async (req, res) => {
   else if (url === '/services/nearshore-talent-solutions') url = '/services/nearshore-talent-solutions.html';
   else if (url === '/services/iot-emerging-tech') url = '/services/iot-emerging-tech.html';
   else if (url === '/work') url = '/work.html';
+  else if (url === '/work/fiton') url = '/work/fiton.html';
+  else if (url === '/work/mybambu') url = '/work/mybambu.html';
+  else if (url === '/work/tnaa') url = '/work/tnaa.html';
+  else if (url === '/work/barwis') url = '/work/barwis.html';
+  else if (url === '/work/acoustic') url = '/work/acoustic.html';
+  else if (url === '/work/setf') url = '/work/setf.html';
   else if (url === '/about') url = '/about.html';
   else if (url === '/contact') url = '/contact.html';
   else if (url === '/insights') url = '/insights.html';
