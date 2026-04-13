@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work | Metova — Products Used by Millions</title>
+<meta name="description" content="18+ years of building digital products for the world's best brands. 250M+ downloads, $1B+ in client revenue. See our case studies.">
+<meta name="keywords" content="Metova case studies, FitOn app, MyBambu fintech, TNAA healthcare, software development portfolio, mobile app development, digital product engineering">
+<link rel="canonical" href="https://metova.com/work">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Our Work | Metova — Products Used by Millions">
+<meta property="og:description" content="18+ years of building digital products. 250M+ downloads, $1B+ in client revenue. FitOn, MyBambu, TNAA, Barwis, Acoustic, and more.">
+<meta property="og:url" content="https://metova.com/work">
+<meta property="og:site_name" content="Metova">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Our Work | Metova — Products Used by Millions">
+<meta name="twitter:description" content="18+ years of digital product engineering. See what we've built.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { green: '#8BAD41', lime: '#BAEB42', navy: '#001A33', surface: '#111111', bg: '#0F0F0F', muted: '#B0B1B5', dimmed: '#96979C' },
+        g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',800:'#374716',900:'#1C240B' }
+      },
+      fontFamily: { brand: ['"Geist"', 'sans-serif'] },
+      letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.04em' },
+      lineHeight: { body: '1.75' },
+      borderRadius: { card: '16px' }
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Metova Work & Case Studies",
+  "description": "Portfolio of digital products built by Metova — 18+ years, 250M+ downloads, $1B+ client revenue.",
+  "url": "https://metova.com/work",
+  "publisher": { "@type": "Organization", "name": "Metova", "url": "https://metova.com" }
+}
+</script>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-anim { opacity: 0; animation: heroFadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  .hero-anim-1 { animation-delay: 0.05s; }
+  .hero-anim-2 { animation-delay: 0.18s; }
+  .hero-anim-3 { animation-delay: 0.30s; }
+  .hero-anim-4 { animation-delay: 0.46s; }
+  .hero-anim-5 { animation-delay: 0.60s; }
+
+  /* Editorial card — mcshannock style */
+  .work-card { display: block; text-decoration: none; cursor: pointer; }
+  .work-card-img { position: relative; overflow: hidden; border-radius: 16px; }
+  .work-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .work-card:hover .work-card-img img { transform: scale(1.04); }
+  .work-card-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, rgba(10,10,10,0.55) 100%);
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .work-card:hover .work-card-img::after { opacity: 0.7; }
+
+  /* Below-image description — the mcshannock signature */
+  .work-card-body { padding: 20px 0 0; }
+  .work-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .work-tag {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px;
+    background: rgba(179,152,238,0.1); color: #B398EE;
+    border: 1px solid rgba(179,152,238,0.25);
+  }
+  .work-card-client { font-size: 16px; color: #96979C; letter-spacing: 0.03em; }
+  .work-card-desc {
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+  }
+  .work-card:hover .work-card-desc { color: #BAEB42; }
+  .work-card-cta {
+    display: inline-flex; align-items: center; gap-x: 6px;
+    margin-top: 14px; font-size: 13px; font-weight: 600;
+    color: #96979C; transition: color 0.2s;
+    text-decoration: none;
+  }
+  .work-card:hover .work-card-cta { color: #BAEB42; }
+
+  /* Featured card */
+  .featured-card { display: block; position: relative; overflow: hidden; border-radius: 20px; cursor: pointer; text-decoration: none; }
+  .featured-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .featured-card:hover img { transform: scale(1.03); }
+
+  /* Stats strip */
+  .stat-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .stat-num { font-size: clamp(28px,4vw,52px); font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+  .stat-label { font-size: 12px; color: #96979C; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+  .stat-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); align-self: center; }
+
+  /* Stagger col heights */
+  .col-tall { align-self: start; }
+  .col-short { align-self: start; }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
+    </div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm cursor-pointer" style="background:rgba(186,235,66,0.08); color:#BAEB42;">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-white cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="relative pt-36 lg:pt-44 pb-16 lg:pb-24 overflow-hidden" style="background:#0F0F0F;">
+  <canvas id="work-hero-grid" class="absolute inset-0 pointer-events-none" style="z-index:0; width:100%; height:100%;"></canvas>
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 50% at 50% 30%, rgba(139,173,65,0.06) 0%, transparent 70%);"></div>
+  <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+  <div class="absolute pointer-events-none" style="top:0; left:-200px; width:700px; height:600px; background:radial-gradient(ellipse at 20% 30%, rgba(139,173,65,0.07) 0%, transparent 60%); z-index:1;"></div>
+  <div class="absolute pointer-events-none" style="top:0; right:-100px; width:500px; height:500px; background:radial-gradient(ellipse at 80% 20%, rgba(186,235,66,0.05) 0%, transparent 60%); z-index:1;"></div>
+
+  <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <!-- Pill -->
+    <div class="hero-anim hero-anim-1 inline-flex items-center gap-2 mb-8">
+      <span class="w-2 h-2 shrink-0" style="background:#BAEB42;"></span>
+      <span class="text-xs font-semibold text-white uppercase" style="letter-spacing:0.08em;">Our Work</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="hero-anim hero-anim-2 font-bold tracking-display text-white mb-6" style="font-size:clamp(48px,8vw,100px); line-height:0.95; max-width:900px;">
+      Products Used<br>by Millions.
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="hero-anim hero-anim-3 text-lg lg:text-xl text-brand-muted mb-14 max-w-2xl" style="line-height:1.65;">
+      18 years of shipping digital products for enterprises, startups, and mission-driven organizations. We measure success in downloads, revenue, and real-world impact — not slide decks.
+    </p>
+
+    <!-- Stats strip -->
+    <div class="hero-anim hero-anim-4 flex flex-wrap items-center gap-6 lg:gap-10">
+      <div class="stat-item">
+        <span class="stat-num" data-target="250" data-suffix="M+">250M+</span>
+        <span class="stat-label">Downloads</span>
+      </div>
+      <div class="stat-divider hidden sm:block"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="1" data-prefix="$" data-suffix="B+">$1B+</span>
+        <span class="stat-label">Client Revenue</span>
+      </div>
+      <div class="stat-divider hidden sm:block"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="18" data-suffix="+">18+</span>
+        <span class="stat-label">Years</span>
+      </div>
+      <div class="stat-divider hidden sm:block"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="200" data-suffix="+">200+</span>
+        <span class="stat-label">Brands Served</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FEATURED: FitOn ═══ -->
+<section class="pb-8 lg:pb-10" style="background:#0F0F0F;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <a href="/work" class="work-card fade-up" aria-label="FitOn case study">
+      <div class="work-card-img" style="aspect-ratio:21/9;">
+        <img
+          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&h=686&fit=crop&q=85"
+          alt="FitOn — 12M+ user fitness platform"
+        >
+      </div>
+      <div class="work-card-body">
+        <div class="work-card-meta">
+          <span class="work-tag">Fitness</span>
+          <span class="work-tag">Healthcare</span>
+          <span class="work-card-client">FitOn &bull; 2021–2024</span>
+        </div>
+        <p class="work-card-desc">Scaling a wellness platform to 12 million members.</p>
+        <span class="work-card-cta mt-3 inline-flex items-center gap-2">
+          View case study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ PROJECT GRID ═══ -->
+<section class="py-8 lg:py-10" style="background:#0F0F0F;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <!-- Row 1: MyBambu (tall) + TNAA (short, offset down) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
+
+      <!-- MyBambu — tall -->
+      <a href="/work" class="work-card col-tall fade-up" aria-label="MyBambu case study">
+        <div class="work-card-img" style="aspect-ratio:3/4;">
+          <img
+            src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=1067&fit=crop&q=85"
+            alt="MyBambu — fintech for the unbanked"
+          >
+        </div>
+        <div class="work-card-body">
+          <div class="work-card-meta">
+            <span class="work-tag">FinTech</span>
+            <span class="work-card-client">MyBambu &bull; 2022</span>
+          </div>
+          <p class="work-card-desc">Banking the unbanked — a full-stack fintech platform backed by FISGlobal, built to scale for launch.</p>
+          <span class="work-card-cta mt-3 inline-flex items-center gap-2">
+            View case study
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- TNAA — short, offset -->
+      <a href="/work" class="work-card col-short fade-up" aria-label="TNAA case study">
+        <div class="work-card-img" style="aspect-ratio:4/3;">
+          <img
+            src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&h=600&fit=crop&q=85"
+            alt="TNAA — Travel Nurse Across America"
+          >
+        </div>
+        <div class="work-card-body">
+          <div class="work-card-meta">
+            <span class="work-tag">Healthcare</span>
+            <span class="work-card-client">TNAA &bull; 2022–2023</span>
+          </div>
+          <p class="work-card-desc">A complete digital overhaul for the nation's leading travel nurse staffing platform — new site, new apps, 50 states.</p>
+          <span class="work-card-cta mt-3 inline-flex items-center gap-2">
+            View case study
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Row 2: Barwis (short, offset) + Acoustic (tall) -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mb-6 lg:mb-8">
+
+      <!-- Barwis — short, offset -->
+      <a href="/work" class="work-card col-short fade-up" aria-label="Barwis case study">
+        <div class="work-card-img" style="aspect-ratio:4/3;">
+          <img
+            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=600&fit=crop&q=85"
+            alt="Barwis — elite athlete training platform"
+          >
+        </div>
+        <div class="work-card-body">
+          <div class="work-card-meta">
+            <span class="work-tag">Fitness</span>
+            <span class="work-card-client">Barwis &bull; 2021</span>
+          </div>
+          <p class="work-card-desc">Wearable-connected elite training platform — biometric sign-in, real-time coaching tools, and progress tracking for professional athletes.</p>
+          <span class="work-card-cta mt-3 inline-flex items-center gap-2">
+            View case study
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Acoustic — tall -->
+      <a href="/work" class="work-card col-tall fade-up" aria-label="Acoustic case study">
+        <div class="work-card-img" style="aspect-ratio:3/4;">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=1067&fit=crop&q=85"
+            alt="Acoustic — nearshore talent for multichannel marketing SaaS"
+          >
+        </div>
+        <div class="work-card-body">
+          <div class="work-card-meta">
+            <span class="work-tag">MarTech</span>
+            <span class="work-tag">Ecommerce</span>
+            <span class="work-card-client">Acoustic &bull; 2023</span>
+          </div>
+          <p class="work-card-desc">Nearshore engineering teams replacing offshore friction — enhancing a multichannel marketing platform used by enterprise brands worldwide.</p>
+          <span class="work-card-cta mt-3 inline-flex items-center gap-2">
+            View case study
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Row 3: SETF — full width, shorter -->
+    <div class="fade-up">
+      <a href="/work" class="work-card block" aria-label="SETF case study">
+        <div class="work-card-img" style="aspect-ratio:21/9;">
+          <img
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&h=686&fit=crop&q=85"
+            alt="Syrian Emergency Task Force — humanitarian mobile app"
+            style="border-radius:16px;"
+          >
+        </div>
+        <div class="work-card-body grid grid-cols-1 lg:grid-cols-2 gap-4 items-start pt-5">
+          <div>
+            <div class="work-card-meta">
+              <span class="work-tag">Government</span>
+              <span class="work-tag">Nonprofit</span>
+              <span class="work-card-client">SETF &bull; 2020</span>
+            </div>
+          </div>
+          <div>
+            <p class="work-card-desc">A humanitarian mobile platform for the Syrian Emergency Task Force — connecting advocacy, aid coordination, and community support at scale.</p>
+            <span class="work-card-cta mt-3 inline-flex items-center gap-2">
+              View case study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CLIENT NAME TICKER ═══ -->
+<section class="py-20 lg:py-28 relative" style="background:#111111; border-top:1px solid rgba(255,255,255,0.06); overflow:hidden;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 mb-12 fade-up">
+    <h2 class="text-2xl sm:text-3xl font-bold tracking-heading text-white" style="line-height:1.1;">Trusted by brands that move fast<br>and build to last.</h2>
+  </div>
+  <div class="ticker-track" style="display:flex; align-items:center; width:max-content; gap:0;">
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">FitOn</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">MyBambu</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">TNAA</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">Barwis</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">Acoustic</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">SETF</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">SiriusXM</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">TruGreen</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">FISGlobal</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <!-- duplicate for seamless loop -->
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">FitOn</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">MyBambu</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">TNAA</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">Barwis</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">Acoustic</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">SETF</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">SiriusXM</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">TruGreen</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+    <span style="font-size:clamp(13px,1.2vw,16px); font-weight:600; color:rgba(255,255,255,0.2); white-space:nowrap; padding-right:48px; letter-spacing:0.06em; text-transform:uppercase;">FISGlobal</span>
+    <span style="font-size:10px; color:rgba(186,235,66,0.3); padding-right:48px;">&#9632;</span>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<section style="background:#141414; padding:80px 0; overflow:hidden;">
+  <div class="marquee-xl-track" style="display:flex; align-items:center; width:max-content;">
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's work together</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+  </div>
+</section>
+
+<!-- ═══ CTA + FOOTER ═══ -->
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+
+  <section id="contact" class="relative py-24 lg:py-40 z-10">
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">
+        We ship what others are still scoping.
+      </h2>
+      <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">
+        Whether you're integrating AI into an existing product or building from scratch, we're ready to help you ship something extraordinary.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="mailto:hello@metova.com" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px); margin-right:-0.04em;">
+          Start a Conversation
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative z-10 py-16">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4">
+          <p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="/services/ai-product-development" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+            <li><a href="/services/custom-software-engineering" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+            <li><a href="/services/ux-ui-design" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+            <li><a href="/services/nearshore-talent-solutions" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+            <li><a href="/services/iot-emerging-tech" class="nav-link text-sm text-brand-muted cursor-pointer">IoT &amp; Emerging Tech</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+            <li><a href="/work" class="nav-link text-sm text-white cursor-pointer">Work</a></li>
+            <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+            <li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4>
+          <div class="space-y-3">
+            <div>
+              <div class="text-sm font-semibold text-white">Bentonville, AR</div>
+              <div class="text-xs text-brand-muted">United States Headquarters</div>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white">Guadalajara, MX</div>
+              <div class="text-xs text-brand-muted">Mexico Headquarters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a>
+          <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="main.js" defer></script>
+
+<!-- ═══ HERO GRID SHADER (Three.js) ═══ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('work-hero-grid');
+  const section = canvas ? canvas.parentElement : null;
+  if (!canvas || !section || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const clock = new THREE.Clock();
+
+  const vertexShader = `
+    void main() {
+      gl_Position = vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    precision highp float;
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec2 iMouse;
+
+    float random(vec2 st) {
+      return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+    }
+
+    void main() {
+      vec2 uv    = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+      vec2 mouse = (iMouse - 0.5 * iResolution.xy) / iResolution.y;
+
+      float t         = iTime * 0.18;
+      float mouseDist = length(uv - mouse);
+
+      /* subtle mouse warp */
+      float warp = sin(mouseDist * 18.0 - t * 3.5) * 0.06;
+      warp *= smoothstep(0.45, 0.0, mouseDist);
+      uv += warp;
+
+      /* grid lines — thicker, fuller */
+      vec2 gridUv = abs(fract(uv * 9.0) - 0.5);
+      float line  = pow(1.0 - min(gridUv.x, gridUv.y), 38.0);
+
+      /* lime: #BAEB42 = rgb(186,235,66) */
+      vec3 lime = vec3(0.729, 0.922, 0.259);
+
+      /* base grid — clearly visible pulse */
+      vec3 color = lime * line * (0.55 + sin(t * 1.8) * 0.12);
+
+      /* energy nodes at grid intersections */
+      float energy = sin(uv.x * 18.0 + t * 4.0) * sin(uv.y * 18.0 + t * 2.5);
+      energy = smoothstep(0.78, 1.0, energy);
+      color += lime * energy * line * 0.9;
+
+      /* mouse glow */
+      float glow = smoothstep(0.18, 0.0, mouseDist);
+      color += lime * glow * 0.5;
+
+      /* soft border fade — only at outermost edges, not center */
+      vec2 uvN = gl_FragCoord.xy / iResolution.xy;
+      float edgeFade = smoothstep(0.0, 0.06, uvN.x)
+                     * smoothstep(1.0, 0.94, uvN.x)
+                     * smoothstep(0.0, 0.04, uvN.y)
+                     * smoothstep(1.0, 0.96, uvN.y);
+
+      /* subtle noise grain */
+      color += random(uv + t * 0.08) * 0.02;
+
+      float alpha = clamp(length(color) * edgeFade, 0.0, 1.0);
+      gl_FragColor = vec4(color * edgeFade, alpha);
+    }
+  `;
+
+  const uniforms = {
+    iTime:       { value: 0 },
+    iResolution: { value: new THREE.Vector2() },
+    iMouse:      { value: new THREE.Vector2(0, 0) }
+  };
+
+  const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true });
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+  scene.add(mesh);
+
+  function resize() {
+    const w  = section.clientWidth;
+    const h  = section.clientHeight;
+    const pr = renderer.getPixelRatio();
+    renderer.setSize(w, h, false);
+    uniforms.iResolution.value.set(w * pr, h * pr);
+    uniforms.iMouse.value.set((w * pr) / 2, (h * pr) / 2);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function onMouseMove(e) {
+    const rect = section.getBoundingClientRect();
+    const pr   = renderer.getPixelRatio();
+    uniforms.iMouse.value.set(
+      (e.clientX - rect.left) * pr,
+      (section.clientHeight - (e.clientY - rect.top)) * pr
+    );
+  }
+  section.addEventListener('mousemove', onMouseMove);
+
+  renderer.setAnimationLoop(() => {
+    uniforms.iTime.value = clock.getElapsedTime();
+    renderer.render(scene, camera);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -119,7 +119,7 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <section class="relative pt-32 lg:pt-44 overflow-hidden" style="min-height:60vh;">
   <!-- Background grid -->
-  <div class="hero-grid absolute inset-0 pointer-events-none" style="z-index:0;"></div>
+  <canvas id="svc-hero-grid" class="absolute inset-0 pointer-events-none" style="z-index:0; width:100%; height:100%;"></canvas>
   <!-- Radial glow -->
   <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse 60% 50% at 50% 30%, rgba(139,173,65,0.06) 0%, transparent 70%);"></div>
 
@@ -143,7 +143,7 @@ tailwind.config = {
 <!-- ═══════════════════════════════════════════════════════ -->
 <!-- SECTION 2: SERVICES — Editorial rows (text left, image right) -->
 <!-- ═══════════════════════════════════════════════════════ -->
-<section class="relative py-20 lg:py-32">
+<section class="relative pb-20 lg:pb-32">
   <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
 
     <!-- Service Detail 1: AI Product Development -->
@@ -436,5 +436,121 @@ tailwind.config = {
 <!-- External JS -->
 <script src="main.js" defer></script>
 <script type="module" src="keyring.mjs"></script>
+
+<!-- ═══ HERO GRID SHADER (Three.js) ═══ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('svc-hero-grid');
+  const section = canvas ? canvas.parentElement : null;
+  if (!canvas || !section || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const clock = new THREE.Clock();
+
+  const vertexShader = `
+    void main() {
+      gl_Position = vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    precision highp float;
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec2 iMouse;
+
+    float random(vec2 st) {
+      return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+    }
+
+    void main() {
+      vec2 uv    = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+      vec2 mouse = (iMouse - 0.5 * iResolution.xy) / iResolution.y;
+
+      float t         = iTime * 0.18;
+      float mouseDist = length(uv - mouse);
+
+      /* subtle mouse warp */
+      float warp = sin(mouseDist * 18.0 - t * 3.5) * 0.06;
+      warp *= smoothstep(0.45, 0.0, mouseDist);
+      uv += warp;
+
+      /* grid lines */
+      vec2 gridUv = abs(fract(uv * 9.0) - 0.5);
+      float line  = pow(1.0 - min(gridUv.x, gridUv.y), 38.0);
+
+      /* lime: #BAEB42 = rgb(186,235,66) */
+      vec3 lime = vec3(0.729, 0.922, 0.259);
+
+      /* base grid — clearly visible pulse */
+      vec3 color = lime * line * (0.55 + sin(t * 1.8) * 0.12);
+
+      /* energy nodes at grid intersections */
+      float energy = sin(uv.x * 18.0 + t * 4.0) * sin(uv.y * 18.0 + t * 2.5);
+      energy = smoothstep(0.78, 1.0, energy);
+      color += lime * energy * line * 0.9;
+
+      /* mouse glow */
+      float glow = smoothstep(0.18, 0.0, mouseDist);
+      color += lime * glow * 0.5;
+
+      /* soft border fade — only at outermost edges */
+      vec2 uvN = gl_FragCoord.xy / iResolution.xy;
+      float edgeFade = smoothstep(0.0, 0.06, uvN.x)
+                     * smoothstep(1.0, 0.94, uvN.x)
+                     * smoothstep(0.0, 0.04, uvN.y)
+                     * smoothstep(1.0, 0.96, uvN.y);
+
+      /* subtle noise grain */
+      color += random(uv + t * 0.08) * 0.02;
+
+      float alpha = clamp(length(color) * edgeFade, 0.0, 1.0);
+      gl_FragColor = vec4(color * edgeFade, alpha);
+    }
+  `;
+
+  const uniforms = {
+    iTime:       { value: 0 },
+    iResolution: { value: new THREE.Vector2() },
+    iMouse:      { value: new THREE.Vector2(0, 0) }
+  };
+
+  const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true });
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+  scene.add(mesh);
+
+  function resize() {
+    const w  = section.clientWidth;
+    const h  = section.clientHeight;
+    const pr = renderer.getPixelRatio();
+    renderer.setSize(w, h, false);
+    uniforms.iResolution.value.set(w * pr, h * pr);
+    uniforms.iMouse.value.set((w * pr) / 2, (h * pr) / 2);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function onMouseMove(e) {
+    const rect = section.getBoundingClientRect();
+    const pr   = renderer.getPixelRatio();
+    uniforms.iMouse.value.set(
+      (e.clientX - rect.left) * pr,
+      (section.clientHeight - (e.clientY - rect.top)) * pr
+    );
+  }
+  section.addEventListener('mousemove', onMouseMove);
+
+  renderer.setAnimationLoop(() => {
+    uniforms.iTime.value = clock.getElapsedTime();
+    renderer.render(scene, camera);
+  });
+})();
+</script>
 
 </body></html>
