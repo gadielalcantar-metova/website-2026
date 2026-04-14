@@ -1034,32 +1034,38 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     {
       name: 'FitOn',
       desc: 'Cut Azure hosting costs by 50% while scaling to millions of active users through intelligent infrastructure optimization.',
-      tags: ['Cloud Infrastructure', 'Mobile Dev', 'DevOps']
+      tags: ['Cloud Infrastructure', 'Mobile Dev', 'DevOps'],
+      url: '/work/fiton'
     },
     {
       name: 'MyBambu',
       desc: 'Built a neobanking platform for underserved communities with real-time payments, virtual cards, and bilingual support.',
-      tags: ['FinTech', 'Full-Stack Dev', 'UX Design']
+      tags: ['FinTech', 'Full-Stack Dev', 'UX Design'],
+      url: '/work/mybambu'
     },
     {
       name: 'Barwis Methods',
       desc: 'Designed and developed a performance training platform connecting elite athletes with data-driven workout programs.',
-      tags: ['Health & Fitness', 'Mobile Dev', 'UX Design']
+      tags: ['Health & Fitness', 'Mobile Dev', 'UX Design'],
+      url: '/work/barwis'
     },
     {
       name: 'FleetPulse',
       desc: 'Real-time fleet tracking and predictive maintenance platform managing 12,000+ vehicles across North America with 99.9% uptime.',
-      tags: ['IoT', 'Fleet Management', 'Data Analytics']
+      tags: ['IoT', 'Fleet Management', 'Data Analytics'],
+      url: '#'
     },
     {
       name: 'MediSync',
       desc: 'AI-powered patient scheduling and triage system that reduced wait times by 40% across a 200-clinic hospital network.',
-      tags: ['Healthcare', 'AI Integration', 'HIPAA Compliance']
+      tags: ['Healthcare', 'AI Integration', 'HIPAA Compliance'],
+      url: '#'
     },
     {
       name: 'Verdant',
       desc: 'Sustainable marketplace platform connecting eco-conscious consumers with verified green brands. 3x revenue growth in first year post-launch.',
-      tags: ['E-Commerce', 'UX Design', 'Full-Stack Dev']
+      tags: ['E-Commerce', 'UX Design', 'Full-Stack Dev'],
+      url: '#'
     }
   ];
 
@@ -1097,6 +1103,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       clientName.textContent = study.name;
       description.textContent = study.desc;
       tagsEl.innerHTML = makeTagHTML(study.tags);
+      ctaBtn.href = study.url;
 
       // Fade in
       requestAnimationFrame(() => {

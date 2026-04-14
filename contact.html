@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact — Let's Build Something Together · Metova</title>
+<meta name="description" content="Start a conversation with Metova. Tell us what you're building and we'll get back to you within one business day.">
+<link rel="canonical" href="https://metova.com/contact">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact Metova — Let's Build Something Together">
+<meta property="og:description" content="Start a conversation with Metova. Tell us what you're building and we'll get back to you within one business day.">
+<meta property="og:url" content="https://metova.com/contact">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { lime:'#BAEB42', bg:'#0F0F0F', surface:'#111111', muted:'#B0B1B5', dimmed:'#96979C' }
+      },
+      fontFamily: { brand:['"Geist"','sans-serif'] },
+      letterSpacing: { display:'-0.03em', heading:'-0.02em', label:'0.04em' }
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  @keyframes heroFadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .hero-anim   { opacity:0; animation:heroFadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  .hero-anim-1 { animation-delay:0.05s; }
+  .hero-anim-2 { animation-delay:0.15s; }
+  .hero-anim-3 { animation-delay:0.28s; }
+  .hero-anim-4 { animation-delay:0.42s; }
+
+  /* form field */
+  .field-wrap { display:flex; flex-direction:column; gap:8px; }
+  .field-label {
+    font-size:12px; font-weight:600; letter-spacing:0.06em;
+    text-transform:uppercase; color:#96979C;
+  }
+  .field-input {
+    width:100%; background:#111111; border:1px solid rgba(255,255,255,0.1);
+    border-radius:10px; padding:16px 20px;
+    font-size:15px; font-weight:400; color:#fff;
+    font-family:'Geist', sans-serif;
+    outline:none; transition:border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance:none;
+  }
+  .field-input::placeholder { color:#4B4B4F; }
+  .field-input:focus {
+    border-color:rgba(186,235,66,0.4);
+    box-shadow:0 0 0 3px rgba(186,235,66,0.07);
+  }
+  .field-input:invalid:not(:placeholder-shown) {
+    border-color:rgba(239,68,68,0.4);
+  }
+  textarea.field-input { resize:none; min-height:160px; line-height:1.7; }
+
+  /* submit button */
+  .submit-btn {
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    width:100%; padding:18px 32px; border-radius:10px;
+    background:#BAEB42; color:#0A0A0A;
+    font-size:14px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    border:none; cursor:pointer; font-family:'Geist', sans-serif;
+    transition:background 0.2s, transform 0.15s;
+  }
+  .submit-btn:hover  { background:#cdf55a; }
+  .submit-btn:active { transform:scale(0.985); }
+
+  /* side info */
+  .info-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#BAEB42; margin-bottom:8px; }
+  .info-value { font-size:15px; color:#fff; font-weight:500; }
+  .info-sub   { font-size:13px; color:#B0B1B5; margin-top:2px; }
+
+  /* divider */
+  .v-divider { width:1px; background:rgba(255,255,255,0.07); align-self:stretch; }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
+    </div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work"     class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about"    class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact"  class="nav-pill-link px-5 py-2 rounded-full text-sm cursor-pointer" style="background:rgba(186,235,66,0.08); color:#BAEB42;">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work"     class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about"    class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact"  class="nav-link text-2xl font-semibold text-white cursor-pointer"       onclick="closeMobile()">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- MAIN CONTACT SECTION -->
+<!-- ═══════════════════════════════════════ -->
+<main style="min-height:100vh; background:#0F0F0F; padding-top:140px; padding-bottom:120px;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <!-- Two column layout: form left, info right -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- LEFT: headline + form -->
+      <div>
+        <p class="hero-anim hero-anim-1" style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#BAEB42; margin-bottom:16px;">Get in touch</p>
+        <h1 class="hero-anim hero-anim-2 font-bold" style="font-size:clamp(36px,4.5vw,64px); line-height:1.0; letter-spacing:-0.04em; color:#fff; margin-bottom:16px;">
+          Let's build something<br>together.
+        </h1>
+        <p class="hero-anim hero-anim-3" style="font-size:16px; line-height:1.75; color:#B0B1B5; margin-bottom:48px; max-width:420px;">
+          Tell us what you're working on. We'll get back to you within one business day.
+        </p>
+
+        <form class="hero-anim hero-anim-4" id="contact-form" novalidate style="display:flex; flex-direction:column; gap:20px;">
+
+          <!-- Name + Email row -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="field-wrap">
+              <label class="field-label" for="name">Name <span style="color:#BAEB42;">*</span></label>
+              <input id="name" name="name" type="text" required placeholder="Josh Smith" class="field-input" autocomplete="given-name">
+            </div>
+            <div class="field-wrap">
+              <label class="field-label" for="email">Email <span style="color:#BAEB42;">*</span></label>
+              <input id="email" name="email" type="email" required placeholder="josh@company.com" class="field-input" autocomplete="email">
+            </div>
+          </div>
+
+          <!-- Company -->
+          <div class="field-wrap">
+            <label class="field-label" for="company">Company <span style="color:#BAEB42;">*</span></label>
+            <input id="company" name="company" type="text" required placeholder="Acme Inc." class="field-input" autocomplete="organization">
+          </div>
+
+          <!-- What can we help you with -->
+          <div class="field-wrap">
+            <label class="field-label" for="message">What can we help you with? <span style="color:#BAEB42;">*</span></label>
+            <textarea id="message" name="message" required placeholder="Tell us about your project, timeline, or challenge..." class="field-input"></textarea>
+          </div>
+
+          <!-- Error message -->
+          <p id="form-error" style="display:none; font-size:13px; color:#f87171; margin-top:-4px;"></p>
+
+          <!-- Submit -->
+          <button type="submit" class="btn-glow inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px); margin-top:4px; width:100%; font-family:'Geist',sans-serif; letter-spacing:0.04em;">
+            Send message
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </button>
+
+          <!-- Success state (hidden) -->
+          <div id="form-success" style="display:none; padding:20px 24px; border-radius:10px; background:rgba(186,235,66,0.08); border:1px solid rgba(186,235,66,0.2);">
+            <p style="font-size:15px; font-weight:600; color:#BAEB42; margin-bottom:4px;">Message sent.</p>
+            <p style="font-size:14px; color:#B0B1B5;">We'll be in touch within one business day.</p>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT: contact info -->
+      <div class="hidden lg:block" style="padding-top:120px;">
+
+        <div style="display:flex; flex-direction:column; gap:40px;">
+
+          <!-- Offices -->
+          <div>
+            <p class="info-label">Offices</p>
+            <div style="display:flex; flex-direction:column; gap:20px; margin-top:4px;">
+              <div>
+                <p class="info-value">Bentonville, Arkansas</p>
+                <p class="info-sub">240 S Main St, Ste 228 · 72712</p>
+                <p class="info-sub" style="margin-top:2px;">United States HQ</p>
+              </div>
+              <div>
+                <p class="info-value">Guadalajara, Mexico</p>
+                <p class="info-sub">Mar Baltico 2240-405</p>
+                <p class="info-sub" style="margin-top:2px;">Mexico HQ</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:1px; background:rgba(255,255,255,0.07);"></div>
+
+          <!-- Turnaround -->
+          <div>
+            <p class="info-label">What to expect</p>
+            <ul style="display:flex; flex-direction:column; gap:10px; margin-top:4px;">
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:14px; color:#B0B1B5;">
+                <span style="color:#BAEB42; flex-shrink:0; margin-top:2px;">→</span>
+                Response within one business day
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:14px; color:#B0B1B5;">
+                <span style="color:#BAEB42; flex-shrink:0; margin-top:2px;">→</span>
+                A 30-min Initial Insights call — no charge
+              </li>
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:14px; color:#B0B1B5;">
+                <span style="color:#BAEB42; flex-shrink:0; margin-top:2px;">→</span>
+                Straight talk on scope, timeline, and fit
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+<footer style="background:transparent; border-top:1px solid rgba(255,255,255,0.06); padding:64px 0 40px; position:relative; z-index:10;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-1">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4">
+        <p class="text-sm text-brand-muted leading-relaxed">AI development and custom software company. Building products that scale since 2006.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
+        <ul class="space-y-2">
+          <li><a href="/services/ai-product-development" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+          <li><a href="/services/custom-software-engineering" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+          <li><a href="/services/ux-ui-design" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+          <li><a href="/services/nearshore-talent-solutions" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+          <li><a href="/services" class="nav-link text-sm text-brand-muted cursor-pointer">IoT &amp; Emerging Tech</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="/about"    class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+          <li><a href="/work"     class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li>
+          <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+          <li><a href="/contact"  class="nav-link text-sm text-white cursor-pointer">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4>
+        <div class="space-y-3">
+          <div>
+            <div class="text-sm font-semibold text-white">Bentonville, AR</div>
+            <div class="text-xs text-brand-muted">United States Headquarters</div>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">Guadalajara, MX</div>
+            <div class="text-xs text-brand-muted">Mexico Headquarters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a>
+        <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</div><!-- /halo wrapper -->
+
+<script src="main.js" defer></script>
+<script type="module" src="keyring.mjs"></script>
+
+<script>
+/* ─── Form validation + submit ─────────────────────────────────── */
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  var name    = document.getElementById('name');
+  var email   = document.getElementById('email');
+  var company = document.getElementById('company');
+  var message = document.getElementById('message');
+  var error   = document.getElementById('form-error');
+  var success = document.getElementById('form-success');
+  var btn     = this.querySelector('.submit-btn');
+
+  error.style.display = 'none';
+
+  /* validate */
+  var empty = [name, email, company, message].find(function (f) { return !f.value.trim(); });
+  if (empty) {
+    error.textContent  = 'Please fill in all required fields.';
+    error.style.display = 'block';
+    empty.focus();
+    return;
+  }
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRe.test(email.value.trim())) {
+    error.textContent  = 'Please enter a valid email address.';
+    error.style.display = 'block';
+    email.focus();
+    return;
+  }
+
+  /* simulate send */
+  btn.textContent = 'Sending…';
+  btn.disabled    = true;
+  btn.style.opacity = '0.7';
+
+  setTimeout(function () {
+    this.style.display = 'none';
+    success.style.display = 'block';
+  }.bind(this), 900);
+});
+
+/* mobile grid: name+email stack on small screens */
+(function () {
+  var row = document.querySelector('[style*="grid-template-columns:1fr 1fr"]');
+  function check() {
+    if (!row) return;
+    row.style.gridTemplateColumns = window.innerWidth < 640 ? '1fr' : '1fr 1fr';
+  }
+  check();
+  window.addEventListener('resize', check);
+})();
+</script>
+
+</body>
+</html>
