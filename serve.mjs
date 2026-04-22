@@ -25,6 +25,7 @@ createServer(async (req, res) => {
   else if (url === '/work/setf') url = '/work/setf.html';
   else if (url === '/about') url = '/about.html';
   else if (url === '/contact') url = '/contact.html';
+  else if (url === '/careers') url = '/careers.html';
   else if (url === '/insights') url = '/insights.html';
   else if (url === '/ai/llm-nlp-integration') url = '/ai/llm-nlp-integration.html';
   else if (url === '/ai/computer-vision-ml') url = '/ai/computer-vision-ml.html';

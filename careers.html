@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Careers at Metova | Software Engineering &amp; Design Jobs</title>
+<meta name="description" content="Join Metova — 20 years building AI-native software for brands like SiriusXM, FitOn, and TruGreen. Remote &amp; nearshore engineering, design, and product roles.">
+<meta name="keywords" content="Metova careers, Metova jobs, software engineer jobs, nearshore software developer, AI engineer jobs, remote engineering jobs, work at Metova, Bentonville software jobs, Guadalajara software jobs, AI consultancy careers">
+<link rel="canonical" href="https://metova.com/careers">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Careers at Metova — Your skills can take you to the next level.">
+<meta property="og:description" content="Senior engineers, designers, and product thinkers who'd rather ship real products than pad proposals. Embedded work. Nearshore culture. Clients who know your name.">
+<meta property="og:url" content="https://metova.com/careers">
+<meta property="og:site_name" content="Metova">
+<meta property="og:image" content="https://metova.com/brand_assets/Metova_Logo_Dark.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Careers at Metova — Your skills can take you to the next level.">
+<meta name="twitter:description" content="Senior engineering, design, and product roles at a 20-year AI and custom software consultancy. Remote and nearshore.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Metova",
+  "url": "https://metova.com",
+  "logo": "https://metova.com/brand_assets/Metova_Logo_Dark.png",
+  "foundingDate": "2006",
+  "description": "Metova is an AI and custom software engineering consultancy building consumer apps, SaaS platforms, and AI-native products for leading brands since 2006.",
+  "address": [
+    { "@type": "PostalAddress", "streetAddress": "240 S Main St, Ste 228", "addressLocality": "Bentonville", "addressRegion": "AR", "postalCode": "72712", "addressCountry": "US" },
+    { "@type": "PostalAddress", "streetAddress": "Mar Baltico 2240-405", "addressLocality": "Guadalajara", "addressCountry": "MX" }
+  ],
+  "knowsAbout": ["Software Engineering", "AI Product Development", "LLM Integration", "Computer Vision", "iOS Development", "Android Development", "Nearshore Talent"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://metova.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Careers", "item": "https://metova.com/careers" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Anek+Telugu:wght@300;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { green:'#8BAD41', lime:'#BAEB42', surface:'#111111', bg:'#0F0F0F', muted:'#B0B1B5', dimmed:'#96979C' }
+      },
+      fontFamily: { brand:['"Geist"','sans-serif'] },
+      letterSpacing: { display:'-0.03em', heading:'-0.02em', label:'0.04em' }
+    }
+  }
+}
+</script>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  @keyframes heroFadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .hero-anim   { opacity:0; animation:heroFadeUp 0.8s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  .hero-anim-1 { animation-delay:0.08s; }
+  .hero-anim-2 { animation-delay:0.28s; }
+  .hero-anim-3 { animation-delay:0.48s; }
+
+  /* ═══ HERO ═══ */
+  .cr-hero-h1 {
+    font-family:'Geist', sans-serif; font-weight:700;
+    font-size:clamp(44px, 6.5vw, 92px); line-height:0.95;
+    letter-spacing:-0.03em; color:#fff; max-width:720px;
+  }
+  .cr-hero-arrow {
+    width:56px; height:56px; border:1px solid rgba(186,235,66,0.35); border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; color:#BAEB42;
+    margin-top:48px; transition:background 0.25s, transform 0.25s;
+  }
+  .cr-hero-arrow:hover { background:rgba(186,235,66,0.1); transform:rotate(45deg); }
+
+  .cr-hero-right p { font-size:15px; line-height:1.7; color:#B0B1B5; margin-bottom:20px; }
+  .cr-hero-right p:last-child { margin-bottom:0; }
+
+  /* ═══ BENEFITS ═══ */
+  .cr-benefits-h2 {
+    font-family:'Geist', sans-serif; font-weight:700;
+    font-size:clamp(36px,5vw,64px); line-height:1; letter-spacing:-0.03em; color:#fff;
+    margin-bottom:72px;
+  }
+  .cr-benefit-icon {
+    width:56px; height:56px; display:inline-flex; align-items:center; justify-content:center;
+    color:#BAEB42; margin-bottom:24px;
+  }
+  .cr-benefit-icon svg { overflow:visible; }
+  .cr-benefit-title { font-size:20px; font-weight:700; color:#fff; margin-bottom:10px; letter-spacing:-0.01em; }
+  .cr-benefit-desc  { font-size:14px; line-height:1.7; color:#B0B1B5; max-width:280px; }
+
+  /* Lottie-style continuous loops for benefit icons */
+  .cr-benefit-icon svg [data-spin]   { transform-origin:30px 30px; animation:cr-spin 14s linear infinite; }
+  .cr-benefit-icon svg [data-bob]    { animation:cr-bob 3.2s ease-in-out infinite; }
+  .cr-benefit-icon svg [data-pulse]  { transform-origin:30px 30px; animation:cr-pulse 2.4s ease-in-out infinite; }
+  .cr-benefit-icon svg [data-blink]  { animation:cr-blink 2.2s ease-in-out infinite; }
+  .cr-benefit-icon svg [data-draw]   { stroke-dasharray:30; stroke-dashoffset:30; animation:cr-draw 3.4s ease-in-out infinite; }
+  .cr-benefit-icon svg [data-chev-1] { animation:cr-chev 1.6s ease-in-out 0s    infinite; }
+  .cr-benefit-icon svg [data-chev-2] { animation:cr-chev 1.6s ease-in-out 0.25s infinite; }
+  .cr-benefit-icon svg [data-chev-3] { animation:cr-chev 1.6s ease-in-out 0.5s  infinite; }
+  .cr-benefit-icon svg [data-cal-1]  { animation:cr-blink 2.0s ease-in-out 0s    infinite; }
+  .cr-benefit-icon svg [data-cal-2]  { animation:cr-blink 2.0s ease-in-out 0.2s  infinite; }
+  .cr-benefit-icon svg [data-cal-3]  { animation:cr-blink 2.0s ease-in-out 0.4s  infinite; }
+  .cr-benefit-icon svg [data-cal-4]  { animation:cr-blink 2.0s ease-in-out 0.6s  infinite; }
+
+  @keyframes cr-spin  { to { transform:rotate(360deg); } }
+  @keyframes cr-bob   { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+  @keyframes cr-pulse { 0%,100% { transform:scale(1); opacity:0.9; } 50% { transform:scale(1.18); opacity:1; } }
+  @keyframes cr-blink { 0%,60%,100% { opacity:1; } 30% { opacity:0.2; } }
+  @keyframes cr-draw  { 0% { stroke-dashoffset:30; } 50% { stroke-dashoffset:0; } 100% { stroke-dashoffset:-30; } }
+  @keyframes cr-chev  { 0%,60%,100% { opacity:0.35; transform:translateY(0); } 30% { opacity:1; transform:translateY(-2px); } }
+  @keyframes cr-pulse-loc {
+    0%,100% { transform:scale(1); box-shadow:0 0 0 0 var(--loc-color, #BAEB42), 0 0 14px var(--loc-color, #BAEB42); }
+    50%     { transform:scale(1.35); box-shadow:0 0 0 6px rgba(186,235,66,0), 0 0 22px var(--loc-color, #BAEB42); }
+  }
+
+  /* ═══ WE'RE HIRING (dark, matches Metova theme) ═══ */
+  .cr-hiring-h2 {
+    font-family:'Geist', sans-serif; font-weight:700;
+    font-size:clamp(36px,5vw,64px); line-height:1; letter-spacing:-0.03em; color:#fff;
+  }
+  .cr-role { border-top:1px solid rgba(255,255,255,0.1); }
+  .cr-role:last-child { border-bottom:1px solid rgba(255,255,255,0.1); }
+  .cr-role-header {
+    display:grid; grid-template-columns:minmax(100px,auto) 1fr auto;
+    gap:24px; align-items:center; padding:28px 0; cursor:pointer;
+    transition:padding-left 0.25s ease, background 0.25s ease;
+  }
+  .cr-role-header:hover { padding-left:12px; padding-right:12px; background:rgba(186,235,66,0.03); }
+  .cr-role-pill {
+    display:inline-flex; align-items:center; padding:8px 18px; border:1px solid rgba(255,255,255,0.15);
+    border-radius:100px; font-size:12px; font-weight:600; color:#B0B1B5; letter-spacing:0.02em;
+    background:transparent; white-space:nowrap; transition:color 0.25s, border-color 0.25s;
+  }
+  .cr-role-header:hover .cr-role-pill { color:#BAEB42; border-color:rgba(186,235,66,0.35); }
+  .cr-role-body { display:flex; flex-direction:column; gap:4px; }
+  .cr-role-title { font-size:clamp(18px,1.5vw,22px); font-weight:600; color:#fff; letter-spacing:-0.01em; }
+  .cr-role-meta  { font-size:13px; color:#96979C; }
+  .cr-role-chevron {
+    width:40px; height:40px; border-radius:50%; border:1px solid rgba(255,255,255,0.2);
+    display:inline-flex; align-items:center; justify-content:center; color:#fff;
+    transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.25s, border-color 0.25s, color 0.25s;
+  }
+  .cr-role-header:hover .cr-role-chevron { background:#BAEB42; border-color:#BAEB42; color:#0F0F0F; }
+  .cr-role.open .cr-role-chevron { transform:rotate(45deg); background:#BAEB42; border-color:#BAEB42; color:#0F0F0F; }
+  .cr-role-details {
+    max-height:0; overflow:hidden;
+    transition:max-height 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .cr-role.open .cr-role-details { max-height:700px; }
+  .cr-role-details-inner { padding:8px 0 36px 0; max-width:760px; }
+  .cr-role-details-inner h4 { font-size:11px; font-weight:700; color:#BAEB42; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px; }
+  .cr-role-details-inner p  { font-size:15px; line-height:1.75; color:#B0B1B5; margin-bottom:20px; }
+  .cr-role-apply {
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    color:#BAEB42; text-decoration:none; padding:14px 28px; border-radius:100px;
+    background:rgba(186,235,66,0.08); border:1px solid rgba(186,235,66,0.25);
+    transition:gap 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .cr-role-apply:hover { gap:14px; background:rgba(186,235,66,0.14); border-color:rgba(186,235,66,0.45); }
+
+  /* ═══ LOCATIONS ═══ */
+  .cr-loc-h2 {
+    font-family:'Geist', sans-serif; font-weight:700;
+    font-size:clamp(36px,5vw,64px); line-height:1; letter-spacing:-0.03em; color:#fff;
+  }
+  .cr-loc-intro { font-size:15px; line-height:1.7; color:#B0B1B5; max-width:380px; }
+  .cr-loc-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px 40px; margin-top:40px; }
+  .cr-loc-item { display:flex; flex-direction:column; gap:6px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.1); }
+  .cr-loc-item-name { display:flex; align-items:center; gap:12px; font-size:28px; font-weight:500; color:#fff; letter-spacing:-0.02em; }
+  .cr-loc-item-name::before {
+    content:''; width:10px; height:10px; border-radius:50%; flex-shrink:0;
+    background:var(--loc-color, rgba(255,255,255,0.25));
+    animation:cr-pulse-loc 2.2s ease-in-out infinite;
+  }
+  .cr-loc-item-sub { font-size:12px; color:#96979C; letter-spacing:0.02em; }
+
+  /* World map — generated from Natural Earth (public domain) */
+  .cr-map-wrap { position:relative; aspect-ratio:720/320; width:100%; }
+  .cr-map-wrap .cr-map-img { width:100%; height:100%; display:block; opacity:0.55; filter:brightness(1.1); }
+  .cr-map-dot {
+    position:absolute; width:14px; height:14px; border-radius:50%;
+    transform:translate(-50%,-50%); z-index:2;
+  }
+  .cr-map-dot::after {
+    content:''; position:absolute; inset:-8px; border-radius:50%;
+    background:var(--c, #BAEB42); opacity:0.35; filter:blur(6px); animation:pulse-dot 2.4s ease-in-out infinite;
+  }
+  .cr-map-dot span {
+    position:absolute; inset:0; border-radius:50%;
+    background:var(--c, #BAEB42); box-shadow:0 0 20px var(--c, #BAEB42);
+  }
+  @keyframes pulse-dot {
+    0%,100% { transform:scale(0.8); opacity:0.3; }
+    50%     { transform:scale(1.4); opacity:0.55; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cr-map-dot::after { animation:none !important; }
+  }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
+    </div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work"     class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about"    class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/careers"  class="nav-pill-link px-5 py-2 rounded-full text-sm cursor-pointer" style="background:rgba(186,235,66,0.08); color:#BAEB42;">Careers</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact"  class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work"     class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about"    class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/careers"  class="nav-link text-2xl font-semibold text-white cursor-pointer"       onclick="closeMobile()">Careers</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact"  class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 1. HERO — with #about-hero-grid shader (matches /about) -->
+<!-- ═══════════════════════════════════════ -->
+<section style="background:#0F0F0F; padding:140px 0 120px; position:relative; overflow:hidden;">
+  <canvas id="about-hero-grid" class="absolute inset-0 pointer-events-none" style="z-index:0; width:100%; height:100%;"></canvas>
+  <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+
+  <div class="relative max-w-[1320px] mx-auto px-6 lg:px-8" style="z-index:2;">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+      <!-- Left: big headline + arrow -->
+      <div class="lg:col-span-7 hero-anim hero-anim-1">
+        <h1 class="cr-hero-h1 tracking-display">
+          Your skills can take<br>you to the <span style="color:#BAEB42;">next level.</span>
+        </h1>
+        <a href="#roles" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8BAD41,#BAEB42); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none; margin-top:48px;">
+          View open roles
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Right: Join Us -->
+      <div class="lg:col-span-5 cr-hero-right hero-anim hero-anim-2 lg:pt-4">
+        <p>We're a cross-discipline group of engineers, designers, strategists, and product thinkers — shipping software that millions of people actually use. We help ambitious brands solve hard problems and build products that outlast buzzwords.</p>
+        <p>If you're curious, thoughtful, and ready to do your best work alongside senior peers — we'd like to hear from you. We're always looking for craft-focused people ready to leave their fingerprints on something real.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 2. MORE THAN JUST A JOB -->
+<!-- ═══════════════════════════════════════ -->
+<section style="background:#0A0A0A; padding:120px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <h2 class="cr-benefits-h2 fade-up">
+      More than just <span style="color:#BAEB42;">a job.</span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20">
+
+      <div class="fade-up">
+        <div class="cr-benefit-icon">
+          <!-- Remote culture — globe with rotating equator ring + pulsing center -->
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="30" cy="30" r="22"/>
+            <g data-spin>
+              <path d="M8 30h44"/>
+              <ellipse cx="30" cy="30" rx="22" ry="8"/>
+            </g>
+            <path d="M30 8a28 28 0 0 1 0 44"/>
+            <path d="M30 8a28 28 0 0 0 0 44"/>
+            <circle cx="30" cy="30" r="2" fill="currentColor" stroke="none" data-pulse/>
+          </svg>
+        </div>
+        <h3 class="cr-benefit-title">A truly remote culture</h3>
+        <p class="cr-benefit-desc">We were remote before it was fashionable, and we've spent 20 years learning how to do it right. Work from our offices, your home, or wherever you think best.</p>
+      </div>
+
+      <div class="fade-up">
+        <div class="cr-benefit-icon">
+          <!-- Paid vacation — 3 upward chevrons pulsing in sequence -->
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 48l12-12 12 12" data-chev-1/>
+            <path d="M18 38l12-12 12 12" data-chev-2/>
+            <path d="M18 28l12-12 12 12" data-chev-3/>
+          </svg>
+        </div>
+        <h3 class="cr-benefit-title">Paid vacation</h3>
+        <p class="cr-benefit-desc">Generous paid time off every year, and the expectation you'll actually take it. Crunch culture burns out the people who make the work good. We don't play that game.</p>
+      </div>
+
+      <div class="fade-up">
+        <div class="cr-benefit-icon">
+          <!-- Paid national holidays — calendar with 4 dots blinking in sequence + checkmark drawing -->
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="10" y="14" width="40" height="36" rx="2"/>
+            <path d="M10 24h40"/>
+            <path d="M20 10v8M40 10v8"/>
+            <circle cx="20" cy="34" r="1.6" fill="currentColor" stroke="none" data-cal-1/>
+            <circle cx="30" cy="34" r="1.6" fill="currentColor" stroke="none" data-cal-2/>
+            <circle cx="40" cy="34" r="1.6" fill="currentColor" stroke="none" data-cal-3/>
+            <circle cx="20" cy="42" r="1.6" fill="currentColor" stroke="none" data-cal-4/>
+            <polyline points="26 42 30 46 40 36" stroke-width="1.8" data-draw/>
+          </svg>
+        </div>
+        <h3 class="cr-benefit-title">Paid national holidays</h3>
+        <p class="cr-benefit-desc">Whether you're in the US or Mexico — or anywhere in between — you get your local holidays fully paid. We respect the place you live and how you recharge.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 3. WE'RE HIRING (WHITE FLIP) -->
+<!-- ═══════════════════════════════════════ -->
+<section id="roles" style="background:#111111; padding:120px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <h2 class="cr-hiring-h2 fade-up" style="margin-bottom:64px;">
+      We're <span style="color:#BAEB42;">hiring.</span>
+    </h2>
+
+    <div class="fade-up" style="width:100%;">
+
+        <article class="cr-role" data-role>
+          <div class="cr-role-header" onclick="toggleCrRole(this)">
+            <span class="cr-role-pill">Engineering</span>
+            <div class="cr-role-body">
+              <div class="cr-role-title">Senior iOS Engineer</div>
+              <div class="cr-role-meta">Remote · Full-time · US or Mexico</div>
+            </div>
+            <span class="cr-role-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </div>
+          <div class="cr-role-details">
+            <div class="cr-role-details-inner">
+              <h4>Job description</h4>
+              <p>We're looking for a senior iOS engineer who writes modern Swift and SwiftUI, thinks in terms of product outcomes, and has shipped apps used by hundreds of thousands (or millions) of people. You'll be embedded into one of our client teams, owning features end-to-end.</p>
+              <p>You should have strong opinions about architecture — and be willing to change them when the evidence demands it. Comfort with CI/CD, automated testing, and App Store release processes is expected.</p>
+              <a href="/contact" class="cr-role-apply">
+                Apply now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="cr-role" data-role>
+          <div class="cr-role-header" onclick="toggleCrRole(this)">
+            <span class="cr-role-pill">Engineering</span>
+            <div class="cr-role-body">
+              <div class="cr-role-title">Senior Full-Stack Engineer</div>
+              <div class="cr-role-meta">Remote · Full-time · US or Mexico</div>
+            </div>
+            <span class="cr-role-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </div>
+          <div class="cr-role-details">
+            <div class="cr-role-details-inner">
+              <h4>Job description</h4>
+              <p>We need a senior full-stack engineer comfortable across the React / Next.js / Node / Python landscape who can lead feature work from database schema to rendered pixel. You'll be embedded on a client team, shipping production code and shaping technical direction.</p>
+              <p>Ideal candidates have 7+ years of web experience, have owned a system at scale, and can communicate clearly with non-engineers. Experience with AWS or GCP infrastructure is a strong plus.</p>
+              <a href="/contact" class="cr-role-apply">
+                Apply now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="cr-role" data-role>
+          <div class="cr-role-header" onclick="toggleCrRole(this)">
+            <span class="cr-role-pill">AI</span>
+            <div class="cr-role-body">
+              <div class="cr-role-title">AI / ML Engineer</div>
+              <div class="cr-role-meta">Remote · Full-time · US or Mexico</div>
+            </div>
+            <span class="cr-role-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </div>
+          <div class="cr-role-details">
+            <div class="cr-role-details-inner">
+              <h4>Job description</h4>
+              <p>We're hiring an engineer to lead AI and ML integrations inside real client products — LLM pipelines, RAG systems, computer vision models, and the evaluation tooling that keeps them honest. Less demo, more production.</p>
+              <p>You should be comfortable choosing between hosted and self-hosted models, building retrieval pipelines, and designing evaluation harnesses. Experience with PyTorch, LangChain, Hugging Face, or major cloud ML services (Bedrock, Vertex) is expected.</p>
+              <a href="/contact" class="cr-role-apply">
+                Apply now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="cr-role" data-role>
+          <div class="cr-role-header" onclick="toggleCrRole(this)">
+            <span class="cr-role-pill">Design</span>
+            <div class="cr-role-body">
+              <div class="cr-role-title">Senior Product Designer</div>
+              <div class="cr-role-meta">Remote · Full-time · US or Mexico</div>
+            </div>
+            <span class="cr-role-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </div>
+          <div class="cr-role-details">
+            <div class="cr-role-details-inner">
+              <h4>Job description</h4>
+              <p>We need a product designer who ships pixels, not Figma screenshots in a deck. You'll own the design work on one or two client teams — research, IA, flows, interface, and design-system contributions — and work closely with engineering through to launch.</p>
+              <p>The best candidates have shipped real products at scale and are comfortable defending design decisions in front of both engineers and non-technical stakeholders. Prototyping skills are a plus.</p>
+              <a href="/contact" class="cr-role-apply">
+                Apply now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 4. LOCATIONS -->
+<!-- ═══════════════════════════════════════ -->
+<section style="background:#0A0A0A; padding:120px 0;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(280px,1fr)_1.6fr] gap-14 lg:gap-16 items-center">
+
+      <div class="fade-up">
+        <h2 class="cr-loc-h2">Our <span style="color:#BAEB42;">Locations.</span></h2>
+        <p class="cr-loc-intro" style="margin-top:32px;">
+          US Central Time from Arkansas. Aligned Central Time from Guadalajara. The team spans borders, but everyone works the same business hours.
+        </p>
+
+        <div class="cr-loc-grid">
+          <div class="cr-loc-item" style="--loc-color:#BAEB42;">
+            <div class="cr-loc-item-name">Bentonville</div>
+            <div class="cr-loc-item-sub">US Headquarters · Arkansas</div>
+          </div>
+          <div class="cr-loc-item" style="--loc-color:#BAEB42;">
+            <div class="cr-loc-item-name">Guadalajara</div>
+            <div class="cr-loc-item-sub">Nearshore Headquarters · Mexico</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: dotted world map (generated from Natural Earth, public domain) with pulsing lights on US/MX -->
+      <div class="fade-up cr-map-wrap">
+        <img src="assets/decorative/world-dots.svg" class="cr-map-img" alt="World map with Metova office locations">
+
+        <!-- Bentonville, AR (36.37°N, -94.21°W) → 23.83% x, 34.73% y on 720×320 equirectangular -->
+        <span class="cr-map-dot" style="left:23.83%; top:34.73%; --c:#BAEB42;"><span></span></span>
+        <!-- Guadalajara, MX (20.67°N, -103.35°W) → 21.29% x, 45.95% y -->
+        <span class="cr-map-dot" style="left:21.29%; top:45.95%; --c:#BAEB42;"><span></span></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 5. MARQUEE — "Work with us" (matches /about style) -->
+<!-- ═══════════════════════════════════════ -->
+<section style="background:#141414; padding:80px 0; overflow:hidden;">
+  <div class="marquee-xl-track" style="display:flex; align-items:center; width:max-content;">
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Work with us</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Work with us</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Work with us</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(139,173,65,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Work with us</span>
+    <span style="font-family:'Anek Telugu',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(139,173,65,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- 6. FOOTER (shared) -->
+<!-- ═══════════════════════════════════════ -->
+<footer class="relative py-16" style="background:#0A0A0A;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-1">
+        <img src="brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4">
+        <p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
+        <ul class="space-y-2">
+          <li><a href="/services/ai-product-development"       class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+          <li><a href="/services/custom-software-engineering"  class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+          <li><a href="/services/ux-ui-design"                 class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+          <li><a href="/services/nearshore-talent-solutions"   class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="/about"    class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+          <li><a href="/work"     class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li>
+          <li><a href="/careers"  class="nav-link text-sm text-white cursor-pointer">Careers</a></li>
+          <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+          <li><a href="/contact"  class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4>
+        <div class="space-y-3">
+          <div>
+            <div class="text-sm font-semibold text-white">Bentonville, AR</div>
+            <div class="text-xs text-brand-muted">United States Headquarters</div>
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-white">Guadalajara, MX</div>
+            <div class="text-xs text-brand-muted">Mexico Headquarters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+      <div class="flex items-center gap-6">
+        <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a>
+        <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+<script>
+  /* Accordion toggle for role rows */
+  function toggleCrRole(el) {
+    var card = el.closest('[data-role]');
+    if (!card) return;
+    document.querySelectorAll('[data-role].open').forEach(function(o) {
+      if (o !== card) o.classList.remove('open');
+    });
+    card.classList.toggle('open');
+  }
+</script>
+
+<!-- ═══ HERO GRID SHADER (Three.js) — matches /about ═══ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('about-hero-grid');
+  const section = canvas ? canvas.parentElement : null;
+  if (!canvas || !section || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const clock = new THREE.Clock();
+
+  const vertexShader = `
+    void main() { gl_Position = vec4(position, 1.0); }
+  `;
+
+  const fragmentShader = `
+    precision highp float;
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec2 iMouse;
+
+    float random(vec2 st) { return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123); }
+
+    void main() {
+      vec2 uv    = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+      vec2 mouse = (iMouse - 0.5 * iResolution.xy) / iResolution.y;
+      float t    = iTime * 0.18;
+      float mouseDist = length(uv - mouse);
+
+      float warp = sin(mouseDist * 18.0 - t * 3.5) * 0.06;
+      warp *= smoothstep(0.45, 0.0, mouseDist);
+      uv += warp;
+
+      vec2 gridUv = abs(fract(uv * 9.0) - 0.5);
+      float line  = pow(1.0 - min(gridUv.x, gridUv.y), 38.0);
+      vec3 lime = vec3(0.729, 0.922, 0.259);
+      vec3 color = lime * line * (0.55 + sin(t * 1.8) * 0.12);
+
+      float energy = sin(uv.x * 18.0 + t * 4.0) * sin(uv.y * 18.0 + t * 2.5);
+      energy = smoothstep(0.78, 1.0, energy);
+      color += lime * energy * line * 0.9;
+
+      float glow = smoothstep(0.18, 0.0, mouseDist);
+      color += lime * glow * 0.5;
+
+      vec2 uvN = gl_FragCoord.xy / iResolution.xy;
+      float edgeFade = smoothstep(0.0, 0.06, uvN.x) * smoothstep(1.0, 0.94, uvN.x)
+                     * smoothstep(0.0, 0.04, uvN.y) * smoothstep(1.0, 0.96, uvN.y);
+
+      color += random(uv + t * 0.08) * 0.02;
+      float alpha = clamp(length(color) * edgeFade, 0.0, 1.0);
+      gl_FragColor = vec4(color * edgeFade, alpha);
+    }
+  `;
+
+  const uniforms = {
+    iTime:       { value: 0 },
+    iResolution: { value: new THREE.Vector2() },
+    iMouse:      { value: new THREE.Vector2(0, 0) }
+  };
+
+  const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true });
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+  scene.add(mesh);
+
+  function resize() {
+    const w = section.clientWidth, h = section.clientHeight;
+    const pr = renderer.getPixelRatio();
+    renderer.setSize(w, h, false);
+    uniforms.iResolution.value.set(w * pr, h * pr);
+    uniforms.iMouse.value.set((w * pr) / 2, (h * pr) / 2);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  section.addEventListener('mousemove', (e) => {
+    const rect = section.getBoundingClientRect();
+    const pr   = renderer.getPixelRatio();
+    uniforms.iMouse.value.set((e.clientX - rect.left) * pr, (section.clientHeight - (e.clientY - rect.top)) * pr);
+  });
+
+  renderer.setAnimationLoop(() => {
+    uniforms.iTime.value = clock.getElapsedTime();
+    renderer.render(scene, camera);
+  });
+})();
+</script>
+
+</body>
+</html>
