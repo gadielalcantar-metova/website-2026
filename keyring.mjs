@@ -261,6 +261,35 @@ import * as CANNON from 'cannon-es';
   let hoveredSkill = null;
   let tooltipVisible = false;
 
+  // --- GRID CARD HIGHLIGHT ---
+  // On raycaster hover, pulse the matching card in the tech-grid.
+  const techCards = document.querySelectorAll('.tech-card[data-tech-index]');
+  let currentHighlightIndex = -1;
+  let highlightClearTimer = null;
+
+  function highlightCard(skillIndex) {
+    if (skillIndex === currentHighlightIndex) return;
+    currentHighlightIndex = skillIndex;
+    techCards.forEach(card => {
+      const idx = parseInt(card.dataset.techIndex, 10);
+      if (idx === skillIndex) {
+        // re-trigger the pulse animation
+        card.classList.remove('is-highlighted');
+        void card.offsetWidth;
+        card.classList.add('is-highlighted');
+      }
+    });
+    if (highlightClearTimer) clearTimeout(highlightClearTimer);
+  }
+
+  function clearHighlight() {
+    if (highlightClearTimer) clearTimeout(highlightClearTimer);
+    highlightClearTimer = setTimeout(() => {
+      techCards.forEach(card => card.classList.remove('is-highlighted'));
+      currentHighlightIndex = -1;
+    }, 400);
+  }
+
   function showTooltip(skill, screenX, screenY) {
     const rect = container.getBoundingClientRect();
     tooltipTitle.textContent = skill.text;
@@ -314,6 +343,7 @@ import * as CANNON from 'cannon-es';
   function onContainerLeave() {
     isFannedOut = false;
     hideTooltip();
+    clearHighlight();
   }
 
   function applyFanForces() {
@@ -374,6 +404,7 @@ import * as CANNON from 'cannon-es';
           const sx = (pos3d.x * 0.5 + 0.5) * rect.width + rect.left;
           const sy = (-pos3d.y * 0.5 + 0.5) * rect.height + rect.top;
           showTooltip(foundSkill, sx, sy);
+          highlightCard(idx);
         }
       }
     }

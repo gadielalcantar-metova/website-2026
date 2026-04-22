@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM &amp; NLP Integration | Metova — Claude, Gemini &amp; Custom Language Models</title>
+<meta name="description" content="Metova integrates Claude, Gemini, and custom language models into production products. RAG pipelines, chatbots, semantic search, and document processing — engineered to ship.">
+<meta name="keywords" content="LLM integration, NLP integration, Claude API, RAG pipeline, semantic search, LLM consulting, chatbot development, conversational AI, custom language models, foundation models">
+<link rel="canonical" href="https://metova.com/ai/llm-nlp-integration">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="LLM &amp; NLP Integration | Metova">
+<meta property="og:description" content="Claude, Gemini, and custom language models integrated into your product — chatbots, RAG, semantic search, and document pipelines at scale.">
+<meta property="og:url" content="https://metova.com/ai/llm-nlp-integration">
+<meta property="og:site_name" content="Metova">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LLM &amp; NLP Integration | Metova">
+<meta name="twitter:description" content="Claude, Gemini, and custom language models integrated into production. RAG, chatbots, semantic search, document processing.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { green: '#8BAD41', lime: '#BAEB42', navy: '#001A33', surface: '#111111', bg: '#0F0F0F', muted: '#B0B1B5', dimmed: '#96979C', purple: '#B398EC', purpleDark: '#8B6FD4' },
+        g: { 100:'#F3F8E8',200:'#D9EBA5',300:'#C5DC72',400:'#BAEB42',500:'#8BAD41',600:'#6E8C30',700:'#526921',800:'#374716',900:'#1C240B' },
+        p: { 100:'#F4EEFC',200:'#E0D2F5',300:'#C9B5EF',400:'#B398EC',500:'#8B6FD4',600:'#6E56B0',700:'#523E85',800:'#37295A',900:'#1C152E' }
+      },
+      fontFamily: { brand: ['"Geist"', 'sans-serif'] },
+      letterSpacing: { display: '-0.03em', heading: '-0.02em', label: '0.04em' },
+      lineHeight: { body: '1.75' },
+      borderRadius: { card: '16px' }
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "LLM & NLP Integration",
+  "provider": { "@type": "Organization", "name": "Metova", "url": "https://metova.com" },
+  "serviceType": "LLM & NLP Integration",
+  "description": "Integration of large language models (Claude, Gemini, Llama, Mistral) and NLP pipelines into production software — including RAG, semantic search, chatbots, and document processing.",
+  "areaServed": "Worldwide"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://metova.com/" },
+    { "@type": "ListItem", "position": 2, "name": "AI Services", "item": "https://metova.com/#ai-services" },
+    { "@type": "ListItem", "position": 3, "name": "LLM & NLP Integration", "item": "https://metova.com/ai/llm-nlp-integration" }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Which language models do you work with?", "acceptedAnswer": { "@type": "Answer", "text": "We work with every major foundation model — Anthropic's Claude, Google's Gemini, Meta's Llama, Mistral, and DeepSeek — plus open-source models for self-hosted deployments. We recommend the model that fits your latency, cost, accuracy, and privacy needs, not the one we already know." }},
+    { "@type": "Question", "name": "How do you handle hallucinations and reliability?", "acceptedAnswer": { "@type": "Answer", "text": "We design around the failure modes. RAG with source citations, structured output validation, fallback chains, evaluation harnesses, and guardrails at both input and output. We treat LLM reliability as an engineering problem — not a vibes check." }},
+    { "@type": "Question", "name": "What about data privacy and security?", "acceptedAnswer": { "@type": "Answer", "text": "We support private deployments — self-hosted open-source models, AWS Bedrock, Anthropic API, and Vertex AI — so your data never leaves your infrastructure when that's required. For public APIs, we help set up data processing agreements, prompt sanitization, and audit logging." }},
+    { "@type": "Question", "name": "How do you keep LLM costs under control?", "acceptedAnswer": { "@type": "Answer", "text": "Model selection per task (cheap models for cheap tasks, frontier models where needed), caching, prompt compression, context trimming, and batched inference. We instrument cost per request from day one so you can see exactly where spend is going and optimize it." }},
+    { "@type": "Question", "name": "Can you build on top of an existing product?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Most of our LLM work is retrofitting intelligence into existing products — adding a chatbot, semantic search, or automation layer to a platform that already has traction. We design integrations that don't require re-architecting your app." }}
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+
+<style>
+  .svc-item { border-top: 1px solid rgba(255,255,255,0.08); }
+  .svc-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .svc-item-arrow { color: #B398EC; flex-shrink: 0; transition: transform 0.2s ease; }
+  .svc-item:hover .svc-item-arrow { transform: translateX(4px); }
+  .other-svc-link { border-bottom: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; }
+  .other-svc-link:hover { background: rgba(255,255,255,0.03); }
+  .svc-img-tall { aspect-ratio: 4/3; }
+  @media (min-width: 1024px) { .svc-img-tall { aspect-ratio: unset; height: 740px; } }
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-anim { opacity: 0; animation: heroFadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  .hero-anim-1 { animation-delay: 0.05s; }
+  .hero-anim-2 { animation-delay: 0.18s; }
+  .hero-anim-3 { animation-delay: 0.30s; }
+  .hero-anim-4 { animation-delay: 0.46s; }
+
+  /* Flat grid cells (matches homepage "What Sets Us Apart" pattern) */
+  .flat-cell {
+    display: flex; flex-direction: column; gap: 16px;
+    padding: 32px;
+    border-color: rgba(255,255,255,0.1);
+    transition: background 0.3s ease;
+  }
+  .flat-cell:hover { background: rgba(179,152,236,0.03); }
+  .flat-cell .cell-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(179,152,236,0.08);
+    color: #B398EC;
+    flex-shrink: 0;
+    position: relative;
+    isolation: isolate;
+  }
+  .flat-cell .cell-icon::after {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border-radius: 14px;
+    background: conic-gradient(from var(--glow-angle, 0deg), #a855f7, #6366f1, #06b6d4, #ec4899, #8b5cf6, #a855f7);
+    z-index: -1;
+    opacity: 1;
+    animation: glow-spin 6s linear infinite;
+    pointer-events: none;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1.5px;
+    filter: blur(0.6px);
+  }
+  .flat-cell .cell-icon::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 16px;
+    background: conic-gradient(from var(--glow-angle, 0deg), #a855f7, #6366f1, #06b6d4, #ec4899, #8b5cf6, #a855f7);
+    z-index: -2;
+    opacity: 0.45;
+    animation: glow-spin 6s linear infinite;
+    pointer-events: none;
+    filter: blur(7px);
+  }
+  .flat-cell .cell-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B398EC;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .flat-cell .cell-label::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #B398EC; box-shadow: 0 0 10px rgba(179,152,236,0.7);
+  }
+  .flat-cell ul.tech-pills { list-style: none; padding: 0; margin: 0; }
+  .flat-cell ul.tech-pills li {
+    display: inline-block;
+    font-size: 12.5px;
+    color: #C7C8CC;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 999px;
+    padding: 6px 12px;
+    margin: 0 6px 6px 0;
+  }
+
+  /* Purple FAQ overrides */
+  .faq-item.open { background: rgba(179,152,236,0.05) !important; border-left: 3px solid #B398EC !important; }
+  .faq-item.open h3 { color: #B398EC !important; }
+  .faq-item { border-left: 1px solid rgba(179,152,236,0.18) !important; }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center">
+      <a href="/" class="flex-shrink-0" aria-label="Metova Home">
+        <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9">
+      </a>
+    </div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; margin-right:-0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu">
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="relative pt-36 lg:pt-44 pb-24 lg:pb-32 overflow-hidden" style="background:#0F0F0F; min-height:80vh;">
+  <!-- Background grid canvas (matches /services and /work) -->
+  <canvas id="svc-hero-grid" class="absolute inset-0 pointer-events-none" style="z-index:0; width:100%; height:100%;"></canvas>
+  <!-- Radial glow -->
+  <div class="absolute inset-0 pointer-events-none" style="z-index:1; background:radial-gradient(ellipse 60% 50% at 50% 30%, rgba(179,152,236,0.08) 0%, transparent 70%);"></div>
+  <div class="noise-bg absolute inset-0 pointer-events-none" style="z-index:1;"></div>
+
+  <div class="relative z-10 max-w-[1320px] mx-auto px-6 lg:px-8">
+    <nav class="hero-anim hero-anim-1 flex items-center gap-2 mb-10" aria-label="Breadcrumb">
+      <a href="/" class="text-xs text-brand-dimmed hover:text-brand-muted cursor-pointer" style="text-decoration:none; transition:color 0.2s;">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.35; color:#96979C;"><path d="M9 18l6-6-6-6"/></svg>
+      <span class="text-xs" style="color:#B398EC;">AI Services</span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.35; color:#96979C;"><path d="M9 18l6-6-6-6"/></svg>
+      <span class="text-xs text-brand-muted">LLM &amp; NLP Integration</span>
+    </nav>
+
+    <div class="max-w-3xl">
+      <div class="hero-anim hero-anim-1 ai-pill-glow inline-flex items-center gap-2 p-2 rounded-full mb-6">
+        <span class="w-2 h-2 rounded-full shrink-0" style="background:#8242EA;"></span>
+        <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:1.8px; line-height:16px;">AI Services</span>
+      </div>
+      <h1 class="hero-anim hero-anim-2 text-5xl sm:text-6xl lg:text-[80px] font-bold tracking-display text-white mb-6" style="line-height:1.0;">
+        LLM &amp; NLP<br>Integration
+      </h1>
+      <p class="hero-anim hero-anim-3 text-lg lg:text-xl text-brand-muted max-w-2xl" style="line-height:1.7;">
+        Claude, Gemini, Llama, and custom language models wired into your product — not as a demo, but as a dependable part of the workflow. Chatbots, content generation, document processing, and semantic search at production scale.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHAT'S INCLUDED ═══ -->
+<section class="py-20 lg:py-28 relative" style="background:#0F0F0F;">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+
+      <div class="fade-up lg:sticky lg:top-28 lg:self-start">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading text-white mb-8" style="line-height:1.1;">
+          Language models <span style="color:#B398EC;">that ship.</span> Not demos that impress.
+        </h2>
+        <p class="text-brand-muted mb-8" style="line-height:1.75; font-size:1.0625rem;">
+          The gap between a slick LLM prototype and a production feature is where most AI projects die. We build the parts nobody puts in the demo video — the evals, the fallbacks, the observability, the cost controls — so your model actually works in the real world.
+        </p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-bold uppercase cursor-pointer" style="background:linear-gradient(170deg,#8B6FD4,#B398EC); color:#0F0F0F; letter-spacing:0.04em; margin-right:-0.04em; line-height:1; text-decoration:none; box-shadow:0 8px 32px rgba(179,152,236,0.22); transition:box-shadow 0.3s ease, transform 0.3s ease;" onmouseenter="this.style.boxShadow='0 12px 40px rgba(179,152,236,0.4)'; this.style.transform='translateY(-2px)'" onmouseleave="this.style.boxShadow='0 8px 32px rgba(179,152,236,0.22)'; this.style.transform='translateY(0)'">
+          Start a project
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="fade-up">
+        <div class="svc-item py-7 flex items-start gap-5 cursor-default">
+          <svg class="svc-item-arrow mt-0.5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white mb-2">Foundation Model Integration</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65;">Anthropic Claude, Google Gemini, Llama, Mistral, and DeepSeek wired into your stack with clean abstractions, retry logic, streaming, and provider fallback. Swap models when pricing, latency, or quality shifts — without rewriting your app.</p>
+          </div>
+        </div>
+        <div class="svc-item py-7 flex items-start gap-5 cursor-default">
+          <svg class="svc-item-arrow mt-0.5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white mb-2">RAG &amp; Semantic Search</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65;">Retrieval-augmented generation pipelines over your private data — with chunking strategies that actually work for your domain, embedding model selection, vector DB tuning, and citation-backed answers users can trust.</p>
+          </div>
+        </div>
+        <div class="svc-item py-7 flex items-start gap-5 cursor-default">
+          <svg class="svc-item-arrow mt-0.5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white mb-2">Conversational UI &amp; Chatbots</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65;">Customer-facing and internal chat experiences with memory, tool use, function calling, and escalation flows. Designed so users get answers — not a chatbot that gets stuck in a loop asking them to rephrase.</p>
+          </div>
+        </div>
+        <div class="svc-item py-7 flex items-start gap-5 cursor-default">
+          <svg class="svc-item-arrow mt-0.5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white mb-2">Document &amp; Content Pipelines</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65;">Bulk document ingestion, OCR, structured extraction, summarization, classification, and tagging. We replace manual review workflows with pipelines that process thousands of documents reliably and track every decision.</p>
+          </div>
+        </div>
+        <div class="svc-item py-7 flex items-start gap-5 cursor-default">
+          <svg class="svc-item-arrow mt-0.5" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          <div>
+            <h3 class="text-base font-semibold text-white mb-2">Evaluation &amp; Guardrails</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65;">Automated eval suites, hallucination detection, prompt injection defenses, output validation, and cost/latency monitoring. We build the quality layer that keeps LLM features reliable once real users are pushing on them.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECH STACK & MODELS ═══ -->
+<section class="py-20 lg:py-28 relative" style="background:#111111; border-top:1px solid rgba(255,255,255,0.06); overflow:hidden;">
+  <div class="absolute pointer-events-none" style="top:-200px; left:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(179,152,236,0.07) 0%, transparent 70%); z-index:0;"></div>
+  <div class="relative max-w-[1320px] mx-auto px-6 lg:px-8">
+
+    <div class="text-center mb-14 fade-up max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 mb-5" style="background:rgba(179,152,236,0.08); border:1px solid rgba(179,152,236,0.2); border-radius:999px; padding:6px 14px;">
+        <span class="w-1.5 h-1.5 rounded-full" style="background:#B398EC; box-shadow:0 0 10px rgba(179,152,236,0.8);"></span>
+        <span class="text-xs font-semibold uppercase" style="color:#B398EC; letter-spacing:0.1em;">Tech Stack</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading text-white mb-5" style="line-height:1.1;">
+        Model-agnostic by <span style="color:#B398EC;">design.</span>
+      </h2>
+      <p class="text-brand-muted" style="line-height:1.75; font-size:1.0625rem;">
+        We don't lock you into one provider. Every integration we build is structured so the underlying model is a swappable dependency — because the model landscape is moving too fast to bet everything on one vendor.
+      </p>
+    </div>
+
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 fade-up">
+      <div class="flat-cell border-b md:border-b-0 md:border-r lg:border-b-0 lg:border-r">
+        <div class="cell-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l7 7"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-1">Foundation Models</h3>
+          <p class="text-xs text-brand-dimmed" style="letter-spacing:0.04em;">API-based &amp; open source</p>
+        </div>
+        <ul class="tech-pills">
+          <li>GPT</li>
+          <li>Claude Opus</li>
+          <li>Claude Sonnet</li>
+          <li>Gemini</li>
+          <li>Llama</li>
+          <li>Mistral</li>
+        </ul>
+      </div>
+
+      <div class="flat-cell border-b md:border-b-0 lg:border-r">
+        <div class="cell-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-1">Vector Databases</h3>
+          <p class="text-xs text-brand-dimmed" style="letter-spacing:0.04em;">Embeddings &amp; retrieval</p>
+        </div>
+        <ul class="tech-pills">
+          <li>Pinecone</li>
+          <li>Weaviate</li>
+          <li>Qdrant</li>
+          <li>pgvector</li>
+          <li>Chroma</li>
+          <li>Milvus</li>
+        </ul>
+      </div>
+
+      <div class="flat-cell border-b md:border-b-0 md:border-r lg:border-b-0 lg:border-r">
+        <div class="cell-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-1">Frameworks</h3>
+          <p class="text-xs text-brand-dimmed" style="letter-spacing:0.04em;">Orchestration &amp; agents</p>
+        </div>
+        <ul class="tech-pills">
+          <li>LangChain</li>
+          <li>LlamaIndex</li>
+          <li>Vercel AI SDK</li>
+          <li>CrewAI</li>
+          <li>AutoGen</li>
+          <li>Instructor</li>
+        </ul>
+      </div>
+
+      <div class="flat-cell">
+        <div class="cell-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-1">Deployment</h3>
+          <p class="text-xs text-brand-dimmed" style="letter-spacing:0.04em;">Cloud &amp; self-hosted</p>
+        </div>
+        <ul class="tech-pills">
+          <li>AWS Bedrock</li>
+          <li>Vertex AI</li>
+          <li>Anthropic API</li>
+          <li>Modal</li>
+          <li>Replicate</li>
+          <li>On-prem GPU</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ USE CASES / EXAMPLES ═══ -->
+<section class="py-20 lg:py-28 relative" style="background:#0F0F0F; border-top:1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start mb-16">
+      <div class="fade-up">
+        <div class="inline-flex items-center gap-2 mb-5" style="background:rgba(179,152,236,0.08); border:1px solid rgba(179,152,236,0.2); border-radius:999px; padding:6px 14px;">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:#B398EC; box-shadow:0 0 10px rgba(179,152,236,0.8);"></span>
+          <span class="text-xs font-semibold uppercase" style="color:#B398EC; letter-spacing:0.1em;">Use Cases</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading text-white mb-6" style="line-height:1.1;">
+          What we've built with <span style="color:#B398EC;">language models.</span>
+        </h2>
+      </div>
+      <div class="fade-up">
+        <p class="text-brand-muted" style="line-height:1.75; font-size:1.0625rem;">
+          Four patterns show up over and over in our LLM work. Each one has a different set of engineering problems to solve — and none of them are solved by calling <code style="background:rgba(179,152,236,0.1); color:#B398EC; padding:2px 6px; border-radius:4px; font-size:0.95em;">llm.chat()</code> in a loop.
+        </p>
+      </div>
+    </div>
+
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 fade-up">
+
+      <div class="flat-cell border-b md:border-r">
+        <span class="cell-label">Customer Support</span>
+        <h3 class="text-xl font-bold text-white" style="line-height:1.25;">Support agents that know your product</h3>
+        <p class="text-sm text-brand-muted" style="line-height:1.7;">RAG-backed chat over help docs, product changelogs, and past tickets. Cites sources, escalates to humans on low confidence, and logs every interaction for continuous improvement.</p>
+        <ul class="tech-pills mt-2">
+          <li>RAG</li>
+          <li>Streaming</li>
+          <li>Human escalation</li>
+        </ul>
+      </div>
+
+      <div class="flat-cell border-b">
+        <span class="cell-label">Knowledge Search</span>
+        <h3 class="text-xl font-bold text-white" style="line-height:1.25;">Internal search that finds the answer</h3>
+        <p class="text-sm text-brand-muted" style="line-height:1.7;">Semantic search across company wikis, Slack, Google Drive, and SharePoint. Returns an answer with citations, not a list of 30 blue links employees have to sift through.</p>
+        <ul class="tech-pills mt-2">
+          <li>Embeddings</li>
+          <li>Permission-aware</li>
+          <li>Hybrid retrieval</li>
+        </ul>
+      </div>
+
+      <div class="flat-cell border-b md:border-b-0 md:border-r">
+        <span class="cell-label">Document Processing</span>
+        <h3 class="text-xl font-bold text-white" style="line-height:1.25;">Structured data from unstructured docs</h3>
+        <p class="text-sm text-brand-muted" style="line-height:1.7;">Contracts, invoices, medical records, claims — parsed into schema-validated JSON your app can trust. Confidence scoring, human-in-the-loop review, and audit trails on every extraction.</p>
+        <ul class="tech-pills mt-2">
+          <li>Structured output</li>
+          <li>OCR</li>
+          <li>Validation</li>
+        </ul>
+      </div>
+
+      <div class="flat-cell">
+        <span class="cell-label">Content Generation</span>
+        <h3 class="text-xl font-bold text-white" style="line-height:1.25;">Generation that stays on-brand</h3>
+        <p class="text-sm text-brand-muted" style="line-height:1.7;">Marketing copy, product descriptions, email drafts, and personalized messaging — grounded in your brand voice, fact-checked against your product data, and reviewable before publish.</p>
+        <ul class="tech-pills mt-2">
+          <li>Style guides</li>
+          <li>Brand voice</li>
+          <li>Approval flow</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="relative" style="background:#111111; border-top:1px solid rgba(255,255,255,0.06);">
+  <div class="lg:grid lg:grid-cols-2">
+    <div class="px-6 lg:px-0 mb-12 lg:mb-0 lg:flex lg:items-start lg:pt-16">
+      <div class="lg:max-w-xl lg:pl-8 fade-up pt-16 lg:pt-0">
+        <div class="inline-flex items-center gap-2 p-2 mb-4">
+          <span class="w-2 h-2 shrink-0" style="background:#B398EC;"></span>
+          <span class="text-xs font-normal text-white uppercase whitespace-nowrap" style="letter-spacing:0.04em; line-height:1;">FAQ</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading leading-tight">
+          Frequently asked<br><span style="color:#B398EC;">questions.</span>
+        </h2>
+      </div>
+    </div>
+    <div class="flex flex-col px-6 lg:px-0">
+      <div class="faq-item open fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex items-center justify-between p-6">
+          <h3 class="text-base font-semibold pr-4">Which language models do you work with?</h3>
+          <span class="faq-icon flex-shrink-0 text-2xl font-light leading-none" style="color:#B398EC;">+</span>
+        </div>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-sm text-brand-muted leading-body">We work with every major foundation model — Anthropic's Claude, Google's Gemini, Meta's Llama, Mistral, and DeepSeek — plus open-source models for self-hosted deployments. We recommend the model that fits your latency, cost, accuracy, and privacy needs, not the one we already know.</p>
+        </div>
+      </div>
+      <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex items-center justify-between p-6">
+          <h3 class="text-base font-semibold pr-4">How do you handle hallucinations and reliability?</h3>
+          <span class="faq-icon flex-shrink-0 text-2xl font-light leading-none" style="color:#B398EC;">+</span>
+        </div>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-sm text-brand-muted leading-body">We design around the failure modes. RAG with source citations, structured output validation, fallback chains, evaluation harnesses, and guardrails at both input and output. We treat LLM reliability as an engineering problem — not a vibes check.</p>
+        </div>
+      </div>
+      <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex items-center justify-between p-6">
+          <h3 class="text-base font-semibold pr-4">What about data privacy and security?</h3>
+          <span class="faq-icon flex-shrink-0 text-2xl font-light leading-none" style="color:#B398EC;">+</span>
+        </div>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-sm text-brand-muted leading-body">We support private deployments — self-hosted open-source models, AWS Bedrock, Anthropic API, and Vertex AI — so your data never leaves your infrastructure when that's required. For public APIs, we help set up data processing agreements, prompt sanitization, and audit logging.</p>
+        </div>
+      </div>
+      <div class="faq-item fade-up border-b border-white/[0.1] cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex items-center justify-between p-6">
+          <h3 class="text-base font-semibold pr-4">How do you keep LLM costs under control?</h3>
+          <span class="faq-icon flex-shrink-0 text-2xl font-light leading-none" style="color:#B398EC;">+</span>
+        </div>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-sm text-brand-muted leading-body">Model selection per task (cheap models for cheap tasks, frontier models where needed), caching, prompt compression, context trimming, and batched inference. We instrument cost per request from day one so you can see exactly where spend is going and optimize it.</p>
+        </div>
+      </div>
+      <div class="faq-item fade-up cursor-pointer" onclick="toggleFaq(this)">
+        <div class="flex items-center justify-between p-6">
+          <h3 class="text-base font-semibold pr-4">Can you build on top of an existing product?</h3>
+          <span class="faq-icon flex-shrink-0 text-2xl font-light leading-none" style="color:#B398EC;">+</span>
+        </div>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-sm text-brand-muted leading-body">Yes. Most of our LLM work is retrofitting intelligence into existing products — adding a chatbot, semantic search, or automation layer to a platform that already has traction. We design integrations that don't require re-architecting your app.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ OTHER AI SERVICES — 2-col grid ═══ -->
+<section class="pt-20 lg:pt-28 pb-20 lg:pb-28 relative" style="background:#0A0A0A; border-top:1px solid rgba(255,255,255,0.06);">
+
+  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading text-white text-center mb-12 fade-up px-6 lg:px-8" style="line-height:1.1;">Explore more AI capabilities</h2>
+
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 fade-up">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Card 1: Computer Vision & ML -->
+      <a href="/ai/computer-vision-ml" class="group cursor-pointer" style="text-decoration:none; display:flex;">
+        <div style="background:#141414; border:1px solid rgba(255,255,255,0.08); border-radius:20px; overflow:hidden; transition:border-color 0.25s; display:flex; flex-direction:column; width:100%;" onmouseenter="this.style.borderColor='rgba(179,152,236,0.35)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div class="relative overflow-hidden flex-none" style="aspect-ratio:3/2;">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=760&h=507&fit=crop&q=80" alt="Computer Vision & ML" class="w-full h-full object-cover" style="transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'">
+            <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.6) 100%);"></div>
+            <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,111,212,0.08);"></div>
+          </div>
+          <div class="p-7" style="display:flex; flex-direction:column; flex:1;">
+            <div class="mb-4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B398EC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3 class="text-lg font-bold text-white mb-3">Computer Vision &amp; ML</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65; flex:1;">Image recognition, video analysis, object detection, and custom ML pipelines trained on your data and deployed to your cloud.</p>
+            <span class="inline-flex items-center gap-2 text-sm font-semibold mt-6" style="color:#B398EC;">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Card 2: AI-Powered SaaS -->
+      <a href="/ai/ai-powered-saas" class="group cursor-pointer" style="text-decoration:none; display:flex;">
+        <div style="background:#141414; border:1px solid rgba(255,255,255,0.08); border-radius:20px; overflow:hidden; transition:border-color 0.25s; display:flex; flex-direction:column; width:100%;" onmouseenter="this.style.borderColor='rgba(179,152,236,0.35)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div class="relative overflow-hidden flex-none" style="aspect-ratio:3/2;">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=760&h=507&fit=crop&q=80" alt="AI-Powered SaaS" class="w-full h-full object-cover" style="transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'">
+            <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, transparent 40%, rgba(20,20,20,0.6) 100%);"></div>
+            <div class="absolute inset-0 pointer-events-none" style="mix-blend-mode:multiply; background:rgba(139,111,212,0.08);"></div>
+          </div>
+          <div class="p-7" style="display:flex; flex-direction:column; flex:1;">
+            <div class="mb-4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B398EC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+            <h3 class="text-lg font-bold text-white mb-3">AI-Powered SaaS</h3>
+            <p class="text-sm text-brand-muted" style="line-height:1.65; flex:1;">End-to-end AI SaaS product development — predictive analytics, recommendation engines, and intelligent automation built into your platform.</p>
+            <span class="inline-flex items-center gap-2 text-sm font-semibold mt-6" style="color:#B398EC;">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<section style="background:#141414; padding:80px 0; overflow:hidden;">
+  <div class="marquee-xl-track" style="display:flex; align-items:center; width:max-content;">
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(179,152,236,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's build with AI</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(179,152,236,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(179,152,236,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's build with AI</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(179,152,236,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(179,152,236,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's build with AI</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(179,152,236,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:600; font-size:clamp(52px,7.5vw,108px); color:rgba(179,152,236,0.4); white-space:nowrap; letter-spacing:-0.88px; padding-right:clamp(32px,4vw,64px);">Let's build with AI</span>
+    <span style="font-family:'Geist',sans-serif; font-weight:300; font-size:clamp(36px,5vw,72px); color:rgba(179,152,236,0.25); white-space:nowrap; padding-right:clamp(32px,4vw,64px);">&#10022;</span>
+  </div>
+</section>
+
+<!-- ═══ CTA + FOOTER ═══ -->
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+
+  <section id="contact" class="relative py-24 lg:py-40 z-10">
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">
+        Ready to make your product smarter?
+      </h2>
+      <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">
+        We turn LLM experiments into production features — with the evals, guardrails, and cost controls that keep them shipping after launch.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="/contact" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px); margin-right:-0.04em;">
+          Start a project
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative z-10 py-16">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4">
+          <p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4>
+          <ul class="space-y-2">
+            <li><a href="/services/ai-product-development" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li>
+            <li><a href="/services/custom-software-engineering" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li>
+            <li><a href="/services/ux-ui-design" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li>
+            <li><a href="/services/nearshore-talent-solutions" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li>
+            <li><a href="/work" class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li>
+            <li><a href="/insights" class="nav-link text-sm text-brand-muted cursor-pointer">Insights</a></li>
+            <li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4>
+          <div class="space-y-3">
+            <div>
+              <div class="text-sm font-semibold text-white">Bentonville, AR</div>
+              <div class="text-xs text-brand-muted">United States Headquarters</div>
+            </div>
+            <div>
+              <div class="text-sm font-semibold text-white">Guadalajara, MX</div>
+              <div class="text-xs text-brand-muted">Mexico Headquarters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+        <div class="flex items-center gap-6">
+          <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a>
+          <a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../main.js" defer></script>
+
+<!-- ═══ HERO GRID SHADER (Three.js) — purple theme with mouse distortion ═══ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('svc-hero-grid');
+  const section = canvas ? canvas.parentElement : null;
+  if (!canvas || !section || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const clock = new THREE.Clock();
+
+  const vertexShader = `
+    void main() {
+      gl_Position = vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    precision highp float;
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec2 iMouse;
+
+    float random(vec2 st) {
+      return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+    }
+
+    void main() {
+      vec2 uv    = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+      vec2 mouse = (iMouse - 0.5 * iResolution.xy) / iResolution.y;
+
+      float t         = iTime * 0.18;
+      float mouseDist = length(uv - mouse);
+
+      /* mouse warp — stronger distortion */
+      float warp = sin(mouseDist * 20.0 - t * 3.5) * 0.09;
+      warp *= smoothstep(0.5, 0.0, mouseDist);
+      uv += warp;
+
+      /* grid lines */
+      vec2 gridUv = abs(fract(uv * 9.0) - 0.5);
+      float line  = pow(1.0 - min(gridUv.x, gridUv.y), 38.0);
+
+      /* purple primary #B398EC = rgb(179,152,236) */
+      vec3 purple = vec3(0.702, 0.596, 0.925);
+      /* accent magenta #D166E8 for energy nodes */
+      vec3 accent = vec3(0.819, 0.400, 0.910);
+
+      /* base grid pulse */
+      vec3 color = purple * line * (0.55 + sin(t * 1.8) * 0.12);
+
+      /* energy nodes at grid intersections */
+      float energy = sin(uv.x * 18.0 + t * 4.0) * sin(uv.y * 18.0 + t * 2.5);
+      energy = smoothstep(0.78, 1.0, energy);
+      color += mix(purple, accent, 0.5) * energy * line * 1.0;
+
+      /* mouse glow */
+      float glow = smoothstep(0.22, 0.0, mouseDist);
+      color += purple * glow * 0.6;
+      color += accent * glow * glow * 0.35;
+
+      /* soft border fade */
+      vec2 uvN = gl_FragCoord.xy / iResolution.xy;
+      float edgeFade = smoothstep(0.0, 0.06, uvN.x)
+                     * smoothstep(1.0, 0.94, uvN.x)
+                     * smoothstep(0.0, 0.04, uvN.y)
+                     * smoothstep(1.0, 0.96, uvN.y);
+
+      /* subtle noise grain */
+      color += random(uv + t * 0.08) * 0.02;
+
+      float alpha = clamp(length(color) * edgeFade, 0.0, 1.0);
+      gl_FragColor = vec4(color * edgeFade, alpha);
+    }
+  `;
+
+  const uniforms = {
+    iTime:       { value: 0 },
+    iResolution: { value: new THREE.Vector2() },
+    iMouse:      { value: new THREE.Vector2(0, 0) }
+  };
+
+  const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true });
+  const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+  scene.add(mesh);
+
+  function resize() {
+    const w  = section.clientWidth;
+    const h  = section.clientHeight;
+    const pr = renderer.getPixelRatio();
+    renderer.setSize(w, h, false);
+    uniforms.iResolution.value.set(w * pr, h * pr);
+    uniforms.iMouse.value.set((w * pr) / 2, (h * pr) / 2);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function onMouseMove(e) {
+    const rect = section.getBoundingClientRect();
+    const pr   = renderer.getPixelRatio();
+    uniforms.iMouse.value.set(
+      (e.clientX - rect.left) * pr,
+      (section.clientHeight - (e.clientY - rect.top)) * pr
+    );
+  }
+  section.addEventListener('mousemove', onMouseMove);
+
+  renderer.setAnimationLoop(() => {
+    uniforms.iTime.value = clock.getElapsedTime();
+    renderer.render(scene, camera);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -21,7 +21,9 @@
       "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"layout responsive form\" --stack html-tailwind)",
       "Bash(node screenshot.mjs http://localhost:3000/services services-v1)",
       "Bash(node -e \":*)",
-      "Bash(NODE_PATH=/usr/local/lib/node_modules node -e \":*)"
+      "Bash(NODE_PATH=/usr/local/lib/node_modules node -e \":*)",
+      "Bash(node screenshot.mjs http://localhost:3000/ tech-master)",
+      "Bash(node serve.mjs)"
     ]
   }
 }

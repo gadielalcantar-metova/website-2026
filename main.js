@@ -1050,22 +1050,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       url: '/work/barwis'
     },
     {
-      name: 'FleetPulse',
-      desc: 'Real-time fleet tracking and predictive maintenance platform managing 12,000+ vehicles across North America with 99.9% uptime.',
-      tags: ['IoT', 'Fleet Management', 'Data Analytics'],
-      url: '#'
+      name: 'Acoustic',
+      desc: 'Embedded nearshore engineers into this multichannel MarTech platform, upgrading delivery velocity and replacing offshore churn without disrupting enterprise customers.',
+      tags: ['MarTech', 'Nearshore Talent', 'Platform Engineering'],
+      url: '/work/acoustic'
     },
     {
-      name: 'MediSync',
-      desc: 'AI-powered patient scheduling and triage system that reduced wait times by 40% across a 200-clinic hospital network.',
-      tags: ['Healthcare', 'AI Integration', 'HIPAA Compliance'],
-      url: '#'
-    },
-    {
-      name: 'Verdant',
-      desc: 'Sustainable marketplace platform connecting eco-conscious consumers with verified green brands. 3x revenue growth in first year post-launch.',
-      tags: ['E-Commerce', 'UX Design', 'Full-Stack Dev'],
-      url: '#'
+      name: 'SETF',
+      desc: 'Built a humanitarian mobile app and advocacy platform for the Syrian Emergency Task Force — coordinating on-the-ground reporting and donor engagement at scale.',
+      tags: ['Nonprofit', 'Mobile Dev', 'Advocacy Platform'],
+      url: '/work/setf'
     }
   ];
 
