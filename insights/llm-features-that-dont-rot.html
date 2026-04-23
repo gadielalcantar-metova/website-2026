@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Building LLM Features That Don't Rot After Launch | Metova</title>
+<meta name="description" content="Evaluation harnesses, cost monitoring, drift detection, and version pinning. The engineering discipline that keeps LLM features working long after the launch demo.">
+<meta name="keywords" content="LLM production, LLM evaluation, AI feature drift, RAG monitoring, LLM observability, prompt regression, LLM cost monitoring, AI feature maintenance, LLM engineering">
+<link rel="canonical" href="https://metova.com/insights/llm-features-that-dont-rot">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building LLM Features That Don't Rot After Launch">
+<meta property="og:description" content="Your chatbot works in the demo. Six months later it's hallucinating. The discipline that keeps LLM features working after launch.">
+<meta property="og:url" content="https://metova.com/insights/llm-features-that-dont-rot">
+<meta property="og:site_name" content="Metova">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Building LLM Features That Don't Rot After Launch">
+<meta name="twitter:description" content="Evaluation harnesses, cost monitoring, drift detection. The engineering discipline behind LLM features that age well.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Building LLM Features That Don't Rot After Launch",
+  "description": "Evaluation harnesses, cost monitoring, drift detection, and version pinning. The engineering discipline behind LLM features that stay reliable.",
+  "author": { "@type": "Organization", "name": "Metova Editorial", "url": "https://metova.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Metova",
+    "logo": { "@type": "ImageObject", "url": "https://metova.com/brand_assets/Metova_Logo_Dark.png" }
+  },
+  "datePublished": "2026-04-15",
+  "dateModified": "2026-04-15",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://metova.com/insights/llm-features-that-dont-rot" },
+  "articleSection": "Engineering"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://metova.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://metova.com/insights" },
+    { "@type": "ListItem", "position": 3, "name": "Building LLM Features That Don't Rot After Launch", "item": "https://metova.com/insights/llm-features-that-dont-rot" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Anek+Telugu:wght@300;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { brand: { green:'#8BAD41', lime:'#BAEB42', surface:'#111111', bg:'#0F0F0F', muted:'#B0B1B5', dimmed:'#96979C' } },
+      fontFamily: { brand:['"Geist"','sans-serif'] },
+      letterSpacing: { display:'-0.03em', heading:'-0.02em', label:'0.04em' }
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="../styles.css">
+
+<style>
+  .ar-hero { background:#0F0F0F; padding:140px 0 72px; position:relative; }
+  .ar-breadcrumb { display:flex; align-items:center; gap:8px; font-size:12.5px; color:#96979C; margin-bottom:24px; }
+  .ar-breadcrumb a { color:#96979C; text-decoration:none; transition:color 0.2s; }
+  .ar-breadcrumb a:hover { color:#BAEB42; }
+  .ar-breadcrumb svg { opacity:0.4; }
+  .ar-pill { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid rgba(186,235,66,0.25); background:rgba(186,235,66,0.06); border-radius:100px; font-size:11px; font-weight:700; color:#BAEB42; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:24px; }
+  .ar-pill::before { content:''; width:5px; height:5px; border-radius:50%; background:#BAEB42; box-shadow:0 0 10px rgba(186,235,66,0.7); }
+  .ar-title { font-family:'Geist', sans-serif; font-weight:700; font-size:clamp(36px, 5vw, 64px); line-height:1.05; letter-spacing:-0.03em; color:#fff; max-width:920px; margin-bottom:32px; }
+  .ar-meta { display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px; font-size:13px; color:#B0B1B5; }
+  .ar-meta .ar-sep { opacity:0.4; }
+  .ar-meta .ar-author { color:#fff; font-weight:600; }
+
+  .ar-body-wrap { background:#0F0F0F; padding:56px 0 120px; }
+  .ar-grid { display:grid; grid-template-columns:1fr; gap:48px; }
+  @media (min-width:1024px) { .ar-grid { grid-template-columns:220px minmax(0, 720px); gap:72px; justify-content:center; } }
+
+  .ar-toc { display:none; }
+  @media (min-width:1024px) { .ar-toc { display:block; position:sticky; top:100px; align-self:start; } }
+  .ar-toc-label { font-size:10.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#96979C; margin-bottom:18px; }
+  .ar-toc-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px; border-left:1px solid rgba(255,255,255,0.08); }
+  .ar-toc-list a { display:block; padding:8px 0 8px 18px; margin-left:-1px; font-size:13px; line-height:1.45; color:#96979C; text-decoration:none; border-left:1px solid transparent; transition:color 0.2s, border-color 0.2s; }
+  .ar-toc-list a:hover { color:#fff; }
+  .ar-toc-list a.is-active { color:#BAEB42; border-left-color:#BAEB42; }
+
+  .ar-article { font-size:17px; line-height:1.75; color:#C7C8CC; }
+  .ar-article .ar-lead { font-size:20px; line-height:1.6; color:#E6E7EA; font-weight:400; margin:0 0 40px 0; }
+  .ar-article p { margin:0 0 20px 0; }
+  .ar-article h2 { font-family:'Geist', sans-serif; font-weight:700; font-size:clamp(26px, 2.6vw, 36px); line-height:1.15; letter-spacing:-0.02em; color:#fff; margin:56px 0 20px 0; scroll-margin-top:100px; }
+  .ar-article h3 { font-family:'Geist', sans-serif; font-weight:600; font-size:20px; line-height:1.3; letter-spacing:-0.01em; color:#fff; margin:36px 0 14px 0; }
+  .ar-article ul, .ar-article ol { margin:0 0 24px 0; padding-left:22px; }
+  .ar-article li { margin-bottom:10px; }
+  .ar-article li::marker { color:#BAEB42; }
+  .ar-article strong { color:#fff; font-weight:600; }
+  .ar-article a { color:#BAEB42; text-decoration:underline; text-underline-offset:3px; transition:opacity 0.2s; }
+  .ar-article a:hover { opacity:0.75; }
+  .ar-article blockquote { margin:36px 0; padding:20px 0 20px 28px; border-left:3px solid #BAEB42; font-size:21px; line-height:1.5; font-weight:500; color:#fff; font-style:normal; letter-spacing:-0.01em; }
+  .ar-callout { margin:36px 0; padding:24px 28px; border-radius:12px; background:rgba(186,235,66,0.06); border:1px solid rgba(186,235,66,0.18); font-size:15px; line-height:1.7; color:#D6D7DA; }
+  .ar-callout strong { color:#BAEB42; }
+
+/* Avatar + stacked name/label author byline (Landa-style) */
+  .ar-author-byline { display:inline-flex; align-items:center; gap:12px; }
+  .ar-author-avatar {
+    width:44px; height:44px; border-radius:50%;
+    background:#0F0F0F; border:1.5px solid rgba(186,235,66,0.35);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    box-shadow:0 0 14px rgba(186,235,66,0.08);
+  }
+  .ar-author-avatar img { width:26px; height:auto; }
+  .ar-author-info { display:flex; flex-direction:column; line-height:1.2; }
+  .ar-author-name { font-size:15px; font-weight:700; color:#fff; letter-spacing:-0.01em; }
+  .ar-author-label { font-size:12.5px; color:#96979C; margin-top:2px; }
+
+  .ar-author-card { margin-top:72px; padding:28px; border:1px solid rgba(255,255,255,0.08); border-radius:18px; background:rgba(17,17,17,0.6); display:flex; gap:20px; align-items:center; }
+  .ar-author-card img { width:64px; height:64px; border-radius:50%; flex-shrink:0; }
+  .ar-author-card .ar-ac-name { font-size:15px; font-weight:700; color:#fff; }
+  .ar-author-card .ar-ac-role { font-size:13px; color:#96979C; margin-top:2px; }
+  .ar-author-card .ar-ac-bio  { font-size:14px; line-height:1.65; color:#B0B1B5; margin-top:10px; }
+
+  .ar-related { background:#111111; padding:100px 0; border-top:1px solid rgba(255,255,255,0.06); }
+  .ar-related-h2 { font-family:'Geist', sans-serif; font-weight:700; font-size:clamp(28px,3.2vw,40px); line-height:1.1; letter-spacing:-0.02em; color:#fff; margin-bottom:40px; }
+  .ar-related-grid { display:grid; grid-template-columns:1fr; gap:24px; }
+  @media (min-width:768px) { .ar-related-grid { grid-template-columns:repeat(3, 1fr); } }
+  .ar-rel-card { display:block; text-decoration:none; cursor:pointer; }
+  .ar-rel-img { aspect-ratio:3/2; border-radius:12px; overflow:hidden; background:#1A1A1A; margin-bottom:16px; }
+  .ar-rel-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .ar-rel-card:hover .ar-rel-img img { transform:scale(1.05); }
+  .ar-rel-cat { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#BAEB42; margin-bottom:8px; display:inline-flex; align-items:center; gap:6px; }
+  .ar-rel-cat::before { content:''; width:5px; height:5px; border-radius:50%; background:#BAEB42; }
+  .ar-rel-title { font-size:17px; font-weight:600; color:#fff; line-height:1.3; letter-spacing:-0.01em; transition:color 0.2s; }
+  .ar-rel-card:hover .ar-rel-title { color:#BAEB42; }
+  .ar-rel-meta { font-size:12px; color:#96979C; margin-top:8px; }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center"><a href="/" class="flex-shrink-0" aria-label="Metova Home"><img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9"></a></div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/careers" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Careers</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm cursor-pointer" style="background:rgba(186,235,66,0.08); color:#BAEB42;">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu"><span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span><span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span><span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span></button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/careers" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Careers</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-white cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ar-hero">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <nav class="ar-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="/insights">Insights</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span style="color:#B0B1B5;">LLM Features That Don't Rot</span>
+    </nav>
+    <span class="ar-pill">Engineering</span>
+    <h1 class="ar-title">Building LLM Features That Don't Rot After Launch</h1>
+    <div class="ar-meta">
+      <div class="ar-author-byline">
+        <div class="ar-author-avatar">
+          <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova">
+        </div>
+        <div class="ar-author-info">
+          <div class="ar-author-name">Metova Editorial</div>
+          <div class="ar-author-label">Author</div>
+        </div>
+      </div>
+      <span class="ar-sep">·</span>
+      <time datetime="2026-04-15">April 15, 2026</time>
+      <span class="ar-sep">·</span>
+      <span>8 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="ar-body-wrap">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="ar-grid">
+
+      <aside class="ar-toc" aria-label="Article contents">
+        <div class="ar-toc-label">On this page</div>
+        <ul class="ar-toc-list" id="ar-toc-list">
+          <li><a href="#the-rot">The rot nobody talks about</a></li>
+          <li><a href="#evaluation">Evaluation is not optional</a></li>
+          <li><a href="#cost-monitoring">Cost monitoring from day one</a></li>
+          <li><a href="#version-pinning">Version pinning, and why</a></li>
+          <li><a href="#the-stack">The stack that keeps LLMs honest</a></li>
+          <li><a href="#discipline">It's a discipline, not a vibe check</a></li>
+        </ul>
+      </aside>
+
+      <article class="ar-article">
+
+        <p class="ar-lead">
+          Your chatbot works beautifully in the demo. Six months after launch it's hallucinating half the time, costs three times what you projected, and nobody on the team can tell you why. This is the rot problem, and it's almost always caused by engineering decisions that were never made.
+        </p>
+
+        <h2 id="the-rot">The rot nobody talks about</h2>
+        <p>
+          LLM features rot silently. A traditional software bug crashes, throws an error, shows up in a stack trace. An LLM bug produces fluent nonsense. The system is happy. The user is confused. By the time a pattern is noticeable in support tickets, the model has been drifting for weeks.
+        </p>
+        <p>
+          This happens for four reasons that stack on top of each other. Foundation models change under you. Your data distribution shifts. Prompts that were tuned for edge cases six months ago no longer match the cases that are actually arriving. And cost per request creeps up as users push the system harder than it was scoped for.
+        </p>
+        <p>
+          None of that is an LLM problem. It's an engineering problem. The teams that build LLM features that age well treat model behavior as a software surface that needs the same discipline as a database or a payment gateway. For a deeper look at the service side of this, see our <a href="/ai/llm-nlp-integration">LLM &amp; NLP Integration</a> page.
+        </p>
+
+        <h2 id="evaluation">Evaluation is not optional</h2>
+        <p>
+          The single biggest predictor of whether an LLM feature will still work in a year is whether the team set up an evaluation harness before launch. Not after the first regression. Before.
+        </p>
+
+        <h3>What an eval harness actually includes</h3>
+        <ul>
+          <li><strong>A frozen evaluation set.</strong> 100 to 300 real examples with expected answers or acceptance criteria. You write it once, you don't touch it, and you run it against every prompt change.</li>
+          <li><strong>Automated scoring.</strong> A mix of exact-match, semantic similarity, and LLM-as-judge where appropriate. The goal is not perfect grading, it's catching regressions early.</li>
+          <li><strong>A dashboard that compares runs.</strong> New prompt vs old prompt, new model vs old model. You need to see deltas at a glance, not dig through logs.</li>
+          <li><strong>Production sampling.</strong> A percentage of real traffic gets logged and spot-checked every week. That's how you catch the drift your eval set won't show.</li>
+        </ul>
+
+        <p>
+          Without this, every prompt change is a guess. With it, you know within an hour whether a change helped or hurt. It's the difference between engineering and vibes.
+        </p>
+
+        <blockquote>
+          Every LLM feature has a shelf life. The teams that treat that as a given ship systems that age well. The ones that don't ship demos that age badly.
+        </blockquote>
+
+        <h2 id="cost-monitoring">Cost monitoring from day one</h2>
+        <p>
+          The second silent killer is cost. Not because the unit economics are bad, but because nobody is watching them. A product ships with a well-scoped prompt, users start using it in ways nobody anticipated, context windows expand, and suddenly the cost per request has doubled. You find out on the invoice.
+        </p>
+        <p>
+          The fix is cheap if you build it in from day one. Log token counts and dollar cost per request. Tag them by user, feature, and tenant. Alert on anomalies. The cost layer should look a lot like your error layer: instrumented, visible, and on-call.
+        </p>
+        <p>
+          This gets more important, not less, as you scale. We've seen teams whose AI feature shipped at a 15% gross margin and quietly dropped to negative margin inside a quarter because nobody instrumented it. That's an engineering failure dressed up as an infrastructure surprise.
+        </p>
+
+        <div class="ar-callout">
+          <strong>Minimum viable observability:</strong> log every request, score every response, alert on drift and cost anomalies. If you can't answer "what is this feature costing us per user per month" without opening a bill, you don't have observability yet.
+        </div>
+
+        <h2 id="version-pinning">Version pinning, and why you'll regret not doing it</h2>
+        <p>
+          Foundation model providers update their models. Sometimes they tell you, sometimes they don't. The same prompt that worked yesterday can produce materially different output tomorrow. If you want predictability, you need to pin versions.
+        </p>
+        <p>
+          This is a trade. Pinned models age. Their newer versions are usually better and cheaper. But uncontrolled upgrades introduce variance that your eval harness has to catch. The right pattern is explicit: pin versions in config, upgrade on your schedule, run the eval harness against the new version before promoting it, and always keep a fallback to the prior version available.
+        </p>
+        <p>
+          This is also why <a href="/insights/de-risking-product-bets-2025">engineering belongs in the discovery room</a>. The team that scopes "we'll use the best model" without considering version lifecycle is scoping future pain without knowing it.
+        </p>
+
+        <h2 id="the-stack">The stack that keeps LLMs honest</h2>
+        <p>
+          There's no magic framework that solves this. The teams that do it well assemble a small set of boring, well-understood tools:
+        </p>
+        <ul>
+          <li><strong>Prompt management:</strong> versioned, source-controlled prompts. Not scattered strings in a handful of files.</li>
+          <li><strong>Evaluation tooling:</strong> something like a spreadsheet plus a script, or a dedicated platform like Promptfoo, LangSmith, or Braintrust. The platform matters less than the discipline.</li>
+          <li><strong>Observability:</strong> request logging, response scoring, cost per request, latency distributions. Real dashboards, not an exported CSV.</li>
+          <li><strong>Feature flags:</strong> gate LLM features behind flags so you can roll back without a deploy.</li>
+          <li><strong>Fallbacks:</strong> cheaper or smaller model as a circuit breaker, and graceful degradation when the primary model is unavailable.</li>
+        </ul>
+        <p>
+          None of this is novel. It's the same discipline you'd apply to a payment pipeline or a search system. The only reason it feels new is that LLMs arrived so fast that a lot of teams skipped the engineering basics.
+        </p>
+
+        <h2 id="discipline">It's a discipline, not a vibe check</h2>
+        <p>
+          The LLM features that still work eighteen months from now will be the ones whose teams set up the plumbing before they launched. Not because they were more cautious, but because they were honest about what was going to happen: the model changes, the users change, and the cost creeps.
+        </p>
+        <p>
+          The teams that ship demos and skip the plumbing are going to spend the next year on rework. The teams that shipped slightly later with evals, monitoring, and version pinning will be shipping the second and third features while the first team is still trying to figure out why the chatbot broke. That gap widens every quarter.
+        </p>
+        <p>
+          This is also why team shape matters. Embedded senior engineers who can hold both the product context and the infrastructure context are the ones who build features that age well. When you're thinking about how to scale this kind of work, it's worth looking at <a href="/insights/nearshore-vs-offshore-engineering">how nearshore engineering teams compare to offshore</a> for work that demands this level of ownership.
+        </p>
+
+        <div class="ar-author-card">
+          <div style="width:64px; height:64px; flex-shrink:0; border-radius:50%; background:#0F0F0F; border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+            <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" style="width:38px; height:auto;">
+          </div>
+          <div>
+            <div class="ar-ac-name">Metova Editorial</div>
+            <div class="ar-ac-role">Metova</div>
+            <p class="ar-ac-bio">Metova Editorial is the shared byline for pieces written and reviewed by our engineering, design, and product leadership. Twenty years of building software that ships, distilled into the notes we wish someone had written for us.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<section class="ar-related">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <h2 class="ar-related-h2">More from <span style="color:#BAEB42;">Insights</span></h2>
+    <div class="ar-related-grid">
+      <a href="/insights/de-risking-product-bets-2025" class="ar-rel-card">
+        <div class="ar-rel-img"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=640&h=427&fit=crop&q=85" alt="De-risking product bets" loading="lazy"></div>
+        <div class="ar-rel-cat">Thought Leadership</div>
+        <div class="ar-rel-title">How Founders Are De-Risking Product Bets in 2025</div>
+        <div class="ar-rel-meta">6 min read</div>
+      </a>
+      <a href="/insights/nearshore-vs-offshore-engineering" class="ar-rel-card">
+        <div class="ar-rel-img"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=640&h=427&fit=crop&q=85" alt="Nearshore engineering teams" loading="lazy"></div>
+        <div class="ar-rel-cat">Nearshore</div>
+        <div class="ar-rel-title">Why Nearshore Beats Offshore for Product-Led Engineering</div>
+        <div class="ar-rel-meta">7 min read</div>
+      </a>
+      <a href="/insights/mvp-scope-ship-signal-instead" class="ar-rel-card">
+        <div class="ar-rel-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=427&fit=crop&q=85" alt="MVP scope ship signal" loading="lazy"></div>
+        <div class="ar-rel-cat">Product</div>
+        <div class="ar-rel-title">MVP Scope Is a Lie. Ship Signal Instead.</div>
+        <div class="ar-rel-meta">7 min read</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+  <section class="relative py-24 lg:py-32 z-10">
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">Shipping an LLM feature?</h2>
+      <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">If you want a sanity check on the plumbing before you launch, we've done this a few times. Let's talk.</p>
+      <a href="/contact" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px);">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+  <footer class="relative z-10 py-16">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1"><img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4"><p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p></div>
+        <div><h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4><ul class="space-y-2"><li><a href="/services/ai-product-development" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li><li><a href="/services/custom-software-engineering" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li><li><a href="/services/ux-ui-design" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li><li><a href="/services/nearshore-talent-solutions" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li></ul></div>
+        <div><h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4><ul class="space-y-2"><li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li><li><a href="/work" class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li><li><a href="/careers" class="nav-link text-sm text-brand-muted cursor-pointer">Careers</a></li><li><a href="/insights" class="nav-link text-sm text-white cursor-pointer">Insights</a></li><li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li></ul></div>
+        <div><h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4><div class="space-y-3"><div><div class="text-sm font-semibold text-white">Bentonville, AR</div><div class="text-xs text-brand-muted">United States Headquarters</div></div><div><div class="text-sm font-semibold text-white">Guadalajara, MX</div><div class="text-xs text-brand-muted">Mexico Headquarters</div></div></div></div>
+      </div>
+      <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+        <div class="flex items-center gap-6"><a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a><a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../main.js" defer></script>
+<script>
+  (function () {
+    const links = document.querySelectorAll('.ar-toc-list a');
+    if (!links.length) return;
+    const sectionIds = Array.from(links).map(a => a.getAttribute('href').slice(1));
+    const sections   = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { rootMargin: '-100px 0px -65% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  })();
+</script>
+
+</body>
+</html>

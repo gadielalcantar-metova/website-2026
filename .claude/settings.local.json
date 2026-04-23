@@ -23,7 +23,8 @@
       "Bash(node -e \":*)",
       "Bash(NODE_PATH=/usr/local/lib/node_modules node -e \":*)",
       "Bash(node screenshot.mjs http://localhost:3000/ tech-master)",
-      "Bash(node serve.mjs)"
+      "Bash(node serve.mjs)",
+      "WebFetch(domain:landa.framer.ai)"
     ]
   }
 }

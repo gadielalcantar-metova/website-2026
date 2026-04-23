@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Why Nearshore Beats Offshore for Product-Led Engineering | Metova</title>
+<meta name="description" content="The hourly rate difference between nearshore and offshore is 20%. The productivity difference can be 3x. Why time zones, embedded teams, and communication win.">
+<meta name="keywords" content="nearshore software development, nearshore vs offshore, Latin America engineering, Mexico software teams, Guadalajara developers, US time zone engineering, nearshore talent, offshore alternatives">
+<link rel="canonical" href="https://metova.com/insights/nearshore-vs-offshore-engineering">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why Nearshore Beats Offshore for Product-Led Engineering">
+<meta property="og:description" content="The hourly rate difference is 20 percent. The productivity difference can be 3x. How time zones and embedded teams change the math.">
+<meta property="og:url" content="https://metova.com/insights/nearshore-vs-offshore-engineering">
+<meta property="og:site_name" content="Metova">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why Nearshore Beats Offshore for Product-Led Engineering">
+<meta name="twitter:description" content="Time zones, embedded teams, and the hidden costs of offshore. Why the rate card lies about the real number.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Nearshore Beats Offshore for Product-Led Engineering",
+  "description": "Time zones, embedded teams, and the hidden costs of offshore. How nearshore changes the math for product-led engineering work.",
+  "author": { "@type": "Organization", "name": "Metova Editorial", "url": "https://metova.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Metova",
+    "logo": { "@type": "ImageObject", "url": "https://metova.com/brand_assets/Metova_Logo_Dark.png" }
+  },
+  "datePublished": "2026-04-17",
+  "dateModified": "2026-04-17",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://metova.com/insights/nearshore-vs-offshore-engineering" },
+  "articleSection": "Nearshore"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",     "item": "https://metova.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://metova.com/insights" },
+    { "@type": "ListItem", "position": 3, "name": "Why Nearshore Beats Offshore for Product-Led Engineering", "item": "https://metova.com/insights/nearshore-vs-offshore-engineering" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Anek+Telugu:wght@300;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { brand: { green:'#8BAD41', lime:'#BAEB42', surface:'#111111', bg:'#0F0F0F', muted:'#B0B1B5', dimmed:'#96979C' } },
+      fontFamily: { brand:['"Geist"','sans-serif'] },
+      letterSpacing: { display:'-0.03em', heading:'-0.02em', label:'0.04em' }
+    }
+  }
+}
+</script>
+<link rel="stylesheet" href="../styles.css">
+
+<style>
+  .ar-hero { background:#0F0F0F; padding:140px 0 72px; position:relative; }
+  .ar-breadcrumb { display:flex; align-items:center; gap:8px; font-size:12.5px; color:#96979C; margin-bottom:24px; }
+  .ar-breadcrumb a { color:#96979C; text-decoration:none; transition:color 0.2s; }
+  .ar-breadcrumb a:hover { color:#BAEB42; }
+  .ar-breadcrumb svg { opacity:0.4; }
+  .ar-pill { display:inline-flex; align-items:center; gap:8px; padding:8px 14px; border:1px solid rgba(186,235,66,0.25); background:rgba(186,235,66,0.06); border-radius:100px; font-size:11px; font-weight:700; color:#BAEB42; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:24px; }
+  .ar-pill::before { content:''; width:5px; height:5px; border-radius:50%; background:#BAEB42; box-shadow:0 0 10px rgba(186,235,66,0.7); }
+  .ar-title { font-family:'Geist', sans-serif; font-weight:700; font-size:clamp(36px, 5vw, 64px); line-height:1.05; letter-spacing:-0.03em; color:#fff; max-width:920px; margin-bottom:32px; }
+  .ar-meta { display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px; font-size:13px; color:#B0B1B5; }
+  .ar-meta .ar-sep { opacity:0.4; }
+  .ar-meta .ar-author { color:#fff; font-weight:600; }
+
+  .ar-body-wrap { background:#0F0F0F; padding:56px 0 120px; }
+  .ar-grid { display:grid; grid-template-columns:1fr; gap:48px; }
+  @media (min-width:1024px) { .ar-grid { grid-template-columns:220px minmax(0, 720px); gap:72px; justify-content:center; } }
+
+  .ar-toc { display:none; }
+  @media (min-width:1024px) { .ar-toc { display:block; position:sticky; top:100px; align-self:start; } }
+  .ar-toc-label { font-size:10.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#96979C; margin-bottom:18px; }
+  .ar-toc-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px; border-left:1px solid rgba(255,255,255,0.08); }
+  .ar-toc-list a { display:block; padding:8px 0 8px 18px; margin-left:-1px; font-size:13px; line-height:1.45; color:#96979C; text-decoration:none; border-left:1px solid transparent; transition:color 0.2s, border-color 0.2s; }
+  .ar-toc-list a:hover { color:#fff; }
+  .ar-toc-list a.is-active { color:#BAEB42; border-left-color:#BAEB42; }
+
+  .ar-article { font-size:17px; line-height:1.75; color:#C7C8CC; }
+  .ar-article .ar-lead { font-size:20px; line-height:1.6; color:#E6E7EA; font-weight:400; margin:0 0 40px 0; }
+  .ar-article p { margin:0 0 20px 0; }
+  .ar-article h2 { font-family:'Geist', sans-serif; font-weight:700; font-size:clamp(26px, 2.6vw, 36px); line-height:1.15; letter-spacing:-0.02em; color:#fff; margin:56px 0 20px 0; scroll-margin-top:100px; }
+  .ar-article h3 { font-family:'Geist', sans-serif; font-weight:600; font-size:20px; line-height:1.3; letter-spacing:-0.01em; color:#fff; margin:36px 0 14px 0; }
+  .ar-article ul, .ar-article ol { margin:0 0 24px 0; padding-left:22px; }
+  .ar-article li { margin-bottom:10px; }
+  .ar-article li::marker { color:#BAEB42; }
+  .ar-article strong { color:#fff; font-weight:600; }
+  .ar-article a { color:#BAEB42; text-decoration:underline; text-underline-offset:3px; transition:opacity 0.2s; }
+  .ar-article a:hover { opacity:0.75; }
+  .ar-article blockquote { margin:36px 0; padding:20px 0 20px 28px; border-left:3px solid #BAEB42; font-size:21px; line-height:1.5; font-weight:500; color:#fff; font-style:normal; letter-spacing:-0.01em; }
+  .ar-callout { margin:36px 0; padding:24px 28px; border-radius:12px; background:rgba(186,235,66,0.06); border:1px solid rgba(186,235,66,0.18); font-size:15px; line-height:1.7; color:#D6D7DA; }
+  .ar-callout strong { color:#BAEB42; }
+
+/* Avatar + stacked name/label author byline (Landa-style) */
+  .ar-author-byline { display:inline-flex; align-items:center; gap:12px; }
+  .ar-author-avatar {
+    width:44px; height:44px; border-radius:50%;
+    background:#0F0F0F; border:1.5px solid rgba(186,235,66,0.35);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    box-shadow:0 0 14px rgba(186,235,66,0.08);
+  }
+  .ar-author-avatar img { width:26px; height:auto; }
+  .ar-author-info { display:flex; flex-direction:column; line-height:1.2; }
+  .ar-author-name { font-size:15px; font-weight:700; color:#fff; letter-spacing:-0.01em; }
+  .ar-author-label { font-size:12.5px; color:#96979C; margin-top:2px; }
+
+  .ar-author-card { margin-top:72px; padding:28px; border:1px solid rgba(255,255,255,0.08); border-radius:18px; background:rgba(17,17,17,0.6); display:flex; gap:20px; align-items:center; }
+  .ar-author-card img { width:64px; height:64px; border-radius:50%; flex-shrink:0; }
+  .ar-author-card .ar-ac-name { font-size:15px; font-weight:700; color:#fff; }
+  .ar-author-card .ar-ac-role { font-size:13px; color:#96979C; margin-top:2px; }
+  .ar-author-card .ar-ac-bio  { font-size:14px; line-height:1.65; color:#B0B1B5; margin-top:10px; }
+
+  .ar-related { background:#111111; padding:100px 0; border-top:1px solid rgba(255,255,255,0.06); }
+  .ar-related-h2 { font-family:'Geist', sans-serif; font-weight:700; font-size:clamp(28px,3.2vw,40px); line-height:1.1; letter-spacing:-0.02em; color:#fff; margin-bottom:40px; }
+  .ar-related-grid { display:grid; grid-template-columns:1fr; gap:24px; }
+  @media (min-width:768px) { .ar-related-grid { grid-template-columns:repeat(3, 1fr); } }
+  .ar-rel-card { display:block; text-decoration:none; cursor:pointer; }
+  .ar-rel-img { aspect-ratio:3/2; border-radius:12px; overflow:hidden; background:#1A1A1A; margin-bottom:16px; }
+  .ar-rel-img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .ar-rel-card:hover .ar-rel-img img { transform:scale(1.05); }
+  .ar-rel-cat { font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#BAEB42; margin-bottom:8px; display:inline-flex; align-items:center; gap:6px; }
+  .ar-rel-cat::before { content:''; width:5px; height:5px; border-radius:50%; background:#BAEB42; }
+  .ar-rel-title { font-size:17px; font-weight:600; color:#fff; line-height:1.3; letter-spacing:-0.01em; transition:color 0.2s; }
+  .ar-rel-card:hover .ar-rel-title { color:#BAEB42; }
+  .ar-rel-meta { font-size:12px; color:#96979C; margin-top:8px; }
+</style>
+</head>
+
+<body class="font-brand bg-brand-bg text-white antialiased overflow-x-hidden">
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50" style="transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8 flex items-center h-20" style="position:relative;">
+    <div class="flex-1 flex items-center"><a href="/" class="flex-shrink-0" aria-label="Metova Home"><img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 lg:h-9"></a></div>
+    <div class="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full nav-pill" style="position:absolute; left:50%; transform:translateX(-50%);">
+      <a href="/services" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Services</a>
+      <a href="/work" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Work</a>
+      <a href="/about" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">About</a>
+      <a href="/careers" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Careers</a>
+      <a href="/insights" class="nav-pill-link px-5 py-2 rounded-full text-sm cursor-pointer" style="background:rgba(186,235,66,0.08); color:#BAEB42;">Insights</a>
+      <a href="/contact" class="nav-pill-link px-5 py-2 rounded-full text-sm text-brand-muted cursor-pointer">Contact</a>
+    </div>
+    <div class="flex-1 flex items-center justify-end">
+      <a href="/contact" class="hidden lg:inline-flex btn-lime items-center gap-2 px-6 rounded-full text-sm font-semibold uppercase cursor-pointer" style="border:1px solid rgba(186,235,66,0.25); color:rgba(186,235,66,0.85); letter-spacing:0.04em; background:rgba(186,235,66,0.07); line-height:1; text-decoration:none; padding-top:16px; padding-bottom:16px;">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button id="menu-btn" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Open menu"><span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar1"></span><span class="block w-6 h-0.5 bg-white transition-opacity duration-200" id="bar2"></span><span class="block w-6 h-0.5 bg-white transition-transform duration-200" id="bar3"></span></button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 top-20 bg-brand-bg/98 backdrop-blur-xl -translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col items-center justify-center gap-8 pt-16">
+      <a href="/services" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Services</a>
+      <a href="/work" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Work</a>
+      <a href="/about" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">About</a>
+      <a href="/careers" class="nav-link text-2xl font-semibold text-brand-muted cursor-pointer" onclick="closeMobile()">Careers</a>
+      <a href="/insights" class="nav-link text-2xl font-semibold text-white cursor-pointer" onclick="closeMobile()">Insights</a>
+      <a href="/contact" class="nav-cta mt-4 inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold cursor-pointer text-white border border-white/[0.15]" onclick="closeMobile()">Start a project</a>
+    </div>
+  </div>
+</nav>
+
+<header class="ar-hero">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <nav class="ar-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <a href="/insights">Insights</a>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      <span style="color:#B0B1B5;">Nearshore vs Offshore</span>
+    </nav>
+    <span class="ar-pill">Nearshore</span>
+    <h1 class="ar-title">Why Nearshore Beats Offshore for Product-Led Engineering</h1>
+    <div class="ar-meta">
+      <div class="ar-author-byline">
+        <div class="ar-author-avatar">
+          <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova">
+        </div>
+        <div class="ar-author-info">
+          <div class="ar-author-name">Metova Editorial</div>
+          <div class="ar-author-label">Author</div>
+        </div>
+      </div>
+      <span class="ar-sep">·</span>
+      <time datetime="2026-04-17">April 17, 2026</time>
+      <span class="ar-sep">·</span>
+      <span>7 min read</span>
+    </div>
+  </div>
+</header>
+
+<div class="ar-body-wrap">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <div class="ar-grid">
+
+      <aside class="ar-toc" aria-label="Article contents">
+        <div class="ar-toc-label">On this page</div>
+        <ul class="ar-toc-list" id="ar-toc-list">
+          <li><a href="#time-zone-math">The time zone math</a></li>
+          <li><a href="#communication-tax">The communication tax</a></li>
+          <li><a href="#embedded">Embedded beats fragmented</a></li>
+          <li><a href="#cultural">Cultural overhead is a real cost</a></li>
+          <li><a href="#when-offshore">When offshore still makes sense</a></li>
+          <li><a href="#real-roi">The ROI the rate card hides</a></li>
+        </ul>
+      </aside>
+
+      <article class="ar-article">
+
+        <p class="ar-lead">
+          The hourly rate difference between offshore and nearshore engineering is maybe 20 percent. The productivity difference for product-led work can be 3x. Most of the gap has nothing to do with talent. It has to do with time zones, communication cadence, and how embedded the team actually is.
+        </p>
+
+        <h2 id="time-zone-math">The time zone math</h2>
+        <p>
+          An engineer in Manila is 12 to 15 hours off US Central time. An engineer in Guadalajara is zero hours off. That single fact cascades through every part of how work gets done.
+        </p>
+        <p>
+          With a 12-hour offset, a question you ask at 4 pm gets answered at 4 am your time. You see the reply when you wake up. You ask a clarifying question. That clarification gets answered the next day. A conversation that would take five minutes in real time takes 48 hours asynchronously. If the task requires three rounds of clarification, you've burned a week.
+        </p>
+        <p>
+          With zero offset, the same conversation is a Slack thread at 3 pm. Five minutes, one thread, the engineer keeps working. That's not a marginal improvement. That's a different product development tempo.
+        </p>
+
+        <h2 id="communication-tax">The communication tax</h2>
+        <p>
+          Every handoff between product and engineering has a communication tax. The tax is the number of minutes between "I have a question" and "here is the answer." Async communication, done well, charges that tax in hours. Async communication done poorly charges it in days.
+        </p>
+        <p>
+          Offshore teams are forced to rely on async by the physics of the time zone. Even the best offshore teams are paying a 6 to 12 hour tax on every ambiguous decision. Nearshore teams pay the tax in minutes because they're in the same meeting, on the same thread, at the same time.
+        </p>
+
+        <h3>Where this shows up in the work</h3>
+        <ul>
+          <li><strong>Product decisions:</strong> edge cases that need clarification before code gets written. Offshore, each clarification burns a day. Nearshore, it's a Slack ping.</li>
+          <li><strong>Code review:</strong> back-and-forth on a PR can take a week offshore. Nearshore, it takes an hour.</li>
+          <li><strong>Incident response:</strong> a production issue at 2 pm US time reaches an offshore engineer at 2 am theirs. Nearshore teams are already on it.</li>
+          <li><strong>Sprint ceremonies:</strong> planning, retros, and demos either happen at 10 pm for one side or get split into two half-attended meetings.</li>
+        </ul>
+
+        <blockquote>
+          You don't save money on engineers. You save money on the outcomes they produce.
+        </blockquote>
+
+        <h2 id="embedded">Embedded beats fragmented</h2>
+        <p>
+          The biggest operational difference between nearshore and offshore is how embedded the team can be. Embedded teams sit in your Slack, your standups, your sprint planning, your retros. They see the product context as it evolves. They ask questions in the same meeting the question is answered in.
+        </p>
+        <p>
+          Fragmented teams, by contrast, get a requirements document, disappear for two weeks, and come back with something that meets the letter of the doc and misses the spirit of the product. That's not because offshore engineers are worse. It's because the communication surface is too small to carry the nuance.
+        </p>
+        <p>
+          This is also why <a href="/insights/de-risking-product-bets-2025">getting engineers into the discovery room early</a> works with nearshore and breaks with offshore. You can't do structured discovery with a team whose first question lands on your desk 14 hours later.
+        </p>
+
+        <div class="ar-callout">
+          <strong>The biggest nearshore advantage:</strong> the same Slack thread with your US team, not a relay race across time zones. Every minute of live overlap you get back from a shared business day compounds across the whole sprint.
+        </div>
+
+        <h2 id="cultural">Cultural overhead is a real cost</h2>
+        <p>
+          "Cultural fit" gets talked about like it's a soft preference. It's not. It's a real operating cost that shows up in how product decisions get challenged, how disagreements get aired, and how escalations work.
+        </p>
+        <p>
+          Most Latin American engineering cultures operate close to US cultural defaults around directness, ownership, and pushback. When an engineer in Guadalajara thinks a product decision is wrong, they say so in the meeting. When an engineer across a larger cultural gap disagrees, they often don't, because the professional norms around challenging senior stakeholders are different.
+        </p>
+        <p>
+          That matters more than anyone admits. Silent engineers build features they know are wrong. Vocal engineers push back before the code gets written. The second pattern ships better products.
+        </p>
+
+        <h2 id="when-offshore">When offshore still makes sense</h2>
+        <p>
+          This isn't a zero-sum argument. Offshore still wins in some contexts, and it's worth being honest about where.
+        </p>
+        <ol>
+          <li><strong>Work that's genuinely spec-complete.</strong> If the requirements are frozen, the design is done, and the scope won't change, offshore can ship it cheaper. That's rare in modern product work, but it exists.</li>
+          <li><strong>Follow-the-sun support.</strong> For 24/7 operations or tiered support, time zone spread is a feature, not a bug.</li>
+          <li><strong>Labor arbitrage on narrow, well-defined backlogs.</strong> Data entry, QA at scale, standardized migrations. Tasks with tight acceptance criteria and low ambiguity.</li>
+          <li><strong>Scale where the communication tax is priced in.</strong> Companies with the org maturity to run 200-person offshore teams with heavy process can make it work. Most companies under 500 people don't have that.</li>
+        </ol>
+        <p>
+          For almost everything else, especially anything that requires product judgment, nearshore wins.
+        </p>
+
+        <h2 id="real-roi">The ROI the rate card hides</h2>
+        <p>
+          Here's the uncomfortable accounting. An offshore engineer at $40/hour versus a nearshore engineer at $65/hour looks like a 38% savings. But if the nearshore engineer ships twice as much usable work in the same time, you've overpaid for the cheaper one by 25%.
+        </p>
+        <p>
+          Most finance leaders we talk to realize this eventually. What they don't always realize is how much of the gap is physics, not talent. You could hire the best offshore engineers in the world and still pay the time zone tax on every interaction.
+        </p>
+        <p>
+          The trend we've watched for the last four years is companies with serious product ambition moving their engineering to Latin America, and keeping offshore for a narrow set of follow-the-sun and spec-complete work. Not because nearshore is a new fad, but because the unit economics of real product engineering have finally caught up with the math.
+        </p>
+        <p>
+          If you're thinking about this for your team, the <a href="/services/nearshore-talent-solutions">nearshore engagement model</a> is where to start. And if you want the bigger picture on how team shape affects what gets shipped, the piece on <a href="/insights/llm-features-that-dont-rot">LLM features that don't rot</a> covers why embedded engineers matter for AI work specifically.
+        </p>
+
+        <div class="ar-author-card">
+          <div style="width:64px; height:64px; flex-shrink:0; border-radius:50%; background:#0F0F0F; border:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center;">
+            <img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" style="width:38px; height:auto;">
+          </div>
+          <div>
+            <div class="ar-ac-name">Metova Editorial</div>
+            <div class="ar-ac-role">Metova</div>
+            <p class="ar-ac-bio">Metova Editorial is the shared byline for pieces written and reviewed by our engineering, design, and product leadership. Twenty years of building software that ships, distilled into the notes we wish someone had written for us.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<section class="ar-related">
+  <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+    <h2 class="ar-related-h2">More from <span style="color:#BAEB42;">Insights</span></h2>
+    <div class="ar-related-grid">
+      <a href="/insights/de-risking-product-bets-2025" class="ar-rel-card">
+        <div class="ar-rel-img"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=640&h=427&fit=crop&q=85" alt="De-risking product bets" loading="lazy"></div>
+        <div class="ar-rel-cat">Thought Leadership</div>
+        <div class="ar-rel-title">How Founders Are De-Risking Product Bets in 2025</div>
+        <div class="ar-rel-meta">6 min read</div>
+      </a>
+      <a href="/insights/llm-features-that-dont-rot" class="ar-rel-card">
+        <div class="ar-rel-img"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=640&h=427&fit=crop&q=85" alt="LLM features that don't rot" loading="lazy"></div>
+        <div class="ar-rel-cat">Engineering</div>
+        <div class="ar-rel-title">Building LLM Features That Don't Rot After Launch</div>
+        <div class="ar-rel-meta">8 min read</div>
+      </a>
+      <a href="/insights/mvp-scope-ship-signal-instead" class="ar-rel-card">
+        <div class="ar-rel-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=427&fit=crop&q=85" alt="MVP signal" loading="lazy"></div>
+        <div class="ar-rel-cat">Product</div>
+        <div class="ar-rel-title">MVP Scope Is a Lie. Ship Signal Instead.</div>
+        <div class="ar-rel-meta">7 min read</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="relative overflow-hidden" style="background:#0A0A0A;">
+  <div class="absolute inset-0 pointer-events-none" style="opacity:0; transition:opacity 2s ease;" id="halo-wrap">
+    <canvas id="halo-canvas" style="display:block; width:100%; height:100%;"></canvas>
+  </div>
+  <section class="relative py-24 lg:py-32 z-10">
+    <div class="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-heading mb-6 text-white">Thinking about nearshore?</h2>
+      <p class="text-lg mb-10 max-w-xl mx-auto text-brand-muted">Our Guadalajara team runs in aligned US time zones, embedded directly into client sprints. Let's talk about whether the math works for your team.</p>
+      <a href="/contact" class="btn-glow inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-bold uppercase tracking-label cursor-pointer" style="background:rgba(186,235,66,0.15); color:#BAEB42; border:1px solid rgba(186,235,66,0.3); backdrop-filter:blur(12px);">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+  <footer class="relative z-10 py-16">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1"><img src="../brand_assets/Metova_Logo_Dark.png" alt="Metova" class="h-8 mb-4"><p class="text-sm text-brand-muted leading-body">AI development and custom software company. Building products that scale since 2006.</p></div>
+        <div><h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Services</h4><ul class="space-y-2"><li><a href="/services/ai-product-development" class="nav-link text-sm text-brand-muted cursor-pointer">AI Product Development</a></li><li><a href="/services/custom-software-engineering" class="nav-link text-sm text-brand-muted cursor-pointer">Custom Software</a></li><li><a href="/services/ux-ui-design" class="nav-link text-sm text-brand-muted cursor-pointer">UX/UI Design</a></li><li><a href="/services/nearshore-talent-solutions" class="nav-link text-sm text-brand-muted cursor-pointer">Nearshore Talent</a></li></ul></div>
+        <div><h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Company</h4><ul class="space-y-2"><li><a href="/about" class="nav-link text-sm text-brand-muted cursor-pointer">About</a></li><li><a href="/work" class="nav-link text-sm text-brand-muted cursor-pointer">Work</a></li><li><a href="/careers" class="nav-link text-sm text-brand-muted cursor-pointer">Careers</a></li><li><a href="/insights" class="nav-link text-sm text-white cursor-pointer">Insights</a></li><li><a href="/contact" class="nav-link text-sm text-brand-muted cursor-pointer">Contact</a></li></ul></div>
+        <div><h4 class="text-xs font-bold uppercase tracking-label text-white mb-4">Offices</h4><div class="space-y-3"><div><div class="text-sm font-semibold text-white">Bentonville, AR</div><div class="text-xs text-brand-muted">United States Headquarters</div></div><div><div class="text-sm font-semibold text-white">Guadalajara, MX</div><div class="text-xs text-brand-muted">Mexico Headquarters</div></div></div></div>
+      </div>
+      <div class="pt-8 border-t border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-xs text-brand-muted">&copy; 2026 Metova, Inc. All rights reserved.</div>
+        <div class="flex items-center gap-6"><a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Privacy Policy</a><a href="#" class="nav-link text-xs text-brand-muted cursor-pointer">Terms of Service</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../main.js" defer></script>
+<script>
+  (function () {
+    const links = document.querySelectorAll('.ar-toc-list a');
+    if (!links.length) return;
+    const sectionIds = Array.from(links).map(a => a.getAttribute('href').slice(1));
+    const sections   = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { rootMargin: '-100px 0px -65% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  })();
+</script>
+
+</body>
+</html>

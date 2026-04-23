@@ -27,6 +27,10 @@ createServer(async (req, res) => {
   else if (url === '/contact') url = '/contact.html';
   else if (url === '/careers') url = '/careers.html';
   else if (url === '/insights') url = '/insights.html';
+  else if (url === '/insights/de-risking-product-bets-2025') url = '/insights/de-risking-product-bets-2025.html';
+  else if (url === '/insights/llm-features-that-dont-rot') url = '/insights/llm-features-that-dont-rot.html';
+  else if (url === '/insights/nearshore-vs-offshore-engineering') url = '/insights/nearshore-vs-offshore-engineering.html';
+  else if (url === '/insights/mvp-scope-ship-signal-instead') url = '/insights/mvp-scope-ship-signal-instead.html';
   else if (url === '/ai/llm-nlp-integration') url = '/ai/llm-nlp-integration.html';
   else if (url === '/ai/computer-vision-ml') url = '/ai/computer-vision-ml.html';
   else if (url === '/ai/ai-powered-saas') url = '/ai/ai-powered-saas.html';
