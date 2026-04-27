@@ -34,6 +34,7 @@ createServer(async (req, res) => {
   else if (url === '/ai/llm-nlp-integration') url = '/ai/llm-nlp-integration.html';
   else if (url === '/ai/computer-vision-ml') url = '/ai/computer-vision-ml.html';
   else if (url === '/ai/ai-powered-saas') url = '/ai/ai-powered-saas.html';
+  else if (url === '/estimate') url = '/estimate.html';
   let path = join(ROOT, url);
   try {
     const data = await readFile(path);
