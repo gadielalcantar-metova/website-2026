@@ -1,0 +1,79 @@
+[
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/Barwis-Cover.png",
+    "status": "ok",
+    "file": "barwis-2.png",
+    "bytes": 2267243,
+    "slugGuess": "barwis"
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/08/Acousstic-Cover.png",
+    "status": "ok",
+    "file": "metova-003.png",
+    "bytes": 644111,
+    "slugGuess": null
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/fiton-featured-image-v2.png",
+    "status": "ok",
+    "file": "fiton-4.png",
+    "bytes": 938799,
+    "slugGuess": "fiton"
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/04/Bambu_perspective_b.jpg",
+    "status": "ok",
+    "file": "mybambu-5.jpg",
+    "bytes": 1091388,
+    "slugGuess": "mybambu"
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/tna2_team.jpg",
+    "status": "ok",
+    "file": "metova-006.jpg",
+    "bytes": 1407996,
+    "slugGuess": null
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/Group-14.png",
+    "status": "skipped-tiny",
+    "bytes": 1749
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/Group-16.png",
+    "status": "skipped-tiny",
+    "bytes": 3402
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/Group-18.png",
+    "status": "skipped-tiny",
+    "bytes": 3786
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/Group-15.png",
+    "status": "skipped-tiny",
+    "bytes": 3103
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "status": "ok",
+    "file": "metova-011.png",
+    "bytes": 15330,
+    "slugGuess": null
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "status": "skipped-tiny",
+    "bytes": 709
+  }
+]

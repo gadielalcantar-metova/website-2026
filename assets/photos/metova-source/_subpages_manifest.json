@@ -1,0 +1,443 @@
+[
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "slug": "barwis",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/Barwis-Cover.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-02.png",
+    "bytes": 2267243
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/Barwis_App_Preview_2.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-03.png",
+    "bytes": 2883572
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/Barwis_App_Preview_3.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-04.png",
+    "bytes": 1829096
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/Barwis_App_Preview_04.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-05.png",
+    "bytes": 5478839
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/user_management-1024x1024.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-06.png",
+    "bytes": 1205804
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2025/02/Barwis_App_Preview_5.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-07.png",
+    "bytes": 1051236
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "slug": "barwis",
+    "status": "ok",
+    "file": "barwis/barwis-08.png",
+    "bytes": 15330
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "slug": "barwis",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "slug": "barwis",
+    "status": "skipped-tiny",
+    "bytes": 709
+  },
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "slug": "acoustic",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/08/Acousstic-Cover.png",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-02.png",
+    "bytes": 644111
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/08/App-Feature-2.png",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-03.png",
+    "bytes": 1123674
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/08/App-Feature-3.png",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-04.png",
+    "bytes": 920838
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2023/12/sports-woman-in-fashion-sport-clothes-working-out-2022-11-15-04-27-02-utc-scaled.jpeg",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-05.jpeg",
+    "bytes": 90867
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2023/12/Cost-to-make-App-Like-FitOn-AGS.webp",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-06.webp",
+    "bytes": 15334
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/08/acoustic_prev_2.png",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-07.png",
+    "bytes": 746139
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/08/Acoustic-App-Feature.png",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-08.png",
+    "bytes": 859531
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "slug": "acoustic",
+    "status": "ok",
+    "file": "acoustic/acoustic-09.png",
+    "bytes": 15330
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "slug": "acoustic",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "slug": "acoustic",
+    "status": "skipped-tiny",
+    "bytes": 709
+  },
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "slug": "fiton",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/fiton-featured-image-v2.png",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-02.png",
+    "bytes": 938799
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/Placeholder-Image-2.png",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-03.png",
+    "bytes": 83165
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/fiton-case-study-preview.png",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-04.png",
+    "bytes": 98865
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2023/12/sports-woman-in-fashion-sport-clothes-working-out-2022-11-15-04-27-02-utc-scaled.jpeg",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-05.jpeg",
+    "bytes": 90867
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2023/12/Cost-to-make-App-Like-FitOn-AGS.webp",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-06.webp",
+    "bytes": 15334
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/Placeholder-Image.png",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-07.png",
+    "bytes": 224003
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/af362d8441237aaad182645a6aa7d558.gif",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-08.gif",
+    "bytes": 2360950
+  },
+  {
+    "url": "https://metovadev.wpengine.com/wp-content/uploads/2024/06/cpu.png",
+    "slug": "fiton",
+    "status": "skipped-tiny",
+    "bytes": 612
+  },
+  {
+    "url": "https://metovadev.wpengine.com/wp-content/uploads/2024/06/trending-up.png",
+    "slug": "fiton",
+    "status": "skipped-tiny",
+    "bytes": 449
+  },
+  {
+    "url": "https://metovadev.wpengine.com/wp-content/uploads/2024/06/database.png",
+    "slug": "fiton",
+    "status": "skipped-tiny",
+    "bytes": 957
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "slug": "fiton",
+    "status": "ok",
+    "file": "fiton/fiton-12.png",
+    "bytes": 15330
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "slug": "fiton",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "slug": "fiton",
+    "status": "skipped-tiny",
+    "bytes": 709
+  },
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "slug": "mybambu",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/04/Bambu_perspective_b.jpg",
+    "slug": "mybambu",
+    "status": "ok",
+    "file": "mybambu/mybambu-02.jpg",
+    "bytes": 1091388
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/10/Bambu-mock.png",
+    "slug": "mybambu",
+    "status": "ok",
+    "file": "mybambu/mybambu-03.png",
+    "bytes": 2372248
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/bambu-case-study-preview.png",
+    "slug": "mybambu",
+    "status": "ok",
+    "file": "mybambu/mybambu-04.png",
+    "bytes": 616097
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/Bambu-BG-e1719231551366-1024x1024.jpg",
+    "slug": "mybambu",
+    "status": "ok",
+    "file": "mybambu/mybambu-05.jpg",
+    "bytes": 108062
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2020/06/FInTech-MyBambu.png",
+    "slug": "mybambu",
+    "status": "ok",
+    "file": "mybambu/mybambu-06.png",
+    "bytes": 254042
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "slug": "mybambu",
+    "status": "ok",
+    "file": "mybambu/mybambu-07.png",
+    "bytes": 15330
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "slug": "mybambu",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "slug": "mybambu",
+    "status": "skipped-tiny",
+    "bytes": 709
+  },
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "slug": "tnaa",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/tna2_team.jpg",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-02.jpg",
+    "bytes": 1407996
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/tnaa-case-study-preview2-crop.png",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-03.png",
+    "bytes": 1663139
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/tnaa-case-study-preview-crop.png",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-04.png",
+    "bytes": 795866
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/tna2_SectionParallax.jpg",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-05.jpg",
+    "bytes": 681613
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/tna2_screen_closeup.jpg",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-06.jpg",
+    "bytes": 306867
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/TNAA-BG-e1719231768427-1002x1024.jpg",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-07.jpg",
+    "bytes": 96823
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2020/10/TNAA-Persona3Maria001.png",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-08.png",
+    "bytes": 470963
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "slug": "tnaa",
+    "status": "ok",
+    "file": "tnaa/tnaa-09.png",
+    "bytes": 15330
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "slug": "tnaa",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "slug": "tnaa",
+    "status": "skipped-tiny",
+    "bytes": 709
+  },
+  {
+    "url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+    "slug": "syrian-emergency-task-force",
+    "status": "skipped-tiny",
+    "bytes": 37
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/slid_SETF_01.jpg",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-02.jpg",
+    "bytes": 534787
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/SETF_Preview_2s-1-e1719572911470.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-03.png",
+    "bytes": 2399720
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/setf-case-study-preview-crop.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-04.png",
+    "bytes": 917259
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/slid_SETF_02.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-05.png",
+    "bytes": 422343
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2021/03/slid_SETF_04.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-06.png",
+    "bytes": 643043
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/SETF-BG-e1719232237890-1024x1024.jpg",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-07.jpg",
+    "bytes": 114370
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/06/mockstef-e1719232543869.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-08.png",
+    "bytes": 278574
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/veteren-business.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "ok",
+    "file": "syrian-emergency-task-force/syrian-emergency-task-force-09.png",
+    "bytes": 15330
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/clutch.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "skipped-tiny",
+    "bytes": 1085
+  },
+  {
+    "url": "https://metova.com/wp-content/uploads/2024/05/5-stars.png",
+    "slug": "syrian-emergency-task-force",
+    "status": "skipped-tiny",
+    "bytes": 709
+  }
+]

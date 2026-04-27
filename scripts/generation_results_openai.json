@@ -1,0 +1,113 @@
+[
+  {
+    "slug": "team-engineering-workspace",
+    "status": "skipped"
+  },
+  {
+    "slug": "code-editor-closeup",
+    "status": "skipped"
+  },
+  {
+    "slug": "product-strategy-whiteboard",
+    "status": "skipped"
+  },
+  {
+    "slug": "llm-ai-workstation",
+    "status": "skipped"
+  },
+  {
+    "slug": "computer-vision-ml",
+    "status": "ok",
+    "bytes": 2254479
+  },
+  {
+    "slug": "ai-saas-dashboard",
+    "status": "ok",
+    "bytes": 2127572
+  },
+  {
+    "slug": "product-bets-strategy",
+    "status": "ok",
+    "bytes": 2301103
+  },
+  {
+    "slug": "ai-product-neural-infra",
+    "status": "ok",
+    "bytes": 2487860
+  },
+  {
+    "slug": "data-infra-ai-engineering",
+    "status": "ok",
+    "bytes": 2267567
+  },
+  {
+    "slug": "custom-software-architecture",
+    "status": "ok",
+    "bytes": 2264565
+  },
+  {
+    "slug": "ux-ui-design-process",
+    "status": "ok",
+    "bytes": 2164898
+  },
+  {
+    "slug": "iot-connected-devices",
+    "status": "ok",
+    "bytes": 2226987
+  },
+  {
+    "slug": "iot-emerging-tech",
+    "status": "ok",
+    "bytes": 2145299
+  },
+  {
+    "slug": "software-architecture-team",
+    "status": "ok",
+    "bytes": 2336444
+  },
+  {
+    "slug": "digital-strategy-consulting",
+    "status": "ok",
+    "bytes": 2234668
+  },
+  {
+    "slug": "strategy-planning-session",
+    "status": "ok",
+    "bytes": 2247892
+  },
+  {
+    "slug": "digital-transformation",
+    "status": "ok",
+    "bytes": 2339357
+  },
+  {
+    "slug": "embedded-circuit-board",
+    "status": "ok",
+    "bytes": 2376442
+  },
+  {
+    "slug": "iot-field-deployment",
+    "status": "ok",
+    "bytes": 2060362
+  },
+  {
+    "slug": "fleet-management-platform",
+    "status": "ok",
+    "bytes": 2067817
+  },
+  {
+    "slug": "connected-health-wearable",
+    "status": "ok",
+    "bytes": 1847909
+  },
+  {
+    "slug": "user-research-session",
+    "status": "ok",
+    "bytes": 2425139
+  },
+  {
+    "slug": "design-analytics-session",
+    "status": "ok",
+    "bytes": 2411008
+  }
+]

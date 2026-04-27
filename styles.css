@@ -558,3 +558,112 @@ a.ai-card { cursor: pointer; }
   .ticker-track { animation: none; }
   .card-hover, .btn-glow, .btn-ghost, .btn-lime, .nav-link { transition: none; }
 }
+
+/* ─── Product Mockup Frame ──────────────────────────────
+   Editorial display for case-study product images that have
+   transparent or thin backgrounds. Wrap an <img> with
+   <figure class="product-mockup-frame"> to apply.
+   ──────────────────────────────────────────────────── */
+.product-mockup-frame {
+  --pmf-bg-base: #0E0E0F;
+  --pmf-bg-soft: #15171A;
+  --pmf-accent-deep: #8BAD41;
+  --pmf-border: rgba(255, 255, 255, 0.06);
+  --pmf-border-strong: rgba(255, 255, 255, 0.10);
+  --pmf-radius: 16px;
+  --pmf-pad: clamp(4px, 0.8vw, 12px);
+
+  position: relative;
+  isolation: isolate;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pmf-pad) !important;
+  border-radius: var(--pmf-radius);
+  border: 1px solid var(--pmf-border);
+  overflow: hidden;
+  margin: 0;
+
+  /* Studio backdrop on dark canvas. !important wins over any inline
+     background:#1A1A1A on the homepage card wrappers. */
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 255, 255, 0.02) 25%,
+                    transparent 55%),
+    radial-gradient(ellipse 80% 60% at 85% 110%,
+                    rgba(139, 173, 65, 0.10) 0%,
+                    rgba(139, 173, 65, 0.04) 30%,
+                    transparent 60%),
+    linear-gradient(180deg, var(--pmf-bg-soft) 0%, var(--pmf-bg-base) 100%) !important;
+
+  box-shadow:
+    inset 0  1px 0 rgba(255, 255, 255, 0.04),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.40);
+
+  transition: border-color 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Subtle film-grain overlay — barely perceptible, breaks gradient flatness. */
+.product-mockup-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Product image — fills the available frame area as large as possible. */
+.product-mockup-frame > img {
+  position: relative;
+  z-index: 2;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  display: block;
+  filter:
+    drop-shadow(0 14px 22px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+
+.product-mockup-frame:hover { border-color: var(--pmf-border-strong); }
+
+@media (max-width: 640px) {
+  .product-mockup-frame {
+    --pmf-pad: clamp(8px, 2vw, 16px);
+    --pmf-radius: 12px;
+  }
+}
+
+/* ─── Case Card Gradient Bg ─────────────────────────────
+   Lightweight variant: paints ONLY the dark studio gradient
+   behind a card. No padding change, no object-fit override —
+   the inner image keeps cover/cropping behavior. Used on
+   homepage cards where the photo has thin/transparent areas
+   and we want a richer backdrop than flat #1A1A1A.
+   ──────────────────────────────────────────────────── */
+.case-card-gradient-bg {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -10%,
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 255, 255, 0.02) 25%,
+                    transparent 55%),
+    radial-gradient(ellipse 80% 60% at 85% 110%,
+                    rgba(139, 173, 65, 0.10) 0%,
+                    rgba(139, 173, 65, 0.04) 30%,
+                    transparent 60%),
+    linear-gradient(180deg, #15171A 0%, #0E0E0F 100%) !important;
+}
+
+/* On homepage scrolling case-study cards (mobile aspect-square + desktop
+   cs-img), strip the frame's border-radius so the cards sit flush. */
+.product-mockup-frame.aspect-square,
+.product-mockup-frame.cs-img {
+  --pmf-radius: 0;
+  border-radius: 0 !important;
+}
